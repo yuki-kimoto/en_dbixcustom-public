@@ -12,7 +12,6 @@
 <link  type="text/css" rel="stylesheet" href="/js/google-code-prettify/prettify.css"/>
 <script>
   $(function(){
-    // google code prettifyの有効化
     $("pre").addClass("prettyprint");
     function init(event){
       prettyPrint();
@@ -21,7 +20,6 @@
     else if(window.attachEvent)window.attachEvent("onload",init);
     
     $(".to-top").click(function() {
-      // ページの一番上までスクロールさせます。
       $('body, html').animate({scrollTop: 0}, 300, 'linear');;
     });
   });
@@ -36,7 +34,7 @@
 
   gtag('config', 'G-M3N0832N8E');
 </script>
-<title>モデルの作成 - DBIx::Custom - SQLの実行が簡単なPerlのO/Rマッパー</title>
+<title>モデルの作成 - DBIx::Custom - PerlのO/R Mapper that execute SQL easily</title>
 <meta name="description" content="DBIx::Customで「モデル」を使う方法を解説します。モデルを作成すると、テーブルのフィールド情報を自動取得し活用できたり、join句を定義しておくことができます。">
   </head>
   <body>
@@ -46,9 +44,6 @@
   <h1>
     <a href="/"><img src="/images/logo.png">DBIx::Custom</a>
   </h1>
-  <div class="header_right">
-    <a rel="nofollow" href="https://perlclub.net/account/create">会員登録</a>
-  </div>
 </div>
 
       </div>
