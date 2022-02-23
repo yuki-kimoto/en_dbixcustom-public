@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- meta -->
-<meta charset="UTF-8">
+    <!-- meta --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
 <link rel="icon" type="image/x-icon" href="/images/logo.png">
 <link rel="stylesheet" type="text/css" href="/css/common.css">
@@ -25,8 +24,7 @@
   });
 </script>
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-M3N0832N8E"></script>
+<!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-M3N0832N8E"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -34,8 +32,8 @@
 
   gtag('config', 'G-M3N0832N8E');
 </script>
-<title>executeメソッドSQLを実行 - DBIx::Custom - PerlのO/R Mapper that execute SQL easily</title>
-<meta name="description" content="SQLを実行するにはexecuteメソッドを使用します。">
+<title> execute method Execute SQL  - DBIx::Custom - PerlのO/R Mapper that execute SQL easily</title>
+<meta name="description" content="Use the execute method to execute the SQL.">
   </head>
   <body>
     <div class="container">
@@ -52,25 +50,24 @@
           <div class="entry">
   <div class="top">
     <!-- top -->
-
   </div>
   <div class="middle">
-    <div class="bread">
-  <ul itemscope itemtype="http://schema.org/BreadcrumbList">
-    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+    <div class = "bread">
+  <ul itemscope itemtype = "http://schema.org/BreadcrumbList">
+    <li itemprop = "itemListElement" itemscope itemtype = "http://schema.org/ListItem">
       <a itemprop="item" href="/">
-        <span itemprop="name">DBIx::Custom</span>
-      </a>
-      <meta itemprop="position" content="1" />
+        <span itemprop = "name"> DBIx::Custom </span>
+     </a>
+      <meta itemprop = "position" content = "1" />
     </li>
     <li>
       here
     </li>
   </ul>
 </div>
-<h2><a href="/blog/20110708131364.html">executeメソッドSQLを実行</a></h2>
+<h2><a href="/blog/20110708131364.html"> execute method Execute SQL </a></h2>
 <p>
-  SQLを実行するにはexecuteメソッドを使用します。
+  Use the execute method to execute the SQL.
 </p>
 <div style="width:calc(100% - 30px);margin:10px auto;">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
@@ -93,219 +90,219 @@
 my $result = $dbi-&gt;execute("select * from book");
 </pre>
 <p>
-  戻り値は<a href="/blog/20110709131364.html">DBIx::Custom::Result</a>オブジェクトです。すべての行を取得するにはallメソッドを使用します。
+  The return value is a <a href="/blog/20110709131364.html"> DBIx::Custom::Result</a> object. Use the all method to get all the rows.
 </p>
 <pre>
 # Fetch all rows
 my $rows = $result-&gt;all;
 </pre>
-<h3>名前つきプレースホルダー</h3>
+<h3> Named placeholder </h3>
 <p>
-  DBIx::CustomはOracleでサポートされているような名前つきプレースホルダーをすべてのRDBMSでサポートします。
+  DBIx::Custom supports named placeholders on all RDBMSs, such as those supported by Oracle.
 </p>
 <pre>
-# Named placeholder
-my $result = $dbi-&gt;execute("select * from book where title = :title",
-  {title =&gt; 'Perl'});
+#Named placeholder
+my $result = $dbi-&gt;execute("select * from book where title =: title",
+  {title =&gt;'Perl'});
 </pre>
 <p>
-  名前つきプレースホルダは「:title」のようにコロンで始まります。埋め込む値はハッシュリファレンスで指定することができます。これは以下の実行文と同じ意味があります。
+  Named placeholders start with a colon, such as ": title". The value to be embedded can be specified by the hash reference. This has the same meaning as the following executable statement.
 </p>
 <pre>
-my $title = 'Perl';
-my $sql = "select * from book where title = ?";
+my $title ='Perl';
+my $sql = "select * from book where title =?";
 my $dbh = DBI-&gt;connect(...);
 my $sth = $dbh-&gt;prepare($sql);
 $sth-&gt;execute($title);
 </pre>
 <p>
-  名前つきプレースホルダーは、パラメータの値の順番を気にする必要がないのでとても便利です。
+  Named placeholders are very useful because you don't have to worry about the order of the parameter values.
 </p>
-<h3>同名の名前つきプレースホルダーを利用したい場合</h3>
+<h3> If you want to use a named placeholder with the same name </h3>
 <p>
-  名前つきプレースホルダーで同名の名前を利用した場合があります。たとえば開始日付と終了日付を指定したいような場合です。このような場合は次のように記述します。
+  You may have used the same name in a named placeholder. For example, if you want to specify a start date and an end date. In such a case, write as follows.
 </p>
 <pre>
-# Use named placeholder more than once
+#Use named placeholder more than once
 my $result = $dbi-&gt;execute(
-  "select * from book where date &gt; :date and date &lt; :date",
+  "select * from book where date&gt;: date and date &lt;: date",
   {date =&gt; [3, 5]});
 </pre>
 <p>
-  複数の値を渡したい場合は、パラメータの値を「date => [3, 5]」のように配列のリファレンスとして指定します。
+  If you want to pass multiple values, specify the parameter value as an array reference, such as "date => [3, 5]".
 </p>
-<h3>名前つきプレースホルダーの簡略表記</h3>
+<h3> Abbreviated notation for named placeholders </h3>
 <p>
-  名前つきプレースホルダーは「title = :title」のように同じ名前を二度繰り返すことがとても多いので、簡略表記が用意されています。
-</p>
-<pre>
-# プレースホルダーの簡略表記
-:プレースホルダー名{演算子}
-</pre>
-<p>
-  たとえば「:title{=}」は「title = :title」と同じ意味になります。他の演算子でも同様に利用することができます。
+  Named placeholders often repeat the same name twice, such as "title =: title", so a shorthand notation is provided.
 </p>
 <pre>
-# Named placeholder suger syntax
-:title{like}    -&gt;  title like :title
-:title{&lt;}       -&gt;  title &lt; :title
-:title{&gt;}       -&gt;  title &gt; :title
+# Placeholder abbreviation
+: Placeholder name {operator}
 </pre>
 <p>
-  これを利用すると最初のほうで紹介したexecuteのサンプルは次のように書き直すことができます。
+  For example, ": title {=}" has the same meaning as "title =: title". It can be used with other operators as well.
 </p>
 <pre>
-# Named placeholder suger syntax example
-my $result = $dbi-&gt;execute("select * from book where :title{=}",
-  {title =&gt; 'Perl'});
+#Named placeholder suger syntax
+: title {like}-&gt;titlelike: title
+: title {&lt;}-&gt;title&lt;: title
+: title {&gt;}-&gt;title&gt;: title
 </pre>
-<h3>テーブル名を含んだ列名を利用する</h3>
 <p>
-  プレースホルダー名としてテーブル名を含んだ列名を利用することもできます。
+  By using this, the execute sample introduced at the beginning can be rewritten as follows.
 </p>
 <pre>
-my $result = $dbi-&gt;execute("select * from book where :book.title{=}",
-  {'book.title' =&gt; 'Perl'});
+#Named placeholder suger syntax example
+my $result = $dbi-&gt;execute("select * from book where: title {=}",
+  {title =&gt;'Perl'});
 </pre>
-<h3>executeメソッドのオプション</h3>
+<h3> Use column name including table name </h3>
 <p>
-  DBIx::Customにはさまざまなオプションを指定することができます。第３引数以降を利用して次のように記述することができます。
+  You can also use the column name including the table name as the placeholder name.
 </p>
 <pre>
-$dbi-&gt;execute($sql, $param, オプション名 =&gt; オプションの値, ...)
+my $result = $dbi-&gt;execute("select * from book where: book.title {=}",
+  {'book.title'=&gt;'Perl'});
 </pre>
-<h3>executeメソッドのオプション</h3>
+<h3> execute method options </h3>
 <p>
-  <a href="/blog/20110708131364.html">executeメソッド</a>のオプションの一覧です。
-</p>
-<h4>SQLの加工 after_build_sql</h4>
-<p>
-  after_build_sqlを使うと、SQLが構築された後に、SQLを加工することができます。値としては、変換のためのコードリファレンスを指定します。
+  You can specify various options for DBIx::Custom. It can be described as follows using the third and subsequent arguments.
 </p>
 <pre>
-after_build_sql =&gt; $code_ref
+$dbi-&gt;execute($sql, $param, option name =&gt; option value, ...)
+</pre>
+<h3> execute method options </h3>
+<p>
+  A list of options for the <a href="/blog/20110708131364.html"> execute method</a>.
+</p>
+<h4> SQL processing after_build_sql </h4>
+<p>
+  After_build_sql can be used to process SQL after it has been built. The value specifies a code reference for the conversion.
+</p>
+<pre>
+after_build_sql =&gt; $code_ref =&gt; $code_ref
 </pre>
 <p>
-  以下は例です。実行したSQLの列数を取得するサンプルです。
+  The following is an example. This is a sample to get the number of executed SQL columns.
 </p>
 <pre>
 $dbi-&gt;select(
-  table =&gt; 'book',
-  column =&gt; 'distinct(name)',
+  table =&gt;'book',
+  column =&gt;'distinct (name)',
   after_build_sql =&gt; sub {
-    "select count(*) from ($_[0]) as t1"
+    "select count (*) from ($_ [0]) as t1"
   }
 );
 
-次のようなSQLが実行されます。
+The following SQL is executed:
 
 &lt;pre&gt;
-select count(*) from (select distinct(name) from book) as t1;
+select count (*) from (select distinct (name) from book) as t1;
 </pre>
-<h4>SQLの末尾に追加 append</h4>
+<h4> Add to the end of SQL append </h4>
 <p>
-  appendオプションを使うとSQLの末尾にステートメントを追加することできます。
+  You can use the append option to add a statement to the end of the SQL.
 </p>
 <pre>
-append =&gt; 'order by name'
+append =&gt;'order by name'
 </pre>
-<h4>バインドタイプの指定 bind_type</h4>
+<h4> Specify bind type bind_type </h4>
 <p>
-  インサートをするデータがバイナリデータの場合は、そのことを明示的に指定しなければならない場合があります。たとえばSQLiteではBLOB型のデータを挿入したい場合はDBIを使う場合は次のように書く必要があります。
+  If the data you are inserting is binary data, you may need to explicitly specify that. For example, in SQLite, if you want to insert BLOB type data, you need to write as follows when using DBI.
 </p>
 <pre>
 $sth-&gt;bind_param($pos, $value, DBI::SQL_BLOB);
 </pre>
 <p>
-  これと同じことをexecuteメソッドで実行するにはbind_typeオプションを使用します。
+  Use the bind_type option to do the same with the execute method.
 </p>
 <pre>
-# Bind type option
+#Bind type option
 bind_type =&gt; {image =&gt; DBI::SQL_BLOB}
 bind_type =&gt; [image =&gt; DBI::SQL_BLOB]
-bind_type =&gt; [[qw/image audio/] =&gt; DBI::SQL_BLOB]
+bind_type =&gt; [[qw / image audio /] =&gt; DBI::SQL_BLOB]
 </pre>
 <p>
-  bind_typeの値はハッシュリファレンスで指定します。複数の列に同じ値を指定したい場合は配列のリファレンスを利用することもできます(3番目の方法)。
+  The value of bind_type is specified by the hash reference. You can also use an array reference if you want to specify the same value for multiple columns (third method).
 </p>
-<h4>フィルターの指定 filter</h4>
+<h4> Specifying a filter filter </h4>
 <p>
-  filterオプションを利用すれば、パラメータの値をプレースホルダーに埋め込む前に値をフィルタリングすることができます。
+  You can use the filter option to filter the value of the parameter before embedding it in the placeholder.
 </p>
 <pre>
-# Filter option
-filter =&gt; {title  =&gt; sub { uc $_[0] }}
-filter =&gt; {title  =&gt; 'upper_case'}
-filter =&gt; [[qw/title author/]  =&gt; sub { uc $_[0] }]
+#Filter option
+filter =&gt; {title =&gt; sub {uc $_ [0]}}
+filter =&gt; {title =&gt;'upper_case'}
+filter =&gt; [[qw / title author /] =&gt; sub {uc $_ [0]}]
 </pre>
 <p>
-  フィルタは「{列名 => フィルタ(サブルーチンあるいはフィルタ名)}」というフォーマットで記述します。フィルタ名で利用した場合はregister_filterメソッドを使ってあらかじめフィルタを登録しておく必要があります。
+  The filter is described in the format "{column name => filter (subroutine or filter name)}". If you use it with a filter name, you need to register the filter in advance using the register_filter method.
 </p>
 <p>
-  複数の列名に対して、同じフィルタを利用したい場合は、配列のリファレンスを使って指定することもできます(3番目の方法)
+  If you want to use the same filter for multiple column names, you can also specify it using the array reference (third method).
 </p>
-<h4>ID指定 id</h4>
+<h4> ID specification id </h4>
 <p>
-  idオプションを指定すると、primary_keyが設定されている場合に、列名を指定せずにパラメータを指定することができます。
+  If you specify the id option, you can specify the parameter without specifying the column name when primary_key is set.
 </p>
 <pre>
 id =&gt; 4
 id =&gt; [4, 5]
 </pre>
 <p>
-  たとえばprimary_keyに[id1, id2]が設定されてしたとすればid => [4, 5]は、executeの第二引数であるパラメーターに{id1 => 4, id2 => 5}を指定したことと同じになります。
+  For example, if [id1, id2] is set in primary_key, id => [4, 5] specifies {id1 => 4, id2 => 5} in the parameter that is the second argument of execute. Will be the same as.
 </p>
 <pre>
 $dbi-&gt;execute(
-  "select * from book where id1 = :id1 and id2 = :id2",
+  "select * from book where id1 =: id1 and id2 =: id2",
   {},
-  primary_key =&gt; ['id1', 'id2'],
+  primary_key =&gt; ['id1','id2'],
   id =&gt; [4, 5],
 );
 </pre>
 <p>
-  上記のexecuteは、以下と同じになります。
+  The above execute is the same as below.
 </p>
 <pre>
 $dbi-&gt;execute(
-  "select * from book where id1 = :id1 and id2 = :id2",
+  "select * from book where id1 =: id1 and id2 =: id2",
   {id1 =&gt; 4, id2 =&gt; 5}
 );
 </pre>
-<h4>クエリオブジェクトの取得 query</h4>
+<h4> Get query object query </h4>
 <p>
-  queryオプションに1を設定するとSQLを実行する代わりに戻り値として、DBIx::Custom::Queryオブジェクトを取得することができます。
+  If you set the query option to 1, you can get the DBIx::Custom::Query object as the return value instead of executing the SQL.
 </p>
 <pre>
 query =&gt; 1
 </pre>
 <p>
-  DBIx::Custom::Queryオブジェクトは、どのようなクエリが実際に実行されているかを調べたるのに便利です。
+  The DBIx::Custom::Query object is useful for finding out what kind of query is actually being executed.
 </p>
 <pre>
 my $sql = $query-&gt;sql;
 my $columns = $query-&gt;columns;
 </pre>
 <p>
-  クエリオブジェクトをexecuteメソッドに渡すことは廃止予定の機能になっていますので利用しないでください。これは潜在的に非常にバグの多い実装でした。実行速度を上昇させるには代わりにreuseオプションを使用してください。
+  Passing the query object to the execute method is a deprecated feature and should not be used. This was a potentially very buggy implementation. Use the reuse option instead to increase execution speed.
 </p>
-<h4>プライマリーキーの設定 primary_key</h4>
+<h4> Primary key settings primary_key </h4>
 <p>
-  idオプションで利用するprimary_keyを設定します。
+  Set the primary_key used in the id option.
 </p>
 <pre>
-primary_key =&gt; 'id'
-primary_key =&gt; ['id1', 'id2']
+primary_key =&gt;'id'
+primary_key =&gt; ['id1','id2']
 </pre>
-<h4>クエリの再利用 reuse </h4>
+<h4> Query reuse reuse </h4>
 <p>
-  reuseオプションを使用すると、同一のSQLを連続して実行する場合に実行速度を上昇させることができます2～3倍のスピードになることが確認されています。クエリを保存するためのハッシュリファレンスを引数として指定します。
+  When the reuse option is used, the same SQL is executed consecutively.It has been confirmed that the execution speed can be increased by 2 to 3 times. Specify a hash reference as an argument to save the query.
 </p>
 <pre>
 reuse =&gt; $hash_ref
 </pre>
 <p>
-  以下はサンプルです。
+  Below is a sample.
 </p>
 <pre>
 my $queries = {};
@@ -314,87 +311,87 @@ for my $param (@params) {
 }
 </pre>
 <p>
-  もちろんinsert, update, delete, selectメソッドでも使用することができます。
+  Of course you can also use it with the insert, update, delete and select methods.
 </p>
 <pre>
 my $queries = {};
 for my $row (@rows) {
-  $dbi-&gt;insert($row, table =&gt; 'book', reuse =&gt; $queries);
+  $dbi-&gt;insert($row, table =&gt;'book', reuse =&gt; $queries);
 }
 </pre>
-<h4>テーブル名 table</h4>
+<h4> table name table </h4>
 <p>
-  tableオプションでテーブル名を指定することができます。
+  You can specify the table name with the table option.
 </p>
 <pre>
-table =&gt; 'author'
+table =&gt;'author'
 </pre>
 <p>
-  一般的にはexecuteメソッドでは、指定したSQLが実行されるのでtableオプションを指定する必要はありません。
+  Generally, the execute method executes the specified SQL, so there is no need to specify the table option.
 </p>
 <p>
-  tableオプションは次のような効果を持ちます。もし名前付きプレースホルダーの列名が完全修飾名で与えられなかった場合は、指定したテーブル名で、列名が完全修飾されます。またパラメータで利用されている列名も、完全修飾されます。
+  The table option has the following effects: If the column name in the named placeholder is not given as a fully qualified name, the column name will be fully qualified with the specified table name. The column names used in the parameters are also fully qualified.
 </p>
 <pre>
-$dbi-&gt;execute("select * from book where title = :title and author = :author",
-  {title =&gt; 'Perl', author =&gt; 'Ken'}, table =&gt; 'book');
+$dbi-&gt;execute("select * from book where title =: title and author =: author",
+  {title =&gt;'Perl', author =&gt;'Ken'}, table =&gt;'book');
 </pre>
 <p>
-  上記のexecuteは以下と同じ意味になります。
+  The above execute has the same meaning as the following.
 </p>
 <pre>
 $dbi-&gt;execute(
-  "select * from book where title = :book.title and author = :book.author",
-  {'book.title' =&gt; 'Perl', 'book.author' =&gt; 'Ken'});
+  "select * from book where title =: book.title and author =: book.author",
+  {'book.title' =&gt;'Perl','book.author' =&gt;'Ken'});
 </pre>
 <p>
-  tableオプションはtype_ruleのinto1やinto2が設定されている場合に利用するためのものです。なぜなら、完全修飾名でなければどのテーブルの列名なのかが判断できないので、type_ruleによるフィルタリングがうまくいきません。
+  The table option is to be used when into1 or into2 of type_rule is set. This is because it is not possible to determine which table column name it is unless it is a fully qualified name, so filtering by type_rule does not work.
 </p>
 <p>
-  ですから、type_ruleでinto1やinto2を設定しているときにだけ意識する必要があります。
+  Therefore, you need to be aware of it only when you are setting into1 or into2 in type_rule.
 </p>
-<h4>テーブルのエイリアス table_alias</h4>
+<h4> Table aliases table_alias </h4>
 <p>
-  table_aliasオプションで、テーブルのエイリアスを設定することができます。
+  You can set table aliases with the table_alias option.
 </p>
 <pre>
-table_alias =&gt; {worker =&gt; 'user'} # {エイリアス名 =&gt; テーブル名}
+table_alias =&gt; {worker =&gt;'user'} # {alias name =&gt; table name}
 </pre>
 <p>
-  キーはエイリアス名、値はテーブル名になります。テーブルのエイリアスを設定しておくと、C<type_rule>メソッドで指定し<b>into1</b>と<b>into2</b>のフィルタリングの効果が、エイリアス名でも機能するようになります。
+  The key is the alias name and the value is the table name. If you set an alias for the table, the filtering effect of <b> into1 </b> and <b> into2 </b> specified by the C <type_rule> method will also work with the alias name. ..
 </p>
 <p>
-  この例ではuserテーブルの列に設定したC<into1>とC<inot2>のフィルタが、workerテーブルの列でも有効になります。
+  In this example, the C <into1> and C <inot2> filters set on the columns of the user table will also be valid for the columns of the worker table.
 </p>
-<h4>タイプルールを無効にする type_rule_off</h4>
+<h4> Disable type rules type_rule_off </h4>
 <p>
-  type_rule_offオプションを使うと、type_ruleで設定したinto1とinto2のフィルタを無効にすることができます。
+  You can use the type_rule_off option to disable the into1 and into2 filters set in type_rule.
 </p>
 <pre>
 type_rule_off =&gt; 1
 </pre>
 <p>
-  from1とfrom2のフィルタには何の影響も与えません。
+  It has no effect on the from1 and from2 filters.
 </p>
-<h4>タイプルール1を無効にする type_rule1_off</h4>
+<h4> Disable type rule 1 type_rule1_off </h4>
 <p>
-  type_rule1_offオプションを使うと、type_ruleで設定したinto1のフィルタを無効にすることができます。
+  You can use the type_rule1_off option to disable the into1 filter set in type_rule.
 </p>
 <pre>
 type_rule1_off =&gt; 1
 </pre>
 <p>
-  from1とfrom2のフィルタには何の影響も与えません。
+  It has no effect on the from1 and from2 filters.
 </p>
-<h4>タイプルール2を無効にする type_rule2_off</h4>
+<h4> Disable type rule 2 type_rule2_off </h4>
 <p>
-  type_rule2_offオプションを使うと、type_ruleで設定したinto2のフィルタを無効にすることができます。
+  You can use the type_rule2_off option to disable the into2 filter set in type_rule.
 </p>
 <pre>
 type_rule2_off =&gt; 1
 </pre>
 <p>
-  from1とfrom2のフィルタには何の影響も与えません。
+  It has no effect on the from1 and from2 filters.
 </p>
 
   </div>
@@ -422,8 +419,7 @@ type_rule2_off =&gt; 1
           <div style="margin-bottom:30px">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
      crossorigin="anonymous"></script>
-<!-- ディスプレイ縦長 -->
-<ins class="adsbygoogle"
+<!-- ディスプレイ縦長 --><ins class="adsbygoogle"
      style="display:block"
      data-ad-client="ca-pub-4525414114581084"
      data-ad-slot="4544919209"

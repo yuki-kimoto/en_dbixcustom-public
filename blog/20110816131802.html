@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- meta -->
-<meta charset="UTF-8">
+    <!-- meta --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
 <link rel="icon" type="image/x-icon" href="/images/logo.png">
 <link rel="stylesheet" type="text/css" href="/css/common.css">
@@ -25,8 +24,7 @@
   });
 </script>
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-M3N0832N8E"></script>
+<!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-M3N0832N8E"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -34,8 +32,8 @@
 
   gtag('config', 'G-M3N0832N8E');
 </script>
-<title>モデルの作成 - DBIx::Custom - PerlのO/R Mapper that execute SQL easily</title>
-<meta name="description" content="DBIx::Customで「モデル」を使う方法を解説します。モデルを作成すると、テーブルのフィールド情報を自動取得し活用できたり、join句を定義しておくことができます。">
+<title> Creating a model  - DBIx::Custom - PerlのO/R Mapper that execute SQL easily</title>
+<meta name="description" content="I will explain how to use "model" with DBIx::Custom. When you create a model, you can automatically acquire and utilize the field information of the table, and you can define a join clause.">
   </head>
   <body>
     <div class="container">
@@ -52,25 +50,24 @@
           <div class="entry">
   <div class="top">
     <!-- top -->
-
   </div>
   <div class="middle">
-    <div class="bread">
-  <ul itemscope itemtype="http://schema.org/BreadcrumbList">
-    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+    <div class = "bread">
+  <ul itemscope itemtype = "http://schema.org/BreadcrumbList">
+    <li itemprop = "itemListElement" itemscope itemtype = "http://schema.org/ListItem">
       <a itemprop="item" href="/">
-        <span itemprop="name">DBIx::Custom</span>
-      </a>
-      <meta itemprop="position" content="1" />
+        <span itemprop = "name"> DBIx::Custom </span>
+     </a>
+      <meta itemprop = "position" content = "1" />
     </li>
     <li>
       here
     </li>
   </ul>
 </div>
-<h2><a href="/blog/20110816131802.html">モデルの作成</a></h2>
+<h2><a href="/blog/20110816131802.html"> Creating a model </a></h2>
 <p>
-  DBIx::Customで「モデル」を使う方法を解説します。モデルを作成すると、テーブルのフィールド情報を自動取得し活用できたり、join句を定義しておくことができます。
+  I will explain how to use "model" with DBIx::Custom. When you create a model, you can automatically acquire and utilize the field information of the table, and you can define a join clause.
 </p>
 <div style="width:calc(100% - 30px);margin:10px auto;">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
@@ -88,114 +85,114 @@
 </div>
 
 
-<h3>モデルを生成する - create_model</h3>
+<h3> Create model --create_model </h3>
 <p>
-  モデルを作成するには<strong>create_model</strong>メソッドを使用します。
+  Use the <strong> create_model </strong> method to create a model.
 </p>
 <pre>
-# テーブル名を指定してモデルを作成
+#Create a model by specifying the table name
 $dbi-&gt;create_model('book');
 
-# テーブル名とjoin句を指定してモデルを作成
+#Create a model with a table name and join clause
 $dbi-&gt;create_model(
-  table =&gt; 'book',
+  table =&gt;'book',
   join =&gt; [
     'left join company on book.company_id = company.id',
     'left join author on book.author_id = author.id',
-  ],
+  ],,
 );
 </pre>
     
 <p>
-  create_modelの引数では<b>table</b>でテーブル名、<b>join</b>でjoin句を指定することができます。joinには、複数のjoin句を指定することもできます。
+  In the argument of create_model, you can specify the table name with <b> table </b> and the join clause with <b> join </b>. You can also specify multiple join clauses for join.
 </p>
 <p>
-  このサンプルでは、joinでは、会社テーブルと著者テーブルを結合しています。
+  In this sample, join joins the company table and the author table.
 </p>
-<h3>モデルの取得</h3>
+<h3> Get the model </h3>
 <p>
-  作成したモデルは<b>model</b>メソッドでテーブル名を指定して取得することができます。
+  The created model can be obtained by specifying the table name with the <b> model </b> method.
 </p>
 <pre>
 my $book = $dbi-&gt;model('book');
 </pre>
 <p>
-  モデルを作成すると、DBIx::Custom::Modelが持つメソッド<a href="/blog/20110129130016.html">insert</a>, <a href="/blog/20110130130016.html">update</a>,<a href="/blog/20110202130016.html"!>delete</a>,<a href="/blog/20110210130016.html">select</a>などを呼び出すことができます。
+  When you create a model, the method <a href="/blog/20110129130016.html"> insert</a>, <a href="/blog/20110130130016.html"> update </strong> of DBIx::Custom::Model You can call a>, <a href="/blog/20110202130016.html"!> Delete</a>, <a href="/blog/20110210130016.html"> select</a> and so on.
 </p>
 <pre>
-# insert
-$dbi-&gt;model('book')-&gt;insert({id =&gt; 1, title =&gt; 'Perl'});
+#insert
+$dbi-&gt;model('book')-&gt;insert({id =&gt; 1, title =&gt;'Perl'});
 
-# uppdate
-$dbi-&gt;model('book')-&gt;update({title =&gt; 'Perl'}, where =&gt; {id =&gt; 1});
+#uppdate
+$dbi-&gt;model('book')-&gt;update({title =&gt;'Perl'}, where =&gt; {id =&gt; 1});
 
-# uppdate_all
-$dbi-&gt;model('book')-&gt;update_all({title =&gt; 'Perl'});
+#uppdate_all
+$dbi-&gt;model('book')-&gt;update_all({title =&gt;'Perl'});
 
-# delete
+#delete
 $dbi-&gt;model('book')-&gt;delete(where =&gt; {id =&gt; 1});
 
-# delete_all
+#delete_all
 $dbi-&gt;model('book')-&gt;delete_all;
 
-# select
+#select
 my $rows = $dbi-&gt;model('book')-&gt;select(where =&gt; {id =&gt; 1})-&gt;all;
 </pre>
-<h3>join句とフィールド名の取得の組み合わせ</h3>
+<h3> Combination of join clause and field name acquisition </h3>
 <p>
-  モデルを利用するとフィールド名を自動的に取得することができます。たとえば、bookテーブルにcompanyテーブルをjoinで結合して情報を取得する場合です。
+  You can get the field name automatically by using the model. For example, join the company table with a book table to get information.
 </p>
 <p>
-  たとえば、以下の場合を考えましょう。以下の例では、bookテーブルのすべてのフィールドを取得するSQLが実行されています。パラメーターはプレースホルダーに置き換えられます。
+  For example, consider the following case: In the following example, the SQL is executed to get all the fields in the book table. The parameter is replaced with a placeholder.
 </p>
 <pre>
-# すべての列を取得
-# select * from book where id = ?
+# Get all columns
+#select * from book where id =?
 my $rows = $dbi-&gt;model('book')-&gt;select(where =&gt; {id =&gt; 1})-&gt;all;
 </pre>
 <p>
-  さてここから、会社名を追加で取得したい場合です。このような場合に、モデルを定義しておくと、簡単に書けます。bookの列はすべて取得し、会社名を追加します。
+  Now, if you want to get an additional company name from here. In such a case, it is easy to write by defining a model. Get all the columns in the book and add the company name.
 </p>
 <pre>
-# すべての列を取得
-# select book.id as `id`, book.name as `name`, book.company_id as `company_id`, company.name as `company.name` 
-#   from book left join company on book.company_id = company.id
-#   where id = ?
+# Get all columns
+#select book.id as `id`, book.name as` name`, book.company_id as `company_id`, company.name as` company.name`
+# from book left join company on book.company_id = company.id
+# where id =?
 my $rows = $dbi-&gt;model('book')-&gt;select(
   [
-    {__MY__ =&gt; '*'},
+    {__MY__ =&gt;'*'},
     {company =&gt; ['name']}
-  ],
+  ],,
   where =&gt; {id =&gt; 1}
 )-&gt;all;
 </pre>
 <p>
-  「__MY__」というテーブル名は、自分自身のテーブル名を意味し、テーブル名のプレフィックスなしの名前を取得してくれます。「*」ですべてのフィールドを取得することができます。
+  The table name "__MY__" means your own table name and will get the name without the prefix of the table name. You can get all fields with "*".
 </p>
 <p>
-  必要なjoin句が自動的に選ばれます。companyテーブルは結合されて、authorテーブルは、結合されません。
+  The required join clause is automatically selected. The company table is joined, the author table is not.
 </p>
 <p>
-  実際に実行されるSQLを眺めてみると、理解しやすいと思います。
+  If you look at the SQL that is actually executed, it will be easier to understand.
 </p>
 <p>
-  bookというテーブルプレフィックスをつけて、フィールド名を指定することもできます。
+  You can also specify the field name with the table prefix book.
 </p>
 <pre>
-# すべての列を取得
-# select book.id as `book.id`, book.name as `book.name`, company.name as `company.name` 
-#   from book left join company on book.company_id = company.id
-#   where id = ?
+# Get all columns
+#select book.id as `book.id`, book.name as` book.name`, company.name as `company.name`
+# from book left join company on book.company_id = company.id
+# where id =?
 my $rows = $dbi-&gt;model('book')-&gt;select(
   [
-    {book =&gt; ['id', 'name']},
+    {book =&gt; ['id','name']},
     {company =&gt; ['name']}
-  ],
+  ],,
   where =&gt; {id =&gt; 1}
 )-&gt;all;
 </pre>
 <p>
-  モデルを作成すると、テーブルを結合して、フィールドを取得するということが、短い記述で行えます。
+  Once you've created a model, you can join the tables and get the fields in a short description.
 </p>
 
   </div>
@@ -223,8 +220,7 @@ my $rows = $dbi-&gt;model('book')-&gt;select(
           <div style="margin-bottom:30px">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
      crossorigin="anonymous"></script>
-<!-- ディスプレイ縦長 -->
-<ins class="adsbygoogle"
+<!-- ディスプレイ縦長 --><ins class="adsbygoogle"
      style="display:block"
      data-ad-client="ca-pub-4525414114581084"
      data-ad-slot="4544919209"

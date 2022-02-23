@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- meta -->
-<meta charset="UTF-8">
+    <!-- meta --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
 <link rel="icon" type="image/x-icon" href="/images/logo.png">
 <link rel="stylesheet" type="text/css" href="/css/common.css">
@@ -25,8 +24,7 @@
   });
 </script>
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-M3N0832N8E"></script>
+<!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-M3N0832N8E"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -34,8 +32,8 @@
 
   gtag('config', 'G-M3N0832N8E');
 </script>
-<title>動的にwhere句を作成する - DBIx::Custom - PerlのO/R Mapper that execute SQL easily</title>
-<meta name="description" content="DBIx::Customで「動的にwhere句を作成」する方法を解説します。">
+<title> Dynamically create a where clause  - DBIx::Custom - PerlのO/R Mapper that execute SQL easily</title>
+<meta name="description" content="I will explain how to "dynamically create a where clause" with DBIx::Custom.">
   </head>
   <body>
     <div class="container">
@@ -52,25 +50,24 @@
           <div class="entry">
   <div class="top">
     <!-- top -->
-
   </div>
   <div class="middle">
-    <div class="bread">
-  <ul itemscope itemtype="http://schema.org/BreadcrumbList">
-    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+    <div class = "bread">
+  <ul itemscope itemtype = "http://schema.org/BreadcrumbList">
+    <li itemprop = "itemListElement" itemscope itemtype = "http://schema.org/ListItem">
       <a itemprop="item" href="/">
-        <span itemprop="name">DBIx::Custom</span>
-      </a>
-      <meta itemprop="position" content="1" />
+        <span itemprop = "name"> DBIx::Custom </span>
+     </a>
+      <meta itemprop = "position" content = "1" />
     </li>
     <li>
       here
     </li>
   </ul>
 </div>
-<h2><a href="/blog/20110924132031.html">動的にwhere句を作成する</a></h2>
+<h2><a href="/blog/20110924132031.html"> Dynamically create a where clause </a></h2>
 <p>
-  DBIx::Customで「動的にwhere句を作成」する方法を解説します。
+  I will explain how to "dynamically create a where clause" with DBIx::Custom.
 </p>
 <div style="width:calc(100% - 30px);margin:10px auto;">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
@@ -88,205 +85,205 @@
 </div>
 
 
-<h3>動的なWhere句の生成</h3>
+<h3> Dynamic Where clause generation </h3>
 <p>
-  DBIx::Customでは動的にWhere句を生成することができます。たとえば、与えられたパラメータにtitleしか含まれていないければ、titleだけの条件が含まれたWhere句を生成して、パラメータにpriceしか含まれていないならば、priceの条件だけが含まれたWhere句を生成するということが簡単にできます。
+  DBIx::Custom can dynamically generate a Where clause. For example, if a given parameter contains only title, generate a Where clause that contains only the title condition, and if the parameter contains only price, then only the price condition is included. It's easy to generate a Where clause.
 </p>
-<h4>動的なWhere句生成の基礎</h4>
+<h4> Basics of dynamic Where clause generation </h4>
 <p>
-  <b>DBIx::Custom::Whereオブジェクトの生成</b>
+  <b> DBIx::Custom::Where Object Creation </b>
 </p>
 <p>
-  まずDBIx::Custom::Whereオブジェクトを生成します。DBIx::Customのwhereメソッドを使うと、DBIx::Custom::Whereオブジェクトを生成することができます。
+  First, create a DBIx::Custom::Where object. You can use the DBIx::Custom where method to create a DBIx::Custom::Where object.
 </p>
 <pre>
 my $where = $dbi-&gt;where;
 </pre>
-<h4>Where句の設定</h4>
+<h4> Where clause settings </h4>
 <p>
-  clause属性を使って、Where句を記述します。(:title, :priceは名前付きプレースホルダーです。<a href="/blog/20110708131364.html">executeメソッド</a>の解説を参照してください。)
+  Write the Where clause using the clause attribute. (: title,: price are named placeholders. See the description of <a href="/blog/20110708131364.html"> execute method</a>.)
 </p>
 <pre>
-$where-&gt;clause(['and', 'title like :title', 'price = :price']);
+$where-&gt;clause(['and','title like: title','price =: price']);
 </pre>
 <p>
-  配列のリファレンスを指定する必要があり、最初の要素は演算子になります。演算子は「and」と「or」を利用することができます。二つ目の要素以降は、条件を指定しますが、名前付きプレースホルダーを一つだけ含むようにする必要があります。
+  You need to specify an array reference, the first element being the operator. Operators can use "and" and "or". After the second element, you specify the condition, but you need to include only one named placeholder.
 </p>
 <p>
-  また条件がひとつだけの場合は文字列を指定することもできます。
+  You can also specify a character string if there is only one condition.
 </p>
 <pre>
-$where-&gt;clause('title like :title');
+$where-&gt;clause('title like: title');
 </pre>
 <p>
-  この場合は次の記述と同じ意味になります。
+  In this case, it has the same meaning as the following description.
 </p>
 <pre>
-$where-&gt;clause(['and', 'title like :title']);
+$where-&gt;clause(['and','title like: title']);
 </pre>
-<h4>Where句の生成</h4>
+<h4> Where clause generation </h4>
 <p>
-  Where句を生成するには、to_stringメソッドを利用するか、DBIx::Custom::Whereオブジェクトを文字列として評価します。
+  To generate a Where clause, use the to_string method or evaluate the DBIx::Custom::Where object as a string.
 </p>
 <pre>
-# to_stringメソッド
+# to_string method
 my $where_clause = $where-&gt;to_string;
 
-# 文字列として評価
+#Evaluated as a string
 my $where_clause = "$where";
 </pre>
 <p>
-  次のようなWhere句を生成することができます。
+  You can generate a Where clause like this:
 </p>
 <pre>
-where title like :title and price = :price
+where title like: title and price =: price
 </pre>
-<h4>動的なWhere句の生成</h4>
+<h4> Dynamic Where clause generation </h4>
 <p>
-  Where句を動的に簡単に生成することができます。priceの条件だけを含んだWhere句を生成するにはparamのキーにpriceを含んだハッシュリファレンスのデータを渡します。
+  You can easily generate a Where clause dynamically. To generate a Where clause that contains only the price condition, pass the hash reference data that includes price in the param key.
 </p>
 <pre>
-$where-&gt;clause(['and', 'title like :title', 'price = :price']);
+$where-&gt;clause(['and','title like: title','price =: price']);
 $where-&gt;param({price =&gt; 1900});
 my $where_clause = "$where";
 </pre>
 <p>
-  次のようなWhere句が生成されます。
+  A Where clause similar to the following is generated:
 </p>
 <pre>
-where price = :price
+where price =: price
 </pre>
 <p>
-  titleの条件だけを含んだWhere句を生成するにはparamのキーにtitleを含んだハッシュリファレンスのデータを渡します。
+  To generate a Where clause that contains only the title condition, pass the hash reference data that includes the title in the param key.
 </p>
 <pre>
-$where-&gt;clause(['and', 'title like :title', 'price = :price']);
-$where-&gt;param({title =&gt; 'Perl'});
+$where-&gt;clause(['and','title like: title','price =: price']);
+$where-&gt;param({title =&gt;'Perl'});
 my $where_clause = "$where";
 </pre>
 <p>
-  次のようなWhere句が生成されます。
+  A Where clause similar to the following is generated:
 </p>
 <pre>
-where title like :title
+where title like: title
 </pre>
 <p>
-  どちらも含んでいない場合はWhere句は生成されず、空文字列を取得することができます。
+  If neither is included, the Where clause will not be generated and you can get the empty string.
 </p>
 <pre>
-$where-&gt;clause(['and', 'title like :title', 'price = :price']);
+$where-&gt;clause(['and','title like: title','price =: price']);
 $where-&gt;param({});
-my $where_clause = "$where"; # 空文字列
+my $where_clause = "$where"; #empty string
 </pre>
-<h4>テーブル名を先頭に付加した列名を利用する</h4>
+<h4> Use the column name prefixed with the table name </h4>
 <p>
-  テーブル名を先頭に付加した列名を利用することもできます。他のテーブルの列と区別する必要がある場合にも対応しています。
+  You can also use the column name prefixed with the table name. It also supports when you need to distinguish it from columns in other tables.
 </p>
 <pre>
-$where-&gt;clause(['and', 'book.title like :book.title', 'book.price = :book.price']);
+$where-&gt;clause(['and','book.title like: book.title','book.price =: book.price']);
 </pre>
-<h3>Where句の生成の応用</h3>
-<h4>同名の列を二つ以上含む場合</h4>
+<h3> Application of Where clause generation </h3>
+<h4> When two or more columns with the same name are included </h4>
 <p>
-  たとえば比較の条件を書きたい場合は、同じ列名を含む条件を記述する必要があります。このような場合にも対応しています。パラメータには、値を配列のリファレンスで指定する必要があります。
+  For example, if you want to write a comparison condition, you need to write a condition that includes the same column name. We also support such cases. The parameter must have a value specified in the array reference.
 </p>
 <pre>
-$where-&gt;clause(['and', 'price &gt; :price', 'price &lt; :price']);
+$where-&gt;clause(['and','price&gt;: price','price &lt;: price']);
 $where-&gt;param({price =&gt; [1000, 2000]});
 </pre>
 <p>
-  次のようなWhere句が生成されます。
+  A Where clause similar to the following is generated:
 </p>
 <pre>
-where price &gt; :price and price &lt; :price
+where price&gt;: price and price &lt;: price
 </pre>
 <p>
-  最初の条件だけを動的に生成したい場合は、次のようにします。配列のリファレンスの二つ目の要素に、存在しないことを示すDBIx::Custom::NotExistsオブジェクトをわたします。これはnot_existsメソッドで取得することができます。
+  If you want to dynamically generate only the first condition, do the following: The second element of the array reference is a DBIx::Custom::NotExists object that indicates it doesn't exist. This can be obtained with the not_exists method.
 </p>
 <pre>
-$where-&gt;clause(['and', 'price &gt; :price', 'price &lt; :price']);
+$where-&gt;clause(['and','price&gt;: price','price &lt;: price']);
 $where-&gt;param({price =&gt; [1000, $dbi-&gt;not_exists]});
 </pre>
 <p>
-  次のようなwhere句が生成されます。
+  A where clause similar to the following is generated.
 </p>
 <pre>
-where price &gt; :price
+where price&gt;: price
 </pre>
 <p>
-  二つ目の条件だけを動的に生成したい場合は、次のようにします。配列のリファレンスの一つ目の要素に、存在しないことを示すDBIx::Custom::NotExistsオブジェクトをわたします。
+  If you want to dynamically generate only the second condition, do the following: The first element of the array reference is a DBIx::Custom::NotExists object that indicates it doesn't exist.
 </p>
 <pre>
-$where-&gt;clause(['and', 'price &gt; :price', 'price &lt; :price']);
+$where-&gt;clause(['and','price&gt;: price','price &lt;: price']);
 $where-&gt;param({price =&gt; [$dbi-&gt;not_exists, 2000]});
 </pre>
 <p>
-  次のようなwhere句が生成されます。
+  A where clause similar to the following is generated.
 </p>
 <pre>
-where price &lt; :price
+where price &lt;: price
 </pre>
-<h4>複雑な条件</h4>
+<h4> Complex conditions </h4>
 <p>
-  条件を入れ子にしたような複雑な条件も記述することができます。
+  You can also write complex conditions, such as nested conditions.
 </p>
 <pre>
 $where-&gt;clause(
   [
     'and',
-    'price = :price',
-    ['or', 'title = :title', 'title = :title', 'title = :title']
+    'price =: price',
+    ['or','title =: title','title =: title','title =: title']
   ]
 );
-$where-&gt;param({price =&gt; '1000', title =&gt; ['Perl', 'Ruby', 'Python']});
+$where-&gt;param({price =&gt; '1000', title =&gt; ['Perl','Ruby','Python']});
 my $where_clause = "$where";
 </pre>
 <p>
-  次のようなWhere句が生成されます。
+  A Where clause similar to the following is generated:
 </p>
 <pre>
-where price = :price and (title = :title or title = :title or title = :title)
+where price =: price and (title =: title or title =: title or title =: title)
 </pre>
 <p>
-  入れ子構造が複雑ななった場合でも正しく動的にWhere句を生成することができます。たとえば、次のようなパラメータが渡された場合にも正しくWhere句を生成します。
+  Even if the nesting structure becomes complicated, the Where clause can be generated correctly and dynamically. For example, it will correctly generate a Where clause if the following parameters are passed:
 </p>
 <pre>
-$where-&gt;param({price =&gt; 1900, title =&gt; ['Perl', 'Ruby']});
+$where-&gt;param({price =&gt; 1900, title =&gt; ['Perl','Ruby']});
 </pre>
 <p>
-  配列のリファレンスには、二つしか値が含まれていませんので、次のようなWhere句が生成されます。
+  Since the array reference contains only two values, the following Where clause is generated:
 </p>
 <pre>
-where price = :price and (title = :title or title = :title)
+where price =: price and (title =: title or title =: title)
 </pre>
-<h3>名前付きプレースホルダーを含まない条件</h3>
+<h3> Conditions that do not include named placeholders </h3>
 <p>
-  名前付きプレースホルダーを含まない条件を記述することもできます。
+  You can also write conditions that do not include named placeholders.
 </p>
 <pre>
-$where-&gt;clause(['and', "title = 'Perl'"]);
+$where-&gt;clause(['and', "title ='Perl'"]);
 </pre>
 <p>
-  パラメーターの値にかかわらず、この条件は必ずwhere区に含まれることになります。
+  Regardless of the value of the parameter, this condition will always be included in the where section.
 </p>
-<h3>or条件による検索</h3>
+<h3> or search by condition </h3>
 <p>
-  or条件を使った検索を行うには次のようにします。DBIx::CustomではWhere条件が複雑になったときに、複雑なWhereを扱うためのDBIx::Custom::Whereオブジェクトが用意されています。whereメソッドを使用すると、適切に設定されたDBIx::Custom::Whereオブジェクトを新しく生成することができます。
+  To search using the or condition, do the following. DBIx::Custom provides a DBIx::Custom::Where object to handle complex Where conditions when the Where condition becomes complicated. You can use the where method to create a new, well-configured DBIx::Custom::Where object.
 </p>
 <pre>
-# where (title = 'Perl' or title = 'Ruby') and price &gt; 1500
+# where (title ='Perl' or title ='Ruby') and price&gt; 1500
 my $where = $dbi-&gt;where;
-my $titles = [qw/Perl Ruby/];
+my $titles = [qw / Perl Ruby /];
 my $clause = ['and',
-  ['or', ('title = :title') x @$titles],
-  'price &gt; :price'
-];
+  ['or', ('title =: title') x @$titles],
+  'price&gt;: price'
+];;
 my $param = {title =&gt; $titles, price =&gt; 1500};
 $where-&gt;clause($clause);
 $where-&gt;param($param);
 </pre>
 <p>
-  以下はSQLiteを使ったサンプルになります。モデルも上手に使っているので、重複の少ないコードになっています。
+  The following is a sample using SQLite. The model is also used well, so the code is less duplicated.
 </p>
 <pre>
 use strict;
@@ -294,96 +291,92 @@ use warnings;
 
 use DBIx::Custom;
 
-# Connect
-my $dbi = DBIx::Custom-&gt;connect(dsn =&gt; "dbi:SQLite:dbname=:memory:");
+#Connect
+my $dbi = DBIx::Custom-&gt;connect(dsn =&gt; "dbi: SQLite: dbname =: memory:");#Create table
+$dbi-&gt;execute("create table book (title, price)");
+my $model = $dbi-&gt;create_model(table =&gt;'book');
+$model-&gt;insert({title =&gt;'Perl', price =&gt; 1900});
+$model-&gt;insert({title =&gt;'Ruby', price =&gt; 2000});
+$model-&gt;insert({title =&gt;'Python', price =&gt; 2100});
 
-# Create table
-$dbi-&gt;execute("create table book(title, price)");
-my $model = $dbi-&gt;create_model(table =&gt; 'book');
-$model-&gt;insert({title =&gt; 'Perl', price =&gt; 1900});
-$model-&gt;insert({title =&gt; 'Ruby', price =&gt; 2000});
-$model-&gt;insert({title =&gt; 'Python', price =&gt; 2100});
-
-# Where, (title = 'Perl' or title = 'Ruby') and price &gt; 1500
+# Where, (title ='Perl' or title ='Ruby') and price&gt; 1500
 my $where = $dbi-&gt;where;
-my $titles = [qw/Perl Ruby/];
+my $titles = [qw / Perl Ruby /];
 my $clause = ['and',
-  ['or', ('title = :title') x @$titles],
-  'price &gt; :price'
-];
+  ['or', ('title =: title') x @$titles],
+  'price&gt;: price'
+];;
 my $param = {title =&gt; $titles, price =&gt; 1500};
 $where-&gt;clause($clause);
 $where-&gt;param($param);
 
-# Select
+#Select
 my $result = $model-&gt;select(where =&gt; $where);
 
 # Fetch
 my $rows = $result-&gt;all;
 </pre>
-<h3>Where句で日付の範囲を指定する</h3>
+<h3> Specify the date range in the Where clause </h3>
 <p>
-  データベースである日付からある日付までのデータを取り出すというのはよくある操作です。両方の日付が指定される場合もありますし、片方の日付だけが指定される場合もあります。このような場合に自分で条件分岐を書くのはめんどうです。DBIx::Custom::Whereオブジェクトを利用すると、少し工夫するだけで記述することができます。
+  Retrieving data from a database date to a certain date is a common operation. Both dates may be specified, or only one date may be specified. In such a case, it is troublesome to write a conditional branch by yourself. If you use the DBIx::Custom::Where object, you can write it with a little ingenuity.
 </p>
 <pre>
 my $start_date = '2010-01-01';
-my $end_date   = '2010-03-31';
+my $end_date = '2010-03-31';
 
-# DBIx::Custom::Where オブジェクト
+# DBIx::Custom::Where object
 my $where = $dbi-&gt;where;
 
-# Where句の記述
-$where-&gt;clause(['and', ':date{&gt;}', ':date{&lt;}'}]);
+#Where clause description
+$where-&gt;clause(['and',': date {&gt;}',': date {&lt;}'}]);
 
-# パラメーターの設定
+# Parameter setting
 my $param = {
   date =&gt; [
-    $start_date ? $start_date : $dbi-&gt;not_exists,
-    $end_date   ? $end_date : $dbi-&gt;not_exists
-  ]
-};
+    $start_date? $start_date: $dbi-&gt;not_exists,
+    $end_date? $end_date: $dbi-&gt;not_exists  ]
+};;
 $where-&gt;param($param);
 
-# selectの実行
-$dbi-&gt;select(table =&gt; 'book', where =&gt; $where);
+Run #select
+$dbi-&gt;select(table =&gt;'book', where =&gt; $where);
 </pre>
 <p>
-  最初にwhereメソッドでDBIx::Custom::Whereオブジェクトを生成します。次にclauseで、Where句を記述します。これはDBIx::Customのタグを使って記述します。上記の例では
+  First, create a DBIx::Custom::Where object with the where method. Next, in the clause, write the Where clause. This is described using the DBIx::Custom tag. In the above example
 </p>
 <pre>
-['and', ':date{&gt;}', ':date{&lt;}'}]
+['and',': date {&gt;}',': date {&lt;}'}]
 </pre>
 <p>
-  は以下のように展開されます。
+  Is expanded as follows.
 </p>
 <pre>
-where date &gt; ? and date &lt; ?
+where date&gt;? and date &lt;?
 </pre>
 <p>
-  これは動的なもので、たとえば開始時刻が与えられない場合は次のように展開されます。
+  This is dynamic, for example, if no start time is given, it expands as follows:
 </p>
 <pre>
-where date &lt; ?
+where date &lt;?
 </pre>
 <p>
-  次はパラメータの記述です。dateを二つ指定する必要があるので、配列のリファレンスで指定します。また存在する場合はその値を、存在しない場合は、not_existsメソッドを使って、DBIx::Custom::NotExistsオブジェクトを指定します。
+  Next is the description of the parameters. Since you need to specify two dates, specify them in the array reference. If it does exist, specify its value, and if it does not exist, use the not_exists method to specify the DBIx::Custom::NotExists object.
 </p>
 <pre>
-# パラメーターの設定
+# Parameter setting
 my $param = {
   date =&gt; [
-    $start_date ? $start_date : $dbi-&gt;not_exists,
-    $end_date   ? $end_date : $dbi-&gt;not_exists
-  ]
-};
+    $start_date? $start_date: $dbi-&gt;not_exists,
+    $end_date? $end_date: $dbi-&gt;not_exists  ]
+};;
 $where-&gt;param($param);
 </pre>
 <p>
-  最後にselect区のwhereに作成したDBIx::Customオブジェクトを渡します。
+  Finally, pass the created DBIx::Custom object to where in the select area.
 </p>
 <pre>
-# selectの実行
-$dbi-&gt;select(table =&gt; 'book', where =&gt; $where);
+Run #select
+$dbi-&gt;select(table =&gt;'book', where =&gt; $where);
 </pre>
 
   </div>
@@ -411,8 +404,7 @@ $dbi-&gt;select(table =&gt; 'book', where =&gt; $where);
           <div style="margin-bottom:30px">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
      crossorigin="anonymous"></script>
-<!-- ディスプレイ縦長 -->
-<ins class="adsbygoogle"
+<!-- ディスプレイ縦長 --><ins class="adsbygoogle"
      style="display:block"
      data-ad-client="ca-pub-4525414114581084"
      data-ad-slot="4544919209"

@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- meta -->
-<meta charset="UTF-8">
+    <!-- meta --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
 <link rel="icon" type="image/x-icon" href="/images/logo.png">
 <link rel="stylesheet" type="text/css" href="/css/common.css">
@@ -25,8 +24,7 @@
   });
 </script>
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-M3N0832N8E"></script>
+<!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-M3N0832N8E"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -34,8 +32,8 @@
 
   gtag('config', 'G-M3N0832N8E');
 </script>
-<title>フィルタリング - DBIx::Custom - PerlのO/R Mapper that execute SQL easily</title>
-<meta name="description" content="DBIx::Customで「フィルタリング」を利用する方法を解説します。">
+<title> Filtering  - DBIx::Custom - PerlのO/R Mapper that execute SQL easily</title>
+<meta name="description" content="I will explain how to use "filtering" with DBIx::Custom.">
   </head>
   <body>
     <div class="container">
@@ -52,25 +50,24 @@
           <div class="entry">
   <div class="top">
     <!-- top -->
-
   </div>
   <div class="middle">
-    <div class="bread">
-  <ul itemscope itemtype="http://schema.org/BreadcrumbList">
-    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+    <div class = "bread">
+  <ul itemscope itemtype = "http://schema.org/BreadcrumbList">
+    <li itemprop = "itemListElement" itemscope itemtype = "http://schema.org/ListItem">
       <a itemprop="item" href="/">
-        <span itemprop="name">DBIx::Custom</span>
-      </a>
-      <meta itemprop="position" content="1" />
+        <span itemprop = "name"> DBIx::Custom </span>
+     </a>
+      <meta itemprop = "position" content = "1" />
     </li>
     <li>
       here
     </li>
   </ul>
 </div>
-<h2><a href="/blog/20110926132031.html">フィルタリング</a></h2>
+<h2><a href="/blog/20110926132031.html"> Filtering </a></h2>
 <p>
-  DBIx::Customで「フィルタリング」を利用する方法を解説します。
+  I will explain how to use "filtering" with DBIx::Custom.
 </p>
 <div style="width:calc(100% - 30px);margin:10px auto;">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
@@ -88,124 +85,124 @@
 </div>
 
 
-<h3>列名によるフィルタリング</h3>
+<h3> Filtering by column name </h3>
 <p>
-  DBIx::Customでは列名を指定して値をフィルタリングすることができます。データベースにデータを送信するときにも、データベースからデータを取り出すときにもフィルタリングをかけることができます。
+  DBIx::Custom allows you to filter the value by specifying the column name. You can filter both when you send data to the database and when you retrieve it from the database.
 </p>
-<h4>フィルタの登録</h4>
+<h4> Filter registration </h4>
 <p>
-  フィルタを実際に利用する前に、フィルタを登録しておくと便利です。フィルタの登録をしておけば、フィルタ名でフィルタを指定することができます。
+  It is convenient to register the filter before actually using it. If you register the filter, you can specify the filter by the filter name.
 </p>
 <p>
-  ここでは画像を印字可能な文字列に変換するBase64という変換を行うフィルタを作成してみましょう。
+  Here, let's create a filter called Base64 that converts an image into a printable character string.
 </p>
 <pre>
-use MIME::Base64 qw/encode_base64 decode_base64/;
+use MIME::Base64 qw / encode_base64 decode_base64 /;
 
 $dbi-&gt;register_filter(
-  encode_base64 =&gt; sub { encode_base64($_[0]) },
-  decode_base64 =&gt; sub { decode_base64($_[0]) }
+  encode_base64 =&gt; sub {encode_base64 ($_ [0])},
+  decode_base64 =&gt; sub {decode_base64 ($_ [0])}
 );
 </pre>
 <p>
-  encode_base64というフィルタはデータベースにデータを挿入するときはバイナリのデータをBase64形式のフォーマットに変換するために利用します。decode_base64というフィルタはデータをデータベースから取り出すときはBase64形式からバイナリにデータを変換するために利用します。
+  A filter called encode_base64 is used to convert binary data to Base64 format when inserting data into the database. A filter called decode_base64 is used to convert data from Base64 format to binary when retrieving data from the database.
 </p>
 <p>
-  register_filterに登録しただけではフィルタは有効にはなりません。register_filterはフィルタを名前で呼び出すための便利な仕組みを提供するだけです。
+  The filter will not be enabled just by registering it in register_filter. register_filter only provides a convenient mechanism for calling filters by name.
 </p>
-<h4>データベースにデータを送信するときのフィルタを指定する filterオプション</h4>
+<h4> filter option to specify a filter when sending data to the database </h4>
 <p>
-  データベースにデータを送信するときのフィルタを指定してみましょう。
+  Let's specify a filter when sending data to the database.
 </p>
 <p>
-  bookというテーブルにidとimageという列があるとします。imageは本来はバイナリの画像のデータですが、Base64形式で保存します。次のようにfilterオプションを利用すると、簡単にこの変換を記述することができます。
+  Suppose you have a table called book with columns id and image. The image is originally binary image data, but it is saved in Base64 format. You can easily write this transformation by using the filter option as follows:
 </p>
 <pre>
 $dbi-&gt;insert(
   {id =&gt; 1, image =&gt; $image},
-  table =&gt; 'book',
-  filter =&gt; {image =&gt; 'encode_base64'}
+  table =&gt;'book',
+  filter =&gt; {image =&gt;'encode_base64'}
 );
 </pre>
 <p>
-  これでデータベースにはBase64形式で画像が保存されます。filterオプションはinsert, update, delete, select, executeメソッドで利用することができます。
+  The database will now save the image in Base64 format. The filter option is available in the insert, update, delete, select and execute methods.
 </p>
 <p>
-  filterオプションにはフィルタ名のほかに、変換のためのサブルーチンを直接指定することもできます。
-</p>
-<pre>
-filter =&gt; {image =&gt; sub { encode_base64($_[0]) }}
-</pre>
-<p>
-  また複数の列名に同一のフィルタが必要な場合は、次のようにハッシュのリファレンスの変わりに配列のリファレンスを使うことができます。外側も配列のリファレンスで、列名の部分も配列のリファレンスになっていることに注意してください。
+  In addition to the filter name, you can also directly specify a subroutine for conversion in the filter option.
 </p>
 <pre>
-filter =&gt; [['image1', 'image2'] =&gt; 'encode_base64'}]
+filter =&gt; {image =&gt; sub {encode_base64 ($_ [0])}}
 </pre>
 <p>
-  内部的にはこれをハッシュのリファレンスに変換しますので、必要がない場合はハッシュのリファレンスを利用するのがよいでしょう。
+  Also, if you need the same filter for multiple column names, you can use an array reference instead of a hash reference like this: Note that the outside is also an array reference, and the column name part is also an array reference.
 </p>
-<h4>idオプションとfilterオプションを併用する場合の注意点</h4>
+<pre>
+filter =&gt; [['image1','image2'] =&gt;'encode_base64'}]
+</pre>
 <p>
-  idオプションを利用する場合は、ほとんどが単なる数値や文字列であって、フィルタリングの必要はないと思いますが、仕様の上での注意点を書いておきます。
+  Internally it translates this into a hash reference, so it's a good idea to use a hash reference if you don't need it.
+</p>
+<h4> Precautions when using id option and filter option together </h4>
+<p>
+  If you use the id option, most of it is just a number or a string, and I don't think it needs to be filtered, but here are some notes on the specifications.
 </p>
 <p>
-  insertメソッドでidオプションを使用する場合はprimary_keyオプションで指定した列名をフィルタリングに利用することができます。
+  When using the id option in the insert method, the column name specified in the primary_key option can be used for filtering.
 </p>
 <pre>
 $dbi-&gt;insert(
-  table =&gt; 'book',
+  table =&gt;'book',
   id =&gt; 1,
-  primary_key =&gt; 'book_id',
-  filter =&gt; {book_id =&gt; sub { ... }}
+  primary_key =&gt;'book_id',
+  filter =&gt; {book_id =&gt; sub {...}}
 );
 </pre>
 <p>
-  update, delete, selectメソッドでidオプションを利用する場合は少し注意が必要です。これらのメソッドでは、列名を完全に区別するために、テーブル名がつけられた列名が内部的に利用されます。ですのでフィルタを設定するときも、primary_keyで指定した列名にテーブル名を修飾した名前を使う必要があります。
+  Be a little careful when using the id option in the update, delete, select methods. These methods internally utilize the column names with the table names to completely distinguish the column names. Therefore, when setting the filter, it is necessary to use the name specified by primary_key with the table name qualified.
 </p>
 <pre>
 $dbi-&gt;delete(
-  table =&gt; 'book',
+  table =&gt;'book',
   id =&gt; 1,
-  primary_key =&gt; 'book_id',
-  filter =&gt; {'book.book_id' =&gt; sub { ... }}
+  primary_key =&gt;'book_id',
+  filter =&gt; {'book.book_id' =&gt; sub {...}}
 );
 </pre>
-<h4>データベースからデータを取得するときのフィルタリング</h4>
+<h4> Filtering when retrieving data from database </h4>
 <p>
-  selectを実行したときに戻り値はDBIx::Custom::Resultオブジェクトが返ってきますが、このオブジェクトはfilter属性を持っています。
+  When I execute select, the return value is a DBIx::Custom::Result object, which has a filter attribute.
 </p>
 <p>
-  filter属性にフィルタを設定すれば、フェッチしたときにフィルタリングが行われます。
+  If you set a filter in the filter attribute, filtering will be done when fetching.
 </p>
 <pre>
 my $result = $dbi-&gt;select(...);
-$result-&gt;filter({image =&gt; 'decode_base64'});
+$result-&gt;filter({image =&gt;'decode_base64'});
 my $rows = $result-&gt;all;
 </pre>
 <p>
-  ここではallメソッドを使っていますが、fetchなどのフェッチを行うすべてのメソッドでフィルタリングが行われます。
+  Here, the all method is used, but filtering is performed by all methods that perform fetching, such as fetch.
 </p>
 <p>
-  filterオプションと同じように、フィルタとして直接サブルーチンを指定したり、配列のリファレンスを指定することもできます。
+  As with the filter option, you can specify the subroutine directly as a filter or specify an array reference.
 </p>
 <pre>
-$result-&gt;filter({image =&gt; sub { decode_base64($_[0]) }});
-$resul-&gt;filter([['image1', 'image2'] =&gt; 'decode_base64']);
+$result-&gt;filter({image =&gt; sub {decode_base64 ($_ [0])}});
+$resul-&gt;filter([['image1','image2'] =&gt;'decode_base64']);
 </pre>
-<h3>型によるフィルタリング</h3>
+<h3> Filtering by type </h3>
 <p>
-  DBIx::Customでは型を指定してフィルタリングを行うことができます。たとえば日付型のフィールドであれば、自動的に日付オブジェクトから、データベースの日付に変換するということが可能です。
+  DBIx::Custom allows you to filter by type. For example, if it is a date type field, it is possible to automatically convert the date object to the date in the database.
 </p>
 <p>
-  RDBMSとDBIの実装の制約から、型によるフィルタリングの実現はそれほど簡単ではありませんが、少しの制約を受け入れると実用的に利用することができると思います。
+  Due to the restrictions of RDBMS and DBI implementation, it is not so easy to realize filtering by type, but I think that it can be practically used if a few restrictions are accepted.
 </p>
-<h4>フィルタの登録</h4>
+<h4> Filter registration </h4>
 <p>
-  フィルタを実際に利用する前に、フィルタを登録しておくと便利です。フィルタの登録をしておけば、フィルタ名でフィルタを指定することができます。
+  It is convenient to register the filter before actually using it. If you register the filter, you can specify the filter by the filter name.
 </p>
 <p>
-  ここではデータベースに日付を送信するときはTime::Pieceオブジェクトからデータベースの日付に変換して、反対に取り出すときは、データベースの日付をTime::Pieceオブジェクトに変換するということを行ってみましょう。
+  Here, let's convert the Time::Piece object to the database date when sending the date to the database, and convert the database date to the Time::Piece object when retrieving it. ..
 </p>
 <pre>
 use Time::Piece;
@@ -214,81 +211,81 @@ $dbi-&gt;register_filter(
   tp_to_datetime =&gt; sub {
     my $tp = shift;
     
-    return '' unless defined $tp;
+    return'' unless defined $tp;
     return $tp unless ref $tp;
-    return $tp-&gt;strftime('%Y-%m-%d %H:%M:%S');
+    return $tp-&gt;strftime('%Y-%m-%d%H:%M:%S');
   },
   datetime_to_tp =&gt; sub {
     my $datetime = shift;
     
     return unless $datetime;
     return localtime(
-        Time::Piece-&gt;strptime($datetime, '%Y-%m-%d %H:%M:%S')
+        Time::Piece-&gt;strptime($datetime,'%Y-%m-%d%H:%M:%S')
     )
   }
 );
 </pre>
 <p>
-  tp_to_datetimeというフィルタはTime::Pieceオブジェクトをデータベースの日付・時刻のフォーマットに変換するものです。処理内容としては、undefが渡された場合は空文字列に変換、Time::Pieceオブジェクトではない文字列を渡された場合は変換しない、Time::Pieceオブジェクトの場合は、データベースの日付・時刻のフォーマットに変換という処理を行っています。
+  A filter called tp_to_datetime converts a Time::Piece object into a database date / time format. As for the processing contents, if undef is passed, it is converted to an empty string, if a character string that is not a Time::Piece object is passed, it is not converted, and if it is a Time::Piece object, the date / time of the database The process of converting to a format is performed.
 </p>
 <p>
-  datetime_to_tpというフィルタはデータベースの日付・時刻のフォーマットをTime::Pieceオブジェクトに変換するものです。処理内容としては、データがなければundefを、存在すればTime::Pieceオブジェクトに変換(ローカル時刻)にして返すという処理を行っています。
+  A filter called datetime_to_tp converts the date / time format of the database into a Time::Piece object. As the processing content, if there is no data, undef is converted to a Time::Piece object if it exists(local time) and returned.
 </p>
-<h4>型によるフィルタの設定 type_rule</h4>
+<h4> Filter settings by type type_rule </h4>
 <p>
-  型によるフィルタの設定を行うにはtype_ruleメソッドを使用します。
+  Use the type_rule method to set the filter by type.
 </p>
 <pre>
 $dbi-&gt;type_rule(
   into1 =&gt; {
-    タイプ名 =&gt; フィルタ
+    Type name =&gt; filter
   },
   into2 =&gt; {
-    タイプ名 =&gt; フィルタ
+    Type name =&gt; filter
   },
   from1 =&gt; {
-    データタイプ =&gt; フィルタ
+    Data type =&gt; filter
   },
   from2 =&gt; {
-    データタイプ =&gt; フィルタ
+    Data type =&gt; filter
   }
 );
 </pre>
 <p>
-  into1とinto2はデータベースにデータを送信するときに実行されるフィルタを指定します。二つまでフィルタを指定することができます。実行される順番は「into1 → into2」の順番です。executeメソッドのfilterオプションが存在するときは「filterオプション → into1 → into2」の順番に実行されます。
+  into1 and into2 specify the filter to be executed when sending data to the database. You can specify up to two filters. The order of execution is "into1 → into2". If the filter option of the execute method exists, it will be executed in the order of "filter option->into1->into2".
 </p>
 <p>
-  from1とfrom2はデータベースからデータを取り出すときに実行されるフィルタを指定します。二つまでフィルタを指定することができます。実行される順番は「from1 → from2」の順番です。BIx::Custom::Resultのfilter属性が存在するときは「from1 → from2 -> filter属性」の順に実行されます。
+  from1 and from2 specify the filter to be executed when retrieving data from the database. You can specify up to two filters. The order of execution is "from1 → from2". If the filter attribute of BIx::Custom::Result exists, it will be executed in the order of "from1 → from2->filterattribute".
 </p>
-<h4>into1とinto2に指定するタイプ名</h4>
+<h4> Type name specified for into1 and into2 </h4>
 <p>
-  タイプ名とデータタイプという用語を区別していることに注意してください。into1とinto2ではタイプ名を指定する必要があります。
-</p>
-<p>
-  タイプ名とは一般的には、データベースのテーブル定義をするときに指定した名前です。タイプ名は小文字で指定する必要があります。
+  Notice that we distinguish between the terms type name and data type. You must specify the type name for into1 and into2.
 </p>
 <p>
-  実際に各列のタイプ名を知るためには、show_typenameメソッドを使用します。
+  The type name is generally the name you specified when defining the database table. The type name must be specified in lowercase.
+</p>
+<p>
+  To actually know the type name of each column, use the show_typename method.
 </p>
 <pre>
 $dbi-&gt;show_typename('book');
 </pre>
 <p>
-  そこで表示されたタイプ名を利用してください。
+  Please use the type name displayed there.
 </p>
-<h4>from1とfrom2に指定するデータタイプ</h4>
+<h4> Data type specified for from1 and from2 </h4>
 <p>
-  from1とfrom2にはデータタイプを指定する必要があります。データタイプとは、データベースの内部的なデータの型のことであって一般的には数値になります。一般的には数値ですが、文字列であった場合には、指定するときはデータタイプは小文字で指定する必要があります。
+  You must specify the data type for from1 and from2. A data type is an internal data type in a database, typically a number. Generally a number, but if it was a string, the data type must be in lowercase.
 </p>
 <p>
-  実際にデータタイプを知るためには、show_datatypeメソッドを使用します。
+  To actually know the data type, use the show_datatype method.
 </p>
 <pre>
 $dbi-&gt;show_datatype('book');
 </pre>
-<h4>型によるフィルタリングのサンプル</h4>
+<h4> Sample filtering by type </h4>
 <p>
-  ではSQLiteを使った型によるフィルタリングのサンプルを書いてみたいと思います。
+  Now I would like to write a sample of type filtering using SQLite.
 </p>
 <pre>
 use strict;
@@ -297,51 +294,51 @@ use warnings;
 use DBIx::Custom;
 use Time::Piece;
 
-my $dbi = DBIx::Custom-&gt;connect(dsn =&gt; "dbi:SQLite:dbname=:memory:");
+my $dbi = DBIx::Custom-&gt;connect(dsn =&gt; "dbi: SQLite: dbname =: memory:");
 $dbi-&gt;do("create table book (id, issue_datetime DATETIME)");
 $dbi-&gt;register_filter(
   tp_to_datetime =&gt; sub {
     my $tp = shift;
     
-    return '' unless defined $tp;
+    return'' unless defined $tp;
     return $tp unless ref $tp;
-    return $tp-&gt;strftime('%Y-%m-%d %H:%M:%S');
+    return $tp-&gt;strftime('%Y-%m-%d%H:%M:%S');
   },
   datetime_to_tp =&gt; sub {
     my $datetime = shift;
     
     return unless $datetime;
     return localtime(
-      Time::Piece-&gt;strptime($datetime, '%Y-%m-%d %H:%M:%S')
+      Time::Piece-&gt;strptime($datetime,'%Y-%m-%d%H:%M:%S')
     )
   }
 );
 
 $dbi-&gt;type_rule(
   into1 =&gt; {
-    datetime =&gt; 'tp_to_datetime'
+    datetime =&gt;'tp_to_datetime'
   },
   from1 =&gt; {
-    datetime =&gt; 'datetime_to_tp'
+    datetime =&gt;'datetime_to_tp'
   }
 );
 
 # Time::Piece object
 my $now = localtime;
 
-$dbi-&gt;insert({id =&gt; 1, issue_datetime =&gt; $now}, table =&gt; 'book');
+$dbi-&gt;insert({id =&gt; 1, issue_datetime =&gt; $now}, table =&gt;'book');
 
-my $result = $dbi-&gt;select(where =&gt; {id =&gt; 1}, table =&gt; 'book');
+my $result = $dbi-&gt;select(where =&gt; {id =&gt; 1}, table =&gt;'book');
 my $issue_datetime = $result-&gt;one-&gt;{issue_datetime};
 
 print ref $issue_datetime;
 </pre>
 <p>
-  このサンプルを見ると、insertを行うときは、Time::Pieceオブジェクトがデータベースの日付のフォーマットに変換されて、行をフェッチして取得するときにデータベースの日付のフォーマットからTime::Pieceオブジェクトに変換されていることが確認できます。
+  Looking at this sample, when doing an insert, the Time::Piece object is converted to the database date format, and when fetching and fetching the rows, the database date format is converted to the Time::Piece object. You can see that it has been done.
 </p>
-<h4>type_ruleを無効にする</h4>
+<h4> Disable type_rule </h4>
 <p>
-  into1のフィルタはtype_rule1_offオプションで、into2のフィルタはtype_rule2_offオプションで無効にすることができます。両方を無効にするには、type_rule_offオプションを利用します。
+  The into1 filter can be disabled with the type_rule1_off option and the into2 filter can be disabled with the type_rule2_off option. To disable both, use the type_rule_off option.
 </p>
 <pre>
 type_rule1_off =&gt; 1
@@ -349,88 +346,80 @@ type_rule2_off =&gt; 1
 type_rule_off =&gt; 1
 </pre>
 <p>
-  insertメソッドでは次のように記述できます。
+  In the insert method, you can write as follows.
 </p>
 <pre>
 $dbi-&gt;insert({id =&gt; 1, issue_datetime =&gt; $now},
-  type_rule_off =&gt; 1, table =&gt; 'book');
+  type_rule_off =&gt; 1, table =&gt;'book');
 </pre>
 <p>
-  from1のフィルタはDBIx::Custom::Resultオブジェクトのtype_rule1_offメソッドで、from2のフィルタはtype_rule2_offメソッドで無効にできます。両方を無効にするには、type_rule_offメソッドを使用します。
+  The from1 filter can be disabled with the type_rule1_off method of the DBIx::Custom::Result object, and the from2 filter can be disabled with the type_rule2_off method. To disable both, use the type_rule_off method.
 </p>
 <pre>
-$result-&gt;type_rule1_off
-$result-&gt;type_rule2_off
-$result-&gt;type_rule_off
+$result-&gt;type_rule1_off$result-&gt;type_rule2_off$result-&gt;type_rule_off&lt;/pre&gt;
+
+Conversely, use the type_rule1_on, type_rule2_on, type_rule_on methods to enable the filter.
+
+&lt;h4&gt; Implementation of type_rule &lt;/h4&gt;
+
+&lt;b&gt; Implementation of into1 and into2 &lt;/b&gt;
+
+The implementation of type_rule looks like this: Filters by into1 and into2 are filters that you can specify when sending data to the database.
+
+In fact, the filtering is done before the parameters are bound, but it doesn't check what type name the column name has every time. That's probably a very heavy process, and it won't work if the table name is omitted.
+
+When the type_rule method is executed, it first looks at what type names the columns in the table in the database have and saves that information.
+
+Then decide which filter to apply when executing the execute method. Methods such as insert internally call execute.
+
+The examples of insert and execute explain when filtering is applied. See the next insert.
+
+&lt;pre&gt;
+$dbi-&gt;insert({issue_datetime =&gt; '2010-11-10 11:34:56'}, table =&gt;'book'});
 </pre>
 <p>
-  反対にフィルタを有効にするにはtype_rule1_on, type_rule2_on, type_rule_onメソッドを使用してください。
-</p>
-<h4>type_ruleの実装について</h4>
-<p>
-  <b>into1とinto2の実装</b>
+  DBIx::Custom remembers that issue_datetime in the book table is of type DATETIME when the type_rule method is called.
 </p>
 <p>
-  type_ruleの実装は次のようになっています。into1とinto2によるフィルタは、データベースにデータを送信するときに指定できるフィルタです。
+  And in the above insert, book is specified as the table name and issue_datetime is specified as the column name, so filtering will be executed.
 </p>
 <p>
-  実際はパラメータがバインドされる前にフィルタリングが実行されますが、毎回列名がどのようなタイプ名を持つのかを調べたりはしません。それはおそらくとても重い処理になりますし、テーブル名が省略された場合にはうまく機能しないでしょう。
-</p>
-<p>
-  type_ruleメソッドが実行された時に、データベースにあるテーブルの列がどのようなタイプ名を持っているかをまず調べて、その情報が保存されます。
-</p>
-<p>
-  そしてexecuteメソッドの実行時にどのフィルタを適用するかを決定します。insertなどのメソッドは内部的にはexecuteを呼び出しています。
-</p>
-<p>
-  どのような場合にフィルタリングがかかるかinsertとexecuteの例で説明します。次のinsertを見てください。
-</p>
-<pre>
-$dbi-&gt;insert({issue_datetime =&gt; '2010-11-10 11:34:56'}, table =&gt; 'book'});
-</pre>
-<p>
-  type_ruleメソッドが呼ばれた時点で、bookテーブルのissue_datetimeはDATETIME型であるということをDBIx::Customは覚えます。
-</p>
-<p>
-  そして上記のinsertではテーブル名としてbook、列名としてissue_datetimeが指定されていますので、フィルタリングが実行されることになります。
-</p>
-<p>
-  次はexecuteメソッドです。次のような場合はフィルタリングがかかりません。
+  Next is the execute method. Filtering is not applied in the following cases.
 </p>
 <pre>
 $dbi-&gt;execute(
-  "select * from book where :issue_datetime{=}",
+  "select * from book where: issue_datetime {=}",
   {issue_datetime =&gt; '2010-11-10 11:34:56'}
 );
 </pre>
 <p>
-  なぜならテーブル名が指定されていないので、どのテーブルのissue_datetimeという列なのかを知ることができないからです。
+  Because the table name is not specified, it is not possible to know which table has the issue_datetime column.
 </p>
 <p>
-  ですので、テーブル名を先頭に付加するか、tableオプションでテーブル名を指定するとフィルタリングが行われるようになります。
+  Therefore, if you add the table name to the beginning or specify the table name in the table option, filtering will be performed.
 </p>
 <pre>
-# テーブル名を付加
+#Add table name
 $dbi-&gt;execute(
-  "select * from book where :book.issue_datetime{=}",
+  "select * from book where: book.issue_datetime {=}",
   {issue_datetime =&gt; '2010-11-10 11:34:56'}
 );
 
-# tableオプション
+# table option
 $dbi-&gt;execute(
-  "select * from book where :issue_datetime{=}",
-  {issue_datetime =&gt; '2010-11-10 11:34:56'}, table =&gt; 'book'
+  "select * from book where: issue_datetime {=}",
+  {issue_datetime =&gt; '2010-11-10 11:34:56'}, table =&gt;'book'
 );
 </pre>
 <p>
-  <b>from1とfrom2の実装</b>
+  <b> Implementation of from1 and from2 </b>
 </p>
 <p>
-  from1とfrom2は難しいことを考える必要はありません。フェッチしたときにデータタイプを簡単に知ることができるので、その情報を元にフィルタリングを行います。columnオプションで、columnを指定するときに難しいことを考える必要はありません。
+  From1 and from2 don't have to think difficult. Since you can easily know the data type when fetching, filter based on that information. With the column option, you don't have to think about difficult things when specifying a column.
 </p>
-<h3>フィルタ関数を登録する - register_filter</h3>
+<h3> Register the filter function --register_filter </h3>
 <p>
-  フィルタ関数を登録するには<strong>register_filter</strong>メソッドを使用します。
+  Use the <strong> register_filter </strong> method to register the filter function.
 </p>
 <pre>
 $dbi-&gt;register_filter(
@@ -442,15 +431,15 @@ $dbi-&gt;register_filter(
   # database DATE format to Time::Piece object
   date_to_tp =&gt; sub {
     my $date = shift;
-     return Time::Piece-&gt;strptime($date, '%Y-%m-%d');
+     return Time::Piece-&gt;strptime($date,'%Y-%m-%d');
   }
 );
 </pre>
 <p>
-  ここで登録したフィルタは、executeメソッドなどのfilterオプションで利用することができます。
+  The filter registered here can be used with the filter option such as execute method.
 </p>
 <pre>
-$dbi-&gt;execute($sql, $param, filter =&gt; {issue_date =&gt; 'tp_to_date'});
+$dbi-&gt;execute($sql, $param, filter =&gt; {issue_date =&gt;'tp_to_date'});
 </pre>
 
   </div>
@@ -478,8 +467,7 @@ $dbi-&gt;execute($sql, $param, filter =&gt; {issue_date =&gt; 'tp_to_date'});
           <div style="margin-bottom:30px">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
      crossorigin="anonymous"></script>
-<!-- ディスプレイ縦長 -->
-<ins class="adsbygoogle"
+<!-- ディスプレイ縦長 --><ins class="adsbygoogle"
      style="display:block"
      data-ad-client="ca-pub-4525414114581084"
      data-ad-slot="4544919209"

@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- meta -->
-<meta charset="UTF-8">
+    <!-- meta --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
 <link rel="icon" type="image/x-icon" href="/images/logo.png">
 <link rel="stylesheet" type="text/css" href="/css/common.css">
@@ -25,8 +24,7 @@
   });
 </script>
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-M3N0832N8E"></script>
+<!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-M3N0832N8E"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -34,8 +32,8 @@
 
   gtag('config', 'G-M3N0832N8E');
 </script>
-<title>データベースへの接続 - DBIx::Custom - PerlのO/R Mapper that execute SQL easily</title>
-<meta name="description" content="データベースへ接続するにはconnectメソッドを使用します。">
+<title> Connecting to the database  - DBIx::Custom - PerlのO/R Mapper that execute SQL easily</title>
+<meta name="description" content="Use the  connect  method to connect to the database.">
   </head>
   <body>
     <div class="container">
@@ -52,25 +50,24 @@
           <div class="entry">
   <div class="top">
     <!-- top -->
-
   </div>
   <div class="middle">
-    <div class="bread">
-  <ul itemscope itemtype="http://schema.org/BreadcrumbList">
-    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+    <div class = "bread">
+  <ul itemscope itemtype = "http://schema.org/BreadcrumbList">
+    <li itemprop = "itemListElement" itemscope itemtype = "http://schema.org/ListItem">
       <a itemprop="item" href="/">
-        <span itemprop="name">DBIx::Custom</span>
-      </a>
-      <meta itemprop="position" content="1" />
+        <span itemprop = "name"> DBIx::Custom </span>
+     </a>
+      <meta itemprop = "position" content = "1" />
     </li>
     <li>
       here
     </li>
   </ul>
 </div>
-<h2><a href="/blog/20110516130787.html">データベースへの接続</a></h2>
+<h2><a href="/blog/20110516130787.html"> Connecting to the database </a></h2>
 <p>
-  データベースへ接続するには<strong>connect</strong>メソッドを使用します。
+  Use the <strong> connect </strong> method to connect to the database.
 </p>
 <div style="width:calc(100% - 30px);margin:10px auto;">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
@@ -89,20 +86,20 @@
 
 
 <pre>
-# connectメソッド
+# connect method
 DBIx::Custom-&gt;connect($dsn, $user, $password, $dbi_attr, $dbix_custom_attr);
 </pre>
 <p>
-  第一引数はデータソース名、第二引数はユーザー名、第三引数はパスワード、第四引数は<a href="https://metacpan.org/pod/DBI#ATTRIBUTES-COMMON-TO-ALL-HANDLES">DBIの属性</a>、第五引数は、DBIx::Customの属性です。
+  The first argument is the data source name, the second argument is the user name, the third argument is the password, and the fourth argument is <a href="https://metacpan.org/pod/DBI#ATTRIBUTES-COMMON-TO-ALL-" HANDLES "> DBI attribute</a>, the fifth argument is the DBIx::Custom attribute.
 </p>
 <p>
-  接続に成功するとDBIx::Customオブジェクトが戻り値として返ります。
+  If the connection is successful, the DBIx::Custom object will be returned as the return value.
 </p>
 <p>
-  以下の方法も提供されていますが、特に必要のない場合は、上記の方法を利用してください。
+  The following methods are also provided, but if you do not need them, use the above methods.
 </p>
 <pre>
-# connectメソッド(他のやり方)
+#connect method (other way)
 my $dbi = DBIx::Custom-&gt;connect(
   dsn =&gt; $dsn,
   user =&gt; $user,
@@ -111,36 +108,36 @@ my $dbi = DBIx::Custom-&gt;connect(
   %dbix_custom_attr
 );
 </pre>
-<h3>データソース名</h3>
+<h3> Data source name </h3>
 <p>
-  データソース名を指定してSQLiteに接続してみます。
+  Try connecting to SQLite by specifying the data source name.
 </p>
 <pre>
-my $dsn = "dbi:SQLite:dbname=bookshop";
+my $dsn = "dbi: SQLite: dbname = bookshop";
 my $dbi = DBIx::Custom-&gt;connect($dsn);
 </pre>
 <p>
-  データベースに接続するためには、第一引数にデータソース名を指定します。データソースは各データベースごとに異なるものになります。接続に成功するとDBIx::Customオブジェクトが戻り値として返ります。
+  To connect to the database, specify the data source name as the first argument. The data source will be different for each database. If the connection is successful, the DBIx::Custom object will be returned as the return value.
 </p>
-<h3>ユーザー名とパスワード</h3>
+<h3> Username and password </h3>
 <p>
-  データベースへの接続にユーザー名とパスワードが必要な場合は、第二引数と第三引数に指定します。
+  If a user name and password are required to connect to the database, specify them in the second and third arguments.
 </p>
 <pre>
-my $user = 'ken';
-my $password = 'utj4857';
+my $user ='ken';
+my $password ='utj4857';
 my $dbi = DBIx::Custom-&gt;connect($dsn, $user, $password);
 </pre>
-<h3>DBIの属性</h3>
+<h3> DBI attributes </h3>
 <p>
-  <a href="https://metacpan.org/pod/DBI#ATTRIBUTES-COMMON-TO-ALL-HANDLES">DBIの属性</a>は第四引数で指定することができます。第四引数まで、DBIのconnectメソッドの引数と同じです。ユーザーとパスワードが必要ない場合は、undefを設定してください。
+  <a href="https://metacpan.org/pod/DBI#ATTRIBUTES-COMMON-TO-ALL-HANDLES"> DBI attributes</a> can be specified with the 4th argument. Up to the 4th argument, it is the same as the argument of DBI's connect method. If you don't need a user and password, set undef.
 </p>
 <pre>
 my $dbi_attr = {sqlite_unicode =&gt; 1};
 my $dbi = DBIx::Custom-&gt;connect($dsn, $user, $password, $dbi_attr);
 </pre>
 <p>
-  <a href="https://metacpan.org/pod/DBI#ATTRIBUTES-COMMON-TO-ALL-HANDLES">DBIの属性</a>にはデフォルトで以下の値が設定されます。エラーに対しては例外を投げ、コミットはオートコミットモードになっています。これは上書きすることができます。
+  The following values ​​are set by default for <a href="https://metacpan.org/pod/DBI#ATTRIBUTES-COMMON-TO-ALL-HANDLES"> DBI attributes</a>. It throws an exception for the error and the commit is in autocommit mode. This can be overridden.
 </p>
 <pre>
 {
@@ -149,140 +146,140 @@ my $dbi = DBIx::Custom-&gt;connect($dsn, $user, $password, $dbi_attr);
   AutoCommit =&gt; 1
 }
 </pre>
-<h3>データベースの接続管理</h3>
+<h3> Database connection management </h3>
 <p>
-  DBIx::Customの接続管理は、実績があり、信頼できる<a href="https://metacpan.org/pod/DBIx::Connector">DBIx::Connector</a>によって行われます。
+  Connection management for DBIx::Custom is done by a proven and trusted <a href="https://metacpan.org/pod/DBIx ::Connector"> DBIx::Connector</a>.
 </p>
 <p>
-  このためDBIx::Customは、プリフォークサーバーで、Webアプリケーションが実行された場合でも正しく動作します。
+  So DBIx::Custom works fine even when the web application is run on the prefolk server.
 </p>
 <p>
-  トランザクションの実行も、DBIx::Connectorのtxnメソッドによって実行できます。
+  Transactions can also be executed using the DBIx::Connector's txn method.
 </p>
 <pre>
-# トランザクションの実行
+#Transaction execution
 $dbi-&gt;connector-&gt;txn(sub {
-  # 処理1
+  #Process 1
   ...
 
-  # 処理2
+  #Process 2
   ...
 });
 </pre>
-<h3>MariaDBへ接続する</h3>
+<h3> Connect to MariaDB </h3>
 <p>
-  connectメソッドを使用して<a href="https://en.mariadb.perlzemi.com/">MariaDB</a>に接続するには次のようにします。
+  To connect to <a href="https://en.mariadb.perlzemi.com/"> MariaDB</a> using the connect method:
 </p>
 <pre>
-# UTF-8の場合
-my $dbi = DBIx::Custom-&gt;connect("dbi:mysql:database=bookshop", 'ken', '!LFKD%$&amp;', {mysql_enable_utf8mb4 =&gt; 1});
+# UTF-8
+my $dbi = DBIx::Custom-&gt;connect("dbi: mysql: database = bookshop",'ken','! LFKD%$&amp;', {mysql_enable_utf8mb4 =&gt; 1});
 
-# 3バイトのUTF-8の場合
-my $dbi = DBIx::Custom-&gt;connect("dbi:mysql:database=bookshop", 'ken', '!LFKD%$&amp;', {mysql_enable_utf8 =&gt; 1});
+# For 3-byte UTF-8
+my $dbi = DBIx::Custom-&gt;connect("dbi: mysql: database = bookshop",'ken','! LFKD%$&amp;', {mysql_enable_utf8 =&gt; 1});
 </pre>
 <p>
-  第一引数にデータソース名、第二引数にデータベースのユーザー名、第三引数にデータベースのパスワードを指定します。第四引数に<a href="https://metacpan.org/pod/DBI#ATTRIBUTES-COMMON-TO-ALL-HANDLES">DBIの属性</a>を指定します。戻り値はDBIx::Customオブジェクトになります。
+  Specify the data source name in the first argument, the database user name in the second argument, and the database password in the third argument. Specify <a href="https://metacpan.org/pod/DBI#ATTRIBUTES-COMMON-TO-ALL-HANDLES"> DBI attributes</a> in the fourth argument. The return value will be a DBIx::Custom object.
 </p>
 <p>
-  <a href="https://metacpan.org/pod/DBI#ATTRIBUTES-COMMON-TO-ALL-HANDLES">DBIの属性</a>としてmysql_enable_utf8mb4に1を設定しておくと、データベースの文字列を更新・取得するときに、Perlのデコードされた文字列とUTF-8バイト列を自動的に変換してくれるので便利です。3バイトのUTF-8しかサポートされていない、古いMariaDBの場合はmysql_enable_utf8を使うことができます。
+  If you set mysql_enable_utf8mb4 to 1 as <a href="https://metacpan.org/pod/DBI#ATTRIBUTES-COMMON-TO-ALL-HANDLES"> DBI attribute</a>, it will be a database string. It is convenient because it automatically converts Perl's decoded character string and UTF-8 byte string when updating / retrieving. For older MariaDB, which only supports 3 bytes of UTF-8, you can use mysql_enable_utf8.
 </p>
 <p>
-  またMariaDBではホスト名やポート番号を指定してリモートにあるMariaDBサーバーに簡単に接続することができます。
+  MariaDB also allows you to easily connect to a remote MariaDB server by specifying a host name or port number.
 </p>
 <pre>
-my $dbi = DBIx::Custom-&gt;connect("dbi:mysql:database=bookshop;host=somehost.com;port=3306", 'ken', '!LFKD%$&amp;');
+my $dbi = DBIx::Custom-&gt;connect("dbi: mysql: database = bookshop; host = somehost.com; port = 3306",'ken','! LFKD%$&amp;');
 </pre>
-<h3>MySQLへ接続する</h3>
+<h3> Connect to MySQL </h3>
 <p>
-  connectメソッドを使用して<strong>MySQL</strong>に接続するには次のようにします。
+  To connect to <strong> MySQL </strong> using the connect method:
 </p>
 <pre>
-# UTF-8の場合
-my $dbi = DBIx::Custom-&gt;connect("dbi:mysql:database=bookshop", 'ken', '!LFKD%$&amp;', {mysql_enable_utf8mb4 =&gt; 1});
+# UTF-8
+my $dbi = DBIx::Custom-&gt;connect("dbi: mysql: database = bookshop",'ken','! LFKD%$&amp;', {mysql_enable_utf8mb4 =&gt; 1});
 
-# 3バイトのUTF-8の場合
-my $dbi = DBIx::Custom-&gt;connect("dbi:mysql:database=bookshop", 'ken', '!LFKD%$&amp;', {mysql_enable_utf8 =&gt; 1});
+# For 3-byte UTF-8
+my $dbi = DBIx::Custom-&gt;connect("dbi: mysql: database = bookshop",'ken','! LFKD%$&amp;', {mysql_enable_utf8 =&gt; 1});
 </pre>
 <p>
-  第一引数にデータソース名、第二引数にデータベースのユーザー名、第三引数にデータベースのパスワードを指定します。第四引数に<a href="https://metacpan.org/pod/DBI#ATTRIBUTES-COMMON-TO-ALL-HANDLES">DBIの属性</a>を指定します。戻り値はDBIx::Customオブジェクトになります。
+  Specify the data source name in the first argument, the database user name in the second argument, and the database password in the third argument. Specify <a href="https://metacpan.org/pod/DBI#ATTRIBUTES-COMMON-TO-ALL-HANDLES"> DBI attributes</a> in the fourth argument. The return value will be a DBIx::Custom object.
 </p>
 <p>
-  <a href="https://metacpan.org/pod/DBI#ATTRIBUTES-COMMON-TO-ALL-HANDLES">DBIの属性</a>としてmysql_enable_utf8mb4に1を設定しておくと、データベースの文字列を更新・取得するときに、Perlのデコードされた文字列とUTF-8バイト列を自動的に変換してくれるので便利です。3バイトのUTF-8しかサポートされていない、古いMySQLの場合はmysql_enable_utf8を使うことができます。
+  If you set mysql_enable_utf8mb4 to 1 as <a href="https://metacpan.org/pod/DBI#ATTRIBUTES-COMMON-TO-ALL-HANDLES"> DBI attribute</a>, it will be a database string. It is convenient because it automatically converts Perl's decoded character string and UTF-8 byte string when updating / retrieving. For older MySQL, which only supports 3 bytes of UTF-8, you can use mysql_enable_utf8.
 </p>
 <p>
-  またMySQLではホスト名やポート番号を指定してリモートにあるMySQLサーバーに簡単に接続することができます。
+  In MySQL, you can easily connect to a remote MySQL server by specifying the host name and port number.
 </p>
 <pre>
-my $dbi = DBIx::Custom-&gt;connect("dbi:mysql:database=bookshop;host=somehost.com;port=3306", 'ken', '!LFKD%$&amp;');
+my $dbi = DBIx::Custom-&gt;connect("dbi: mysql: database = bookshop; host = somehost.com; port = 3306",'ken','! LFKD%$&amp;');
 </pre>
-<h3>PostgreSQLへ接続する</h3>
+<h3> Connect to PostgreSQL </h3>
 <p>
-  connectメソッドを使用して<strong>PostgreSQL</strong>に接続するには次のようにします。
+  To connect to <strong> PostgreSQL </strong> using the connect method:
 </p>
 <pre>
-my $dbi = DBIx::Custom-&gt;connect("dbi:Pg:dbname=bookshop", 'ken', '!LFKD%$&amp;', {pg_enable_utf8  =&gt; 1});
+my $dbi = DBIx::Custom-&gt;connect("dbi: Pg: dbname = bookshop",'ken','! LFKD%$&amp;', {pg_enable_utf8 =&gt; 1});
 </pre>
 <p>
-  第一引数にデータソース名、第二引数にデータベースのユーザー名、第三引数にデータベースのパスワードを指定します。第四引数に<a href="https://metacpan.org/pod/DBI#ATTRIBUTES-COMMON-TO-ALL-HANDLES">DBIの属性</a>を指定します。戻り値はDBIx::Customオブジェクトになります。
+  Specify the data source name in the first argument, the database user name in the second argument, and the database password in the third argument. Specify <a href="https://metacpan.org/pod/DBI#ATTRIBUTES-COMMON-TO-ALL-HANDLES"> DBI attributes</a> in the fourth argument. The return value will be a DBIx::Custom object.
 </p>
 <p>
-  <a href="https://metacpan.org/pod/DBI#ATTRIBUTES-COMMON-TO-ALL-HANDLES">DBIの属性</a>としてpg_enable_utf8に1を設定しておくと、データベースの文字列を更新・取得するときに、Perlのデコードされた文字列とUTF-8バイト列を自動的に変換してくれるので便利です。
+  If you set pg_enable_utf8 to 1 as <a href="https://metacpan.org/pod/DBI#ATTRIBUTES-COMMON-TO-ALL-HANDLES"> DBI attribute</a>, it will be a database string. It is convenient because it automatically converts Perl's decoded character string and UTF-8 byte string when updating / retrieving.
 </p>
 <p>
-  またPostgreSQLではホスト名やポート番号を指定してリモートにあるPostgreSQLサーバーに簡単に接続することができます。
+  In PostgreSQL, you can easily connect to a remote PostgreSQL server by specifying the host name and port number.
 </p>
 <pre>
-my $dbi = DBIx::Custom-&gt;connect("dbi:Pg:dbname=$dbname;host=somehost.com;port=5432;", 'ken', '!LFKD%$&amp;');
+my $dbi = DBIx::Custom-&gt;connect("dbi: Pg: dbname = $dbname; host = somehost.com; port = 5432;",'ken','! LFKD%$&amp;');
 </pre>
-<h3>SQLiteへ接続する</h3>
+<h3> Connect to SQLite </h3>
 <p>
-  connectメソッドを使用して<strong>SQLite</strong>に接続するには次のようにします。
+  To connect to <strong> SQLite </strong> using the connect method:..
 </p>
 <pre>
-my $dbi = DBIx::Custom-&gt;connect("dbi:SQLite:dbname=$database", undef, undef, {sqlite_unicode =&gt; 1});
+my $dbi = DBIx::Custom-&gt;connect("dbi: SQLite: dbname = $database", undef, undef, {sqlite_unicode =&gt; 1});
 </pre>
 <p>
-  第一引数にデータソース名を指定します。第四引数に<a href="https://metacpan.org/pod/DBI#ATTRIBUTES-COMMON-TO-ALL-HANDLES">DBIの属性</a>を指定します。戻り値はDBIx::Customオブジェクトになります。
+  Specify the data source name in the first argument. Specify <a href="https://metacpan.org/pod/DBI#ATTRIBUTES-COMMON-TO-ALL-HANDLES"> DBI attributes</a> in the fourth argument. The return value will be a DBIx::Custom object.
 </p>
 <p>
-  <a href="https://metacpan.org/pod/DBI#ATTRIBUTES-COMMON-TO-ALL-HANDLES">DBIの属性</a>としてsqlite_unicodeに1を設定しておくと、データベースの文字列を更新・取得するときに、Perlのデコードされた文字列とUTF-8バイト列を自動的に変換してくれるので便利です。
+  If you set sqlite_unicode to 1 as <a href="https://metacpan.org/pod/DBI#ATTRIBUTES-COMMON-TO-ALL-HANDLES"> DBI attribute</a>, it will be a database string. It is convenient because it automatically converts Perl's decoded character string and UTF-8 byte string when updating / retrieving.
 </p>
 <p>
-  またSQLiteでは試験などを行うときにメモリ上にデータベースを作成できるのが便利です。
+  Also, with SQLite, it is convenient to be able to create a database in memory when conducting tests.
 </p>
 <pre>
-my $dbi = DBIx::Custom-&gt;connect("dbi:SQLite:dbname=:memory:", undef, undef, {sqlite_unicode =&gt; 1});
+my $dbi = DBIx::Custom-&gt;connect("dbi: SQLite: dbname =: memory:", undef, undef, {sqlite_unicode =&gt; 1});
 </pre>
-<h3>Oracleへ接続する</h3>
+<h3> Connect to Oracle </h3>
 <p>
-  connectメソッドを使用して<strong>Oracle</strong>に接続するには次のようにします。
+  To connect to <strong> Oracle </strong> using the connect method:
 </p>
-<h4>ネットサービス名で接続する場合</h4>
+<h4> When connecting with a net service name </h4>
 <p>
-  Oracleにはネットサービス名で接続する場合は次のような記述になります。
+  When connecting to Oracle with a net service name, the description is as follows.
 </p>
  
 <pre>
-# Connect to Oracle(Net servrice name)
-my $dbi = DBIx::Custom-&gt;connect("dbi:Oracle:$net_service_name");
+#Connect to Oracle (Net servrice name)
+my $dbi = DBIx::Custom-&gt;connect("dbi: Oracle: $net_service_name");
 </pre>
 <p>
-  ネットサービス名で接続する場合はtnsnames.oraというファイルにネットサービス名を定義しておく必要があります。
+  If you connect with the net service name, you need to define the net service name in the file tnsnames.ora.
 </p>
 <p>
-  tnsnames.oraは以下のパスに配置する必要があります。
+  tnsnames.ora should be placed in the following path:
 </p>
 <pre>
-$ORACLE_HOME/network/admin/tnsnames.ora
+$ORACLE_HOME / network / admin / tnsnames.ora
 </pre>
 <p>
-  以下はtnsnames.oraのサンプルです。
+  Below is a sample of tnsnames.ora.
 </p>
 <pre>
 mydb =
   (DESCRIPTION =
     (ADDRESS_LIST =
-      (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = TCP) (HOST = localhost) (PORT = 1521))
     )
     (CONNECT_DATA =
       (SID = XE)
@@ -290,122 +287,122 @@ mydb =
   )
 </pre>
 <p>
-  この場合はmydbというのがネットサービス名になります。SIDの部分にデータベース名を指定します。この例ではXEがデータベース名です。
+  In this case, mydb is the net service name. Specify the database name in the SID part. In this example, XE is the database name.
 </p>
 <p>
-  <a href="http://www.shift-the-oracle.com/oracle-net/tnsnames.html">tnsnames.oraについてはこちらの解説</a>が詳しいです。
+  <a href="http://www.shift-the-oracle.com/oracle-net/tnsnames.html"> For tnsnames.ora, see this explanation</a> for details.
 </p>
-<h4>直接データベース名を指定する場合</h4>
+<h4> When directly specifying the database name </h4>
 <p>
-  直接データベース名を指定する場合は次のようにします。
+  To specify the database name directly:
 </p>
 <pre>
-# Connect to Oracle (SID)
-my $dbi = DBIx::Custom-&gt;connect("dbi:Oracle:host=localhost;port=1521;sid=$database");
+#Connect to Oracle (SID)
+my $dbi = DBIx::Custom-&gt;connect("dbi: Oracle: host = localhost; port = 1521; sid = $database");
 </pre>
 <p>
-  sidがデータベース名を指定する部分になります。たとえばOracleのExpression版を利用してる場合はEXを指定すると接続できます。ポート番号を指定しない場合は1526,1521の順に自動的にポートを試してくれます。
+  sid is the part that specifies the database name. For example, if you are using the Expression version of Oracle, you can connect by specifying EX. If you do not specify a port number, it will automatically try the ports in the order of 1526, 1521.
 </p>
-<h4>Oracleにおけるデータベース名</h4>
+<h4> Oracle database name </h4>
 <p>
-  Oracleにおいてはデータベース名と呼ばれるものが非常に多いです。<a href="http://www.shift-the-oracle.com/config/oracle_sid-db_name-global_name.html">Oracleのデータベース名についてはこちらの解説が詳しい</a>です。
+  In Oracle, there are a lot of things called database names. <a href="http://www.shift-the-oracle.com/config/oracle_sid-db_name-global_name.html"> For more information on Oracle database names, see here</a>.
 </p>
-<h3>ODBC経由でMicrosoft SQL Serverへ接続する</h3>
+<h3> Connect to Microsoft SQL Server via ODBC </h3>
 <p>
-  DBIx::Customのconnectメソッドを使用してODBC経由で<strong>Microsoft SQL Server</strong>に接続するには次のようにします。
+  To connect to <strong> Microsoft SQL Server </strong> via ODBC using the DBIx::Custom connect method:
 </p>
-<h4>Windows認証の場合</h4>
+<h4> For Windows authentication </h4>
 <pre>
-# Data source name (Windows authentication)
-my $dsn = "dbi:ODBC:driver={SQL Server};Server={localhost\\SQLEXPRESS};"
-  . "Trusted_Connection=yes;AutoTranslate=No;Database=master;";
+#Data source name (Windows authentication)
+my $dsn = "dbi: ODBC: driver = {SQL Server}; Server = {localhost \\ SQLEXPRESS};"
+  . "Trusted_Connection = yes; AutoTranslate = No; Database = master;";
 
-# Connect
+#Connect
 my $dbi = DBIx::Custom-&gt;connect($dsn);
 </pre>
 <p>
-  データソース名の始まりは「dbi:ODBC:」になります。driverの値は{SQL Server}です。Serverに指定する値は、「ホスト名\\オブジェクト名」とする必要があります。
+  The data source name starts with "dbi: ODBC:". The value of driver is {SQL Server}. The value specified for Server must be "hostname \\ object name".
 </p>
 <p>
-  Windows認証を使う場合はTrusted_Connectionに値をyesにします。AutoTranslateはデータの自動変換に関係しますが通常はNoに設定します。Databaseに、接続したいデータベース名を指定することができます。
+  If you want to use Windows Authentication, set the value to Yes for Trusted_Connection. AutoTranslate is related to automatic data conversion, but is usually set to No. You can specify the database name you want to connect to Database.
 </p>
 <p>
-  またポート番号を指定したい場合はServerの値は次のように設定します。
+  If you want to specify the port number, set the value of Server as follows.
 </p>
 <pre>
-# With port number
-Server={localhost\\SQLEXPRESS,1433}
+#With port number
+Server = {localhost \\ SQLEXPRESS, 1433}
 </pre>
 <p>
-  この設定はDBIx::Customではなくて普通のDBIを使って行う場合も同様です。
+  This setting is also true if you use a regular DBI instead of DBIx::Custom.
 </p>
-<h4>SQL Server認証の場合</h4>
+<h4> For SQL Server Authentication </h4>
 <pre>
-# Data source name (SQL Server authentication)
-my $dsn = "dbi:ODBC:driver={SQL Server};Server={localhost\\SQLEXPRESS};"
-  . "Trusted_Connection=No;AutoTranslate=No;Database=master;";
+#Data source name (SQL Server authentication)
+my $dsn = "dbi: ODBC: driver = {SQL Server}; Server = {localhost \\ SQLEXPRESS};"
+  . "Trusted_Connection = No; AutoTranslate = No; Database = master;";
 
-# Connect
-my $dbi = DBIx::Custom-&gt;connect($dsn, 'kimoto', 'iejfid');
+#Connect
+my $dbi = DBIx::Custom-&gt;connect($dsn,'kimoto','iejfid');
 </pre>
 <p>
-  Windows認証の場合とほとんどおなじですが、SQL Server 認証の場合はTrusted_Connectionの部分をNoにします。またSQL Server認証はパスワードによる認証ですのでpasswordも指定します。
+  It is almost the same as the case of Windows authentication, but in the case of SQL Server authentication, set the Trusted_Connection part to No. Also, since SQL Server authentication is password-based authentication, specify password as well.
 </p>
 <p>
-  またSQL Server認証で接続したい場合は、SQL Server認証が有効になっていないと接続できませんので、どのような設定になっているかを確認する必要があります。
+  Also, if you want to connect with SQL Server Authentication, you cannot connect unless SQL Server Authentication is enabled, so you need to check what the settings are.
 </p>
 <p>
-  <a href="http://msdn.microsoft.com/ja-jp/library/ms188670.aspx">Windows認証とSQL Server認証の切り替え</a>
+  <a href="http://msdn.microsoft.com/ja-jp/library/ms188670.aspx"> Switching between Windows authentication and SQL Server authentication</a>
 </p>
 <p>
-  設定を変更した後はSQL Serverを再起動することを忘れないでください。
+  Remember to restart SQL Server after changing the settings.
 </p>
-<h3>Microsoft Accessへ接続する</h3>
+<h3> Connect to Microsoft Access </h3>
 <p>
-  connectメソッドを使用してODBC経由で<strong>Microsoft Access</strong>に接続するには次のようにします。(この接続方法はPerlと生のDBIを使う場合も同じになります。)
+  To connect to <strong> Microsoft Access </strong> via ODBC using the connect method: (This connection method is the same when using Perl and raw DBI.)
 </p>
-<h4>mdbファイル</h4>
+<h4> mdb file </h4>
 <pre>
-my $dbi = DBIx::Custom-&gt;connect("dbi:ODBC:driver=Microsoft Access Driver (*.mdb);dbq=hoge.mdb");
+my $dbi = DBIx::Custom-&gt;connect("dbi: ODBC: driver = Microsoft Access Driver (* .mdb); dbq = hoge.mdb");
 </pre>
 <p>
-  第一引数にデータソース名を指定します。戻り値はDBIx::Customオブジェクトになります。
+  Specify the data source name in the first argument. The return value will be a DBIx::Custom object.
 </p>
 <p>
-  mdbファイルではjoinがサポートされていない点に注意してください。これはMicrosoft Accessの制限になっています。
+  Note that joins are not supported in mdb files. This is a Microsoft Access limitation.
 </p>
-<h4>Microsoft Access 2007のaccdbファイル</h4>
+<h4> Microsoft Access 2007 accdb file </h4>
 <p>
-  まず<a href="http://www.microsoft.com/downloads/ja-jp/details.aspx?FamilyID=7554F536-8C28-4598-9B72-EF94E038C891">こちらから2007用のODBCドライバをインストール</a>する必要があります。
+  First <a href="http://www.microsoft.com/downloads/ja-jp/details.aspx?FamilyID=7554F536-8C28-4598-9B72-EF94E038C891"> Install the ODBC driver for 2007 from here </strong> a> Must be.
 </p>
 <p>
-  それからdsnを以下のように指定します。上記のmdbファイルを微妙に異なる({}で囲まれている)点に注意してください。
+  Then specify dsn as follows: Note that the above mdb file is slightly different (enclosed in {}).
 </p>
 <pre>
-my $dbi = DBIx::Custom-&gt;connect("dbi:ODBC:Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=hoge.accdb");
+my $dbi = DBIx::Custom-&gt;connect("dbi: ODBC: Driver = {Microsoft Access Driver (* .mdb, * .accdb)}; DBQ = hoge.accdb");
 </pre>
 <p>
-  accdbファイルではjoinを利用することができますが、列の中に.(ドット)を含めることができないようです。以下のようにセパレータを「-」などに変更すると正しく利用することができます。
+  You can use join in the accdb file, but it seems that you can't include. (Dot) in the column. You can use it correctly by changing the separator to "-" etc. as shown below.
 </p>
 <pre>
 $dbi-&gt;separator('-');
 </pre>
-<h4>Microsoft Access 2010のaccdbファイル</h4>
+<h4> Microsoft Access 2010 accdb file </h4>
 <p>
-  <a href="http://www.microsoft.com/downloads/ja-jp/details.aspx?FamilyID=c06b8369-60dd-4b64-a44b-84b371ede16d">こちらから2010用のODBCドライバーをインストール</a>する必要があります。
+  <a href="http://www.microsoft.com/downloads/ja-jp/details.aspx?FamilyID=c06b8369-60dd-4b64-a44b-84b371ede16d"> Install the ODBC driver for 2010 from here</a> > Must be.
 </p>
 <p>
-  接続方法は2007のものと同じになります。
+  The connection method will be the same as that of 2007.
 </p>
-<h3>DB2へ接続する</h3>
+<h3> Connect to DB2 </h3>
 <p>
-  connectメソッドを使用して<strong>DB2</strong>に接続するには次のようにします。
+  To connect to <strong> DB2 </strong> using the connect method:
 </p>
 <pre>
-my $dbi = DBIx::Custom-&gt;connect("dbi:DB2:db_name", $username, $password);
+my $dbi = DBIx::Custom-&gt;connect("dbi: DB2: db_name", $username, $password);
 </pre>
 <p>
-  第一引数にデータソース名を指定します。戻り値はDBIx::Customオブジェクトになります。
+  Specify the data source name in the first argument. The return value will be a DBIx::Custom object.
 </p>
 
   </div>
@@ -433,8 +430,7 @@ my $dbi = DBIx::Custom-&gt;connect("dbi:DB2:db_name", $username, $password);
           <div style="margin-bottom:30px">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
      crossorigin="anonymous"></script>
-<!-- ディスプレイ縦長 -->
-<ins class="adsbygoogle"
+<!-- ディスプレイ縦長 --><ins class="adsbygoogle"
      style="display:block"
      data-ad-client="ca-pub-4525414114581084"
      data-ad-slot="4544919209"

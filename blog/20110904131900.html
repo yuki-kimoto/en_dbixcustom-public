@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- meta -->
-<meta charset="UTF-8">
+    <!-- meta --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
 <link rel="icon" type="image/x-icon" href="/images/logo.png">
 <link rel="stylesheet" type="text/css" href="/css/common.css">
@@ -25,8 +24,7 @@
   });
 </script>
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-M3N0832N8E"></script>
+<!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-M3N0832N8E"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -34,8 +32,8 @@
 
   gtag('config', 'G-M3N0832N8E');
 </script>
-<title>ユーティリティ - DBIx::Custom - PerlのO/R Mapper that execute SQL easily</title>
-<meta name="description" content="最後に実行されたSQLを取得するにはlast_sqlメソッドを使用します。">
+<title> Utility  - DBIx::Custom - PerlのO/R Mapper that execute SQL easily</title>
+<meta name="description" content="Use the  last_sql  method to get the last executed SQL.">
   </head>
   <body>
     <div class="container">
@@ -52,26 +50,25 @@
           <div class="entry">
   <div class="top">
     <!-- top -->
-
   </div>
   <div class="middle">
-    <div class="bread">
-  <ul itemscope itemtype="http://schema.org/BreadcrumbList">
-    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+    <div class = "bread">
+  <ul itemscope itemtype = "http://schema.org/BreadcrumbList">
+    <li itemprop = "itemListElement" itemscope itemtype = "http://schema.org/ListItem">
       <a itemprop="item" href="/">
-        <span itemprop="name">DBIx::Custom</span>
-      </a>
-      <meta itemprop="position" content="1" />
+        <span itemprop = "name"> DBIx::Custom </span>
+     </a>
+      <meta itemprop = "position" content = "1" />
     </li>
     <li>
       here
     </li>
   </ul>
 </div>
-<h2><a href="/blog/20110904131900.html">ユーティリティ</a></h2>
-<h3>最後に実行されたSQLを取得する - last_sql</h3>
+<h2><a href="/blog/20110904131900.html"> Utility </a></h2>
+<h3> Get the last executed SQL --last_sql </h3>
 <p>
-  最後に実行されたSQLを取得するには<strong>last_sql</strong>メソッドを使用します。
+  Use the <strong> last_sql </strong> method to get the last executed SQL.
 </p>
 <div style="width:calc(100% - 30px);margin:10px auto;">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
@@ -93,91 +90,91 @@
 my $last_sql = $dbi-&gt;last_sql;
 </pre>
 <p>
-  デバッグを行うときに便利です。
+  This is useful when debugging.
 </p>
-<h3>実行されたSQLを確認する</h3>
+<h3> Check the executed SQL </h3>
 <p>
-  どのようなSQLが実際に実行されたのかを確認するには<strogn>DBIX_CUSTOM_DEBUG</strong>という環境変数に真の値(たとえば1)を設定します。標準エラー出力に実行されたSQLとバインドされた値が出力されます。
+  To see what SQL was actually executed, set the environment variable <strogn> DBIX_CUSTOM_DEBUG </strong> to a true value (for example, 1). The SQL executed and the bound value are output to the standard error output.
 </p>
 <pre>
-$ENV{DBIX_CUSTOM_DEBUG} = 1
+$ENV {DBIX_CUSTOM_DEBUG} = 1
 </pre>
-<h3>ヘルパーメソッドを登録する - helper</h3>
+<h3> Register helper method --helper </h3>
 <p>
-  ヘルパーメソッドを登録するには<strong>helper</strong>メソッドを使用します。
+  Use the <strong> helper </strong> method to register a helper method.
 </p>
 <pre>
 $dbi-&gt;helper(
-  find_or_create   =&gt; sub {
+  find_or_create =&gt; sub {
     my $self = shift;
     ...
   }
 );
 </pre>
 <p>
-  登録したヘルパーメソッドはDBIx::Customオブジェクトから直接呼び出すことができます。
+  The registered helper method can be called directly from the DBIx::Custom object.
 </p>
 <pre>
 $dbi-&gt;find_or_create;
 </pre>
-<h3>パラメーターをマージする - merge_param</h3>
+<h3> Merge parameters --merge_param </h3>
 <p>
-  二つのパラメータをマージするには<strong>merge_param</strong>メソッドを使用します。
+  Use the <strong> merge_param </strong> method to merge the two parameters.
 </p>
 <pre>
 my $param = $dbi-&gt;merge_param({key1 =&gt; 1}, {key1 =&gt; 1, key2 =&gt; 2});
 </pre>
 <p>
-  次のような新しいパラメータを取得します。同一のキーを含むときは、値は配列のリファレンスにマージされます。
+  Get the new parameters as follows: If they contain the same key, the values ​​are merged into the array reference.
 </p>
 <pre>
 {key1 =&gt; [1, 1], key2 =&gt; 2}
 </pre>
-<h3>DBIx::Customオブジェクトを生成する - new</h3>
+<h3> Create DBIx::Custom object --new </h3>
 <p>
-  DBIx::Customオブジェクトを生成するには<strong>new</strong>メソッドを使用します。
+  Use the <strong> new </strong> method to create a DBIx::Custom object.
 </p>
 <pre>
 my $dbi = DBIx::Custom-&gt;new(
-  dsn =&gt; "dbi:mysql:database=dbname",
-  user =&gt; 'ken',
-  password =&gt; '!LFKD%$&amp;',
+  dsn =&gt; "dbi: mysql: database = dbname",
+  user =&gt;'ken',
+  password =&gt;'! LFKD%$&amp;',
   option =&gt; {mysql_enable_utf8 =&gt; 1}
 );
 </pre>
 <p>
-  connectメソッドとの違いは、newメソッドは接続を行わないということです。オブジェクトを、生成した後に接続したい場合は、connectメソッドを呼んでください。
+  The difference from the connect method is that the new method does not make a connection. If you want to connect the object after it is created, call the connect method.
 </p>
 <pre>
 $dbi-&gt;connect;
 </pre>
-<h3>データベースハンドルを取得する - dbh</h3>
+<h3> Get database handle --dbh </h3>
 <p>
-  データベースハンドルを取得するには<strong>dbh</strong>メソッドを使用します。
+  Use the <strong> dbh </strong> method to get the database handle.
 </p>
 <pre>
 my $dbh = $dbi-&gt;dbh;
 </pre>
 <p>
-  もしconnectorにコネクションマネージャが設定されていた場合は、データベースハンドルはコネクションマネージャ経由で取得します。
+  If the connection manager is set in the connector, the database handle will be obtained via the connection manager.
 </p>
-<h3>テーブルの存在を確認する</h3>
+<h3> Check the existence of the table </h3>
 <p>
-  データベースにテーブルがすでに存在しているかを確認したい場合があります。そのような場合は、each_columnメソッドを使って、指定するテーブルがあるかを調べるのが簡単です。each_columnメソッドはすべての列を取得するメソッドですが、テーブルの情報も引数で受け取りますので、このような使い方もできます。
+  You may want to check if the table already exists in the database. In such cases, it's easy to use the each_column method to find out if there is a table to specify. The each_column method is a method to get all columns, but since it also receives table information as an argument, it can also be used in this way.
 </p>
 <pre>
 my $table_exists;
 $dbi-&gt;each_column(sub {
   my ($dbi, $table, $column) = @_;
-  $table_exists = 1 if $table eq 'book';
+  $table_exists = 1 if $table eq'book';
 });
 </pre>
-<h3>Mojolicious::LiteとDBIx::CustomとDBD::mysqlを使ってnode.jsのようにノンブロッキングでDBにアクセスする</h3>
+<h3> Use Mojolicious::Lite, DBIx::Custom and DBD::mysql to access DB non-blocking like node.js </h3>
 <p>
-  DBIx::Customがまだ実験的な段階ですが、AnyEventの力を借りて、データベースに対してブロッキングせずにクエリを投げることができるようになりました。
+  DBIx::Custom is still in the experimental stage, but with the help of AnyEvent, it is now possible to query the database without blocking.
 </p>
 <p>
-  5秒間待機するSQLを投げているのですが、複数のリクエストがあっても、ブロックせずにリクエストを処理することができます。これで、nodel.jsで行いたいようなデータベースに対してノンブロッキングでクエリを投げるということが、Perlでも簡単にできるようになりそうです。
+  I'm throwing SQL that waits for 5 seconds, but even if there are multiple requests, I can process the requests without blocking. With this, it seems that Perl can easily make non-blocking queries to the database that you want to do with nodel.js.
 </p>
 <pre>
 use Mojolicious::Lite;
@@ -185,140 +182,142 @@ use EV;
 use DBIx::Custom;
 
 my $dbi = DBIx::Custom-&gt;connect(
-  dsn =&gt; 'dbi:mysql:database=usertest',
-  user =&gt; 'root'
+  dsn =&gt;'dbi: mysql: database = usertest',
+  user =&gt;'root'
 );
 
-$dbi-&gt;async_conf({
+$dbi-&gt;async_conf({{
   prepare_attr =&gt; {async =&gt; 1},
-  fh =&gt; sub { shift-&gt;dbh-&gt;mysql_fd }
+  fh =&gt; sub {shift-&gt;dbh-&gt;mysql_fd}
 });
 
-get '/' =&gt; sub {
+get'/' =&gt; sub {
   my $self = shift;
   
   $self-&gt;render_later;
-  $dbi-&gt;select('SLEEP(5), 3', async =&gt; sub {
+  $dbi-&gt;select('SLEEP (5), 3', async =&gt; sub {
     my ($dbi, $result) = @_;
     my $row = $result-&gt;fetch_one;
     $self-&gt;render(text =&gt; $row-&gt;[1]);
   });
-};
+};;
 
 app-&gt;start;
 </pre>
 <p>
-  仕組みはこんな感じ。まずMojoliciousというのはノンブロッキングなHTTPサーバーを持っていて、内部実装としては中でIOのループをぐるぐると回している。MojoliciousはEVがあるときは、自前のMojo::IOLoopからEVを使ったIOループに切り替えることができる。DBIx::Customの中ではAnyEventを使って、イベントを登録している。EVを利用しているから、EVにイベントをどんどん登録する。Mojoliciousも自分のイベントをEVにどんどん登録する。ぐるぐるぐるーっと回って、IO待ちが終わったものから順に処理してくれる。
+  The mechanism is like this. First of all, Mojolicious has a non-blocking HTTP server, and as an internal implementation, it goes around the IO loop inside. When Mojolicious has an EV, it can switch from its own Mojo::IOLoop to an IO loop using EV. In DBIx::Custom, the event is registered using AnyEvent. Since I am using EV, I will register more and more events in EV. Mojolicious also registers his events on EV more and more. It spins round and round and processes in order from the one that has finished waiting for IO.
 </p>
 <p>
-  ただしこれは、まだ超実験的なだんかいなので、不具合がないかを試してみていただけるとうれしいです。
+  However, this is still a super-experimental process, so I'd be happy if you could try it for any problems.
 </p>
-<h3>廃止予定のタグの解析機能を停止してパフォーマンスを上げる</h3>
+<h3> Stop the analysis function of the deprecated tag to improve the performance </h3>
 <p>
-  廃止予定の機能が削除されるまでは、後方互換性の維持の方針のために、DBIx::Customのパフォーマンスはデフォルトでは最適化されていません。以前はタグという機能を実装していたのですが、パフォーマンス上の理由のために、この機能は名前つきプレースホルダーに置き換えられました。
+  Until the deprecated features are removed, DBIx::Custom performance is not optimized by default due to backwards compatibility policy. Previously we implemented a feature called tags, but for performance reasons this feature has been replaced by named placeholders.
 </p>
 <p>
-  タグの解析機能を停止させるとDBIx::Customのパフォーマンスを少し上げることができます。
+  You can improve the performance of DBIx::Custom a little by stopping the tag parsing function.
 </p>
 <pre>
-$ENV{DBIX_CUSTOM_TAG_PARSE} = 0;
+$ENV {DBIX_CUSTOM_TAG_PARSE} = 0;
 </pre>
 <p>
-  将来的には、他の多くの廃止予定の機能が取り除かれることで、パフォーマンスが全体的に若干向上します。
+  In the future, the removal of many other deprecated features will result in a slight overall performance improvement.
 </p>
-<h3>パラメーターをマッピングする - mapper</h3>
 <p>
-  URLから受け取ってきたパラメータを、データベース用のパラメータに変換するということをすることが多いと思います。このような場合はmapperメソッドを使ってDBIx::Custom::Mapperオブジェクトを作成してそれを利用します。
+  Mapping <h3> parameters --mapper </h3>
+</p>
+<p>
+  I think that you often convert the parameters received from the URL into the parameters for the database. In such a case, use the mapper method to create a DBIx::Custom::Mapper object and use it.
 </p>
 <pre>
-# マッパーの生成
+#Generation of mapper
 my $mapper = $dbi-&gt;mapper(param =&gt; $param);
 </pre>
 <p>
-  パラメータは次のようなものだとします。
+  Suppose the parameters are as follows:
 </p>
 <pre>
 {
-  t =&gt; 'Perl',
+  t =&gt;'Perl',
   p =&gt; 1000,
-  a =&gt; 'Ken',
-  b =&gt; 'XXX'
+  a =&gt;'Ken',
+  b =&gt;'XXX'
 }
 </pre>
 <p>
-  mapメソッドを使うとパラメータのマッピングを行うことができます。
+  You can use the map method to map the parameters.
 </p>
 <pre>
-# マッピング
+#Mapping
 my $new_param = $mapper-&gt;map(
-  t =&gt; [title =&gt; '%&lt;value&gt;'], # キーと値をマッピング
-  p =&gt; [price =&gt; '&lt;value&gt;'], # キーのみをマッピング
-  a =&gt; [a =&gt; '%&lt;value&gt;%'] # 値のみをマッピング
+  t =&gt; [title =&gt;'%&lt;value&gt;'], # map key to value
+  p =&gt; [price =&gt;'&lt;value&gt;'], # map only key
+  a =&gt; [a =&gt;'%&lt;value&gt;%'] # Map only values
 );
 </pre>
 <p>
-  書式は以下のようになります。
+  The format is as follows.
 </p>
 <pre>
-元のキー名 =&gt; [新しいキー名 =&gt; 新しい値]
+Original key name =&gt; [new key name =&gt; new value]
 </pre>
 <p>
-  元の値は<b>&lt;value&gt;</b>というフォーマットで表現できます。これを使って<b>%Perl</b>などの新しい値を作成することもできます。
+  The original value can be expressed in the format <b> & lt; value & gt; </b>. You can also use it to create new values ​​such as <b>%Perl </b>.
 </p>
 <p>
-  次のようなパラメータにマッピングされます。
+  It maps to the following parameters:
 </p>
 <pre>
 {
-  title =&gt; '%Perl',
+  title =&gt;'%Perl',
   price =&gt; 1000,
-  a =&gt; '%Ken%'
+  a =&gt;'%Ken%'
 }
 </pre>
 <p>
-  mapメソッドで指定されていないキーについてはマッピングされません。このサンプルではbというキーはマッピングされません。
+  Keys not specified in the map method will not be mapped. The key b is not mapped in this sample.
 </p>
 <p>
-  値をもう少し柔軟に変更したい場合はサブルーチンのリファレンスを利用することができます。第一引数で元の値を取得できるので新しい値を返却します。
+  If you want to change the value a little more flexibly, you can use the subroutine reference. Since the original value can be obtained with the first argument, the new value is returned.
 </p>
 <pre>
-元のキー名 =&gt; [新しいキー名 =&gt; sub { return '%' . $_[0] . '%' }]
+Original key name =&gt; [new key name =&gt; sub {return'%'. $_ [0].'%'}]
 </pre>
-<h4>パラメータのマッピングの条件</h4>
+<h4> Parameter mapping conditions </h4>
 <p>
-  デフォルトのマッピングの条件は次のとおりです。
+  The default mapping conditions are as follows:
 </p>
 <pre>
-値が定義されていて、長さがある
-</pre>
-<p>
-  ですから以下のようなパラメータはマッピングされます。
-</p>
-<pre>
-title =&gt; 'Perl',
+The value is defined and there is a length
 </pre>
 <p>
-  けれども、空の文字列や未定義値やキー自体が存在しないものはマッピングされません。これはマッピングがWebアプリケーションを想定しているので、このような仕様になっています。
+  So the following parameters are mapped.
 </p>
 <pre>
-title =&gt; '',
+title =&gt;'Perl',
+</pre>
+<p>
+  However, anything that does not have an empty string, undefined value, or the key itself will not be mapped. This is because the mapping is intended for web applications.
+</p>
+<pre>
+title =&gt;'',
 title =&gt; undef
 </pre>
 <p>
-  この条件を変更するにはcondition属性を利用します。任意のサブルーチンのリファレンスか、特別な値として「length」「defined」「exists」という文字列を設定することができます。
+  Use the condition attribute to change this condition. You can set the reference of any subroutine or the strings "length", "defined" and "exists" as special values.
 </p>
 <pre>
-$mapper-&gt;condition('length'); # デフォルトと同じ
-$mapper-&gt;condition('defined'); # 値が定義されている
-$mapper-&gt;condition('exists'); # キーが存在する
-$mapper-&gt;condition(sub { defined $_[0] }); #任意のサブルーチンのリファレンス
+$mapper-&gt;condition('length'); # Same as default
+$mapper-&gt;condition('defined'); #value is definedRu
+$mapper-&gt;condition('exists'); # key exists
+$mapper-&gt;condition(sub {defined $_ [0]}); # Reference to any subroutine
 </pre>
 <p>
-  mapメソッドで次のようにキーごとに個別に設定することも可能です。
+  It is also possible to set each key individually as follows with the map method.
 </p>
 <pre>
 $mapper-&gt;map(
-  古いキー =&gt; [新しいキー =&gt; 新しい値, {condtion =&gt; 'defined'}],
+   Old key =&gt; [new key =&gt; new value, {condtion =&gt;'defined'}],
 );
 </pre>
 
@@ -347,8 +346,7 @@ $mapper-&gt;map(
           <div style="margin-bottom:30px">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
      crossorigin="anonymous"></script>
-<!-- ディスプレイ縦長 -->
-<ins class="adsbygoogle"
+<!-- ディスプレイ縦長 --><ins class="adsbygoogle"
      style="display:block"
      data-ad-client="ca-pub-4525414114581084"
      data-ad-slot="4544919209"

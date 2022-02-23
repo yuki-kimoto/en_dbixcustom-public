@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- meta -->
-<meta charset="UTF-8">
+    <!-- meta --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
 <link rel="icon" type="image/x-icon" href="/images/logo.png">
 <link rel="stylesheet" type="text/css" href="/css/common.css">
@@ -25,8 +24,7 @@
   });
 </script>
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-M3N0832N8E"></script>
+<!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-M3N0832N8E"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -34,8 +32,8 @@
 
   gtag('config', 'G-M3N0832N8E');
 </script>
-<title>updateメソッドで行を更新 - DBIx::Custom - PerlのO/R Mapper that execute SQL easily</title>
-<meta name="description" content="テーブルの行を更新するにはupdateメソッドを使用します。">
+<title> Update row with update method  - DBIx::Custom - PerlのO/R Mapper that execute SQL easily</title>
+<meta name="description" content="Use the  update  method to update the rows in the table.">
   </head>
   <body>
     <div class="container">
@@ -52,25 +50,24 @@
           <div class="entry">
   <div class="top">
     <!-- top -->
-
   </div>
   <div class="middle">
-    <div class="bread">
-  <ul itemscope itemtype="http://schema.org/BreadcrumbList">
-    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+    <div class = "bread">
+  <ul itemscope itemtype = "http://schema.org/BreadcrumbList">
+    <li itemprop = "itemListElement" itemscope itemtype = "http://schema.org/ListItem">
       <a itemprop="item" href="/">
-        <span itemprop="name">DBIx::Custom</span>
-      </a>
-      <meta itemprop="position" content="1" />
+        <span itemprop = "name"> DBIx::Custom </span>
+     </a>
+      <meta itemprop = "position" content = "1" />
     </li>
     <li>
       here
     </li>
   </ul>
 </div>
-<h2><a href="/blog/20110130130016.html">updateメソッドで行を更新</a></h2>
+<h2><a href="/blog/20110130130016.html"> Update row with update method </a></h2>
 <p>
-  テーブルの行を更新するには<strong>update</strong>メソッドを使用します。
+  Use the <strong> update </strong> method to update the rows in the table.
 </p>
 <div style="width:calc(100% - 30px);margin:10px auto;">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
@@ -90,142 +87,142 @@
 
 <pre>
 $dbi-&gt;update(
-  {title =&gt; 'Perl', author =&gt; 'Ken'},
-  table =&gt; 'book',
+  {title =&gt;'Perl', author =&gt;'Ken'},
+  table =&gt;'book',
   where =&gt; {id =&gt; 1},
 );
 </pre>
 <p>
-  第一引数には更新のためのデータをハッシュリファレンスで指定します。対象のテーブルを<strong>table</strong>で指定します。更新する行の条件を<strong>where</strong>で指定します。whereにはハッシュリファレンスか、DBIx::Custom::Whereオブジェクトを指定することができます。次のようなSQLが発行されます。
+  In the first argument, specify the data for update as a hash reference. Specify the target table with <strong> table </strong>. Specify the condition of the row to be updated with <strong> where </strong>. Where can be a hash reference or a DBIx::Custom::Where object. The following SQL is issued:
 </p>
 <pre>
-update book set title = ?, author = ? where id = ?;
+update book set title =?, author =? where id =?;
 </pre>
 <p>
-  対応する値がプレースホルダに埋め込まれます。
+  The corresponding value is embedded in the placeholder.
 </p>
 <p>
-  またスカラリファレンスを値として渡すと、SQLの中にそのまま埋め込むことができます。
+  If you pass a scalar reference as a value, you can embed it in SQL as it is.
 </p>
 <pre>
-{date =&gt; \"NOW()"}
+{date =&gt; \ "NOW ()"}
 </pre>
-<h3>updateメソッドのオプション</h3>
+<h3> update method options </h3>
 <p>
-  updateメソッドは「execute」メソッドのすべてのオプション]を使用することができ、新しく以下のオプションが利用できます。executeのオプションについては「<a href="/blog/20110708131364.html">executeメソッド</a>」のオプションの項目を参考にしてください。
+  The update method can use all the options of the "execute" method, and the following new options are available. For the execute option, refer to the option item of "<a href="/blog/20110708131364.html"> execute method</a>".
 </p>
-<h4>IDによる条件指定 id</h4>
+<h4> Condition specification by ID id </h4>
 <p>
-  IDによる条件指定を行うにはidオプションを使用します。primary_keyオプションが指定されている必要があります。
+  Use the id option to specify conditions by ID. The primary_key option must be specified.
 </p>
 <pre>
 id =&gt; 4
 id =&gt; [4, 5]
 </pre>
 <p>
-  たとえば以下のupdate文を実行するとします。
+  For example, suppose you execute the following update statement.
 </p>
 <pre>
 $dbi-&gt;update(
-  {title =&gt; 'Perl', author =&gt; 'Ken'}
-  primary_key =&gt; ['id1', 'id2'],
+  {title =&gt;'Perl', author =&gt;'Ken'}
+  primary_key =&gt; ['id1','id2'],
   id =&gt; [4, 5],
-  table =&gt; 'book'
+  table =&gt;'book'
 );
 </pre>
 <p>
-  これは以下のupdate文と同じ意味になります。
+  This has the same meaning as the update statement below.
 </p>
 <pre>
 $dbi-&gt;update(
-  {title =&gt; 'Perl', author =&gt; 'Ken'}
+  {title =&gt;'Perl', author =&gt;'Ken'}
   where =&gt; {id1 =&gt; 4, id2 =&gt; 5},
-  table =&gt; 'book'
+  table =&gt;'book'
 );
 </pre>
-<h4>プレフィックス prefix</h4>
+<h4> prefix prefix </h4>
 <p>
-  updateとテーブル名の間に文字列を追加することができます。
+  You can add a string between update and the table name.
 </p>
 <pre>
-prefix =&gt; 'or replace'
+prefix =&gt;'or replace'
 </pre>
 <p>
-  たとえば以下のようなSQL文を実行することができます。
+  For example, you can execute the following SQL statement.
 </p>
 <pre>
 update or replace book
 </pre>
-<h4>テーブル名 table</h4>
+<h4> table name table </h4>
 <p>
-  tableオプションでテーブル名を指定します。
+  Specify the table name with the table option.
 </p>
 <pre>
-table =&gt; 'book'
+table =&gt;'book'
 </pre>
-<h4>更新時に現在時刻を設定 mtime</h4>
+<h4> Set the current time when updating mtime </h4>
 <p>
-  更新時に更新時刻を更新するには、mtimeオプションで更新時を格納する列名を指定します。
+  To update the update time at update time, specify the column name to store the update time with the mtime option.
 </p>
 <pre>
-mtime =&gt; 'modified_time'
+mtime =&gt;'modified_time'
 </pre>
 <p>
-  デフォルトのフォーマットは「YYYY-mm-dd HH:MM:SS」です。これはnow属性によって変更することができます。
+  The default format is "YYYY-mm-dd HH: MM: SS". This can be changed with the now attribute.
 </p>
-<h4>Where句 where</h4>
+<h4> Where clause where </h4>
 <p>
-  Where句を記述するにはwhereオプションを使用します。
+  Use the where option to write a Where clause.
 </p>
 <pre>
-where =&gt; {author =&gt; 'Ken', 'title' =&gt; 'Perl'}
+where =&gt; {author =&gt;'Ken','title' =&gt;'Perl'}
 where =&gt; [
-  ['and', ':author{=}', ':title{like}'],
-  {author =&gt; 'Ken', title =&gt; '%Perl%'}
+  ['and',': author {=}',': title {like}'],
+  {author =&gt;'Ken', title =&gt;'%Perl%'}
 ]
 </pre>
 <p>
-  whereオプションの指定方法については「<a href="/blog/20110210130016.html">selectメソッド</a>」のwhereオプションを見てください。Where句の生成の詳細については<a href="/blog/20110924132031.html">動的なWhere句の生成</a>を見てください。
+  See the where option in "<a href="/blog/20110210130016.html"> select method</a>" for how to specify the where option. See <a href="/blog/20110924132031.html"> Dynamic Where Clause Generation</a> for more information on Where clause generation.
 </p>
-<h4>プレースホルダーのラッピング wrap</h4>
+<h4> Placeholder wrapping wrap </h4>
 <p>
-  update文のsetの部分のプレースホルダーの部分を編集したい場合はwrapオプションを使用します。
+  If you want to edit the placeholder part of the set part of the update statement, use the wrap option.
 </p>
 <pre>
-wrap =&gt; {price =&gt; sub { "max($_[0])" }}
+wrap =&gt; {price =&gt; sub {"max ($_ [0])"}}
 </pre>
 <p>
-  たとえば次のようなupdateを実行したとします。
+  For example, suppose you execute the following update.
 </p>
 <pre>
 $dbi-&gt;update(
   {price =&gt; 100},
-  table =&gt; 'book',
+  table =&gt;'book',
   where =&gt; {id =&gt; 1}
-  wrap =&gt; {price =&gt; sub { "$_[0] + 5" }}
+  wrap =&gt; {price =&gt; sub {"$_ [0] + 5"}}
 );
 </pre>
 <p>
-  以下のようなSQLが実行されます。
+  The following SQL is executed.
 </p>
 <pre>
-update book set price = ? + 5 where id = 1
+update book set price =? + 5 where id = 1
 </pre>
-<h3>すべての行の更新 update_all</h3>
+<h3> Update all rows update_all </h3>
 <p>
-  テーブルのすべての行を更新するには<strong>update_all</strong>メソッドを使用します。安全のためにupdateメソッドでは、行のすべての更新を許可してないので、代わりにupdate_allメソッドを使用します。
+  Use the <strong> update_all </strong> method to update all the rows in the table. For your safety, the update method doesn't allow all updates to the row, so use the update_all method instead.
 </p>
 <pre>
-$dbi-&gt;update_all({title =&gt; 'Perl', author =&gt; 'Ken'}, table =&gt; 'book');
+$dbi-&gt;update_all({title =&gt;'Perl', author =&gt;'Ken'}, table =&gt;'book');
 </pre>
 <p>
-  第一引数に更新のためのデータをハッシュリファレンスで指定します。対象のテーブルを<strong>table</strong>で指定します。次のようなSQLが発行されます。
+  Specify the data for update in the first argument as a hash reference. Specify the target table with <strong> table </strong>. The following SQL is issued:
 </p>
 <pre>
-update book set title = ?, author = ?;
+update book set title =?, author =?;
 </pre>
 <p>
-  対応する値がプレースホルダに埋め込まれます。
+  The corresponding value is embedded in the placeholder.
 </p>
 
   </div>
@@ -253,8 +250,7 @@ update book set title = ?, author = ?;
           <div style="margin-bottom:30px">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
      crossorigin="anonymous"></script>
-<!-- ディスプレイ縦長 -->
-<ins class="adsbygoogle"
+<!-- ディスプレイ縦長 --><ins class="adsbygoogle"
      style="display:block"
      data-ad-client="ca-pub-4525414114581084"
      data-ad-slot="4544919209"

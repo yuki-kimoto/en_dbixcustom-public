@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- meta -->
-<meta charset="UTF-8">
+    <!-- meta --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
 <link rel="icon" type="image/x-icon" href="/images/logo.png">
 <link rel="stylesheet" type="text/css" href="/css/common.css">
@@ -25,8 +24,7 @@
   });
 </script>
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-M3N0832N8E"></script>
+<!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-M3N0832N8E"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -34,8 +32,8 @@
 
   gtag('config', 'G-M3N0832N8E');
 </script>
-<title>order by句の生成 - DBIx::Custom - PerlのO/R Mapper that execute SQL easily</title>
-<meta name="description" content="DBIx::Custom::Orderクラスを利用するとorder by句を簡単に記述することができます。たとえば、デフォルトの順序を最初に指定しておいて、状況に応じて順序をカスタマイズすることが簡単にできます。">
+<title> order by clause generation  - DBIx::Custom - PerlのO/R Mapper that execute SQL easily</title>
+<meta name="description" content="The  DBIx::Custom::Order  class makes it easy to write an order by clause. For example, you can easily specify a default order first and customize the order for your situation.">
   </head>
   <body>
     <div class="container">
@@ -52,25 +50,24 @@
           <div class="entry">
   <div class="top">
     <!-- top -->
-
   </div>
   <div class="middle">
-    <div class="bread">
-  <ul itemscope itemtype="http://schema.org/BreadcrumbList">
-    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+    <div class = "bread">
+  <ul itemscope itemtype = "http://schema.org/BreadcrumbList">
+    <li itemprop = "itemListElement" itemscope itemtype = "http://schema.org/ListItem">
       <a itemprop="item" href="/">
-        <span itemprop="name">DBIx::Custom</span>
-      </a>
-      <meta itemprop="position" content="1" />
+        <span itemprop = "name"> DBIx::Custom </span>
+     </a>
+      <meta itemprop = "position" content = "1" />
     </li>
     <li>
       here
     </li>
   </ul>
 </div>
-<h2><a href="/blog/20110928132041.html">order by句の生成</a></h2>
+<h2><a href="/blog/20110928132041.html"> order by clause generation </a></h2>
 <p>
-  <strong>DBIx::Custom::Order</strong>クラスを利用するとorder by句を簡単に記述することができます。たとえば、デフォルトの順序を最初に指定しておいて、状況に応じて順序をカスタマイズすることが簡単にできます。
+  The <strong> DBIx::Custom::Order </strong> class makes it easy to write an order by clause. For example, you can easily specify a default order first and customize the order for your situation.
 </p>
 <div style="width:calc(100% - 30px);margin:10px auto;">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
@@ -89,48 +86,48 @@
 
 
 <p>
-  DBIx::Custom::Orderオブジェクトを生成するには、orderメソッドを使用します。
+  To create a DBIx::Custom::Order object, use the order method.
 </p>
 <pre>
 my $order = $dbi-&gt;order;
 </pre>
 <p>
-  DBIx::Custom::Orderオブジェクトが取得できます。
+  You can get the DBIx::Custom::Order object.
 </p>
 <p>
-  並びを指定するにはprependメソッドを使用します。order by句のパーツが前へ前へと追加されていきます。
+  Use the prepare method to specify the order. Parts of the order by clause will be added forward and forward.
 </p>
 <pre>
-$order-&gt;prepend('title', 'price desc');
+$order-&gt;prepend('title','price desc');
 $order-&gt;prepend('author desc');
 </pre>
 <p>
-  最終的にorder句で利用する文字列に変換するにはto_stringメソッドを利用するか、DBIx::Custom::Orderオブジェクトを文字列として評価します。
+  To finally convert to the string used in the order clause, use the to_string method or evaluate the DBIx::Custom::Order object as a string.
 </p>
 <pre>
 my $order_str = $order-&gt;to_string;
 my $order_str = "$order";
 </pre>
 <p>
-  次のようなorder句が生成されます。
+  The following order clause is generated:
 </p>
 <pre>
 order by author desc, title, price desc
 </pre>
 <p>
-  では次に同名の列名を含むものをさらにprependして見ましょう。
+  Now let's prepend more on the ones that contain the column names with the same name.
 </p>
 <pre>
 $order-&gt;prepend('price asc');
 </pre>
 <p>
-  この場合には、priceが二つ存在しますが、DBIx::Custom::Orderオブジェクトは、重複を適切に処理してくれます。後で追加されたものが優先されます。文字列化すると次のようなorder by句が生成されるのが確認できます。
+  In this case, there are two prices, but the DBIx::Custom::Order object handles the duplicates properly. Those added later take precedence. You can see that the following order by clause is generated when it is converted to a string.
 </p>
 <pre>
 order by price asc, author desc, title
 </pre>
 <p>
-  もし並びの順序が固定されている場合はDBIx::Custom::Orderオブジェクトを使わずに直接記述するのが簡単です。並びの順序を動的に変えたい場合にDBIx::Custom::Orderオブジェクトを利用しましょう。
+  If the order is fixed, it is easy to write directly without using the DBIx::Custom::Order object. If you want to change the order of the order dynamically, use the DBIx::Custom::Order object.
 </p>
 
   </div>
@@ -158,8 +155,7 @@ order by price asc, author desc, title
           <div style="margin-bottom:30px">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
      crossorigin="anonymous"></script>
-<!-- ディスプレイ縦長 -->
-<ins class="adsbygoogle"
+<!-- ディスプレイ縦長 --><ins class="adsbygoogle"
      style="display:block"
      data-ad-client="ca-pub-4525414114581084"
      data-ad-slot="4544919209"

@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- meta -->
-<meta charset="UTF-8">
+    <!-- meta --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
 <link rel="icon" type="image/x-icon" href="/images/logo.png">
 <link rel="stylesheet" type="text/css" href="/css/common.css">
@@ -25,8 +24,7 @@
   });
 </script>
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-M3N0832N8E"></script>
+<!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-M3N0832N8E"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -34,8 +32,8 @@
 
   gtag('config', 'G-M3N0832N8E');
 </script>
-<title>deleteメソッドで行を削除 - DBIx::Custom - PerlのO/R Mapper that execute SQL easily</title>
-<meta name="description" content="テーブルの行を削除するにはdeleteメソッドを使用します。">
+<title> Delete row with delete method  - DBIx::Custom - PerlのO/R Mapper that execute SQL easily</title>
+<meta name="description" content="Use the  delete  method to delete a table row.">
   </head>
   <body>
     <div class="container">
@@ -52,25 +50,24 @@
           <div class="entry">
   <div class="top">
     <!-- top -->
-
   </div>
   <div class="middle">
-    <div class="bread">
-  <ul itemscope itemtype="http://schema.org/BreadcrumbList">
-    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+    <div class = "bread">
+  <ul itemscope itemtype = "http://schema.org/BreadcrumbList">
+    <li itemprop = "itemListElement" itemscope itemtype = "http://schema.org/ListItem">
       <a itemprop="item" href="/">
-        <span itemprop="name">DBIx::Custom</span>
-      </a>
-      <meta itemprop="position" content="1" />
+        <span itemprop = "name"> DBIx::Custom </span>
+     </a>
+      <meta itemprop = "position" content = "1" />
     </li>
     <li>
       here
     </li>
   </ul>
 </div>
-<h2><a href="/blog/20110202130016.html">deleteメソッドで行を削除</a></h2>
+<h2><a href="/blog/20110202130016.html"> Delete row with delete method </a></h2>
 <p>
-  テーブルの行を削除するには<strong>delete</strong>メソッドを使用します。
+  Use the <strong> delete </strong> method to delete a table row.
 </p>
 <div style="width:calc(100% - 30px);margin:10px auto;">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
@@ -90,97 +87,97 @@
 
 <pre>
 $dbi-&gt;delete(
-  table =&gt; 'book',
+  table =&gt;'book',
   where =&gt; {id =&gt; 1},
 );
 </pre>
 <p>
-  対象のテーブルを<strong>table</strong>で指定します。削除する行の条件を<strong>where</strong>で指定します。whereにはハッシュリファレンスか、DBIx::Custom::Whereオブジェクトを指定することができます。
+  Specify the target table with <strong> table </strong>. Specify the condition of the row to be deleted with <strong> where </strong>. Where can be a hash reference or a DBIx::Custom::Where object.
 </p>
 <p>
-  次のようなSQLが発行されます。
+  The following SQL is issued:
 </p>
 <pre>
-delete from book where id = ?;
+delete from book where id =?;
 </pre>
 <p>
-  対応する値がプレースホルダに埋め込まれます。
+  The corresponding value is embedded in the placeholder.
 </p>
-<h3>deleteメソッドのオプション</h3>
+<h3> Delete method options </h3>
 <p>
-  deleteメソッドは「<a href="/blog/20110708131364.html">executeメソッド</a>」のすべてのオプションを使用することができます。また以下のオプションを実装しています。
+  The delete method can use all the options of "<a href="/blog/20110708131364.html"> execute method</a>". It also implements the following options.
 </p>
-<h4>IDによる条件の指定 id</h4>
+<h4> Specifying conditions by ID id </h4>
 <p>
-  idオプションを使用すれば、IDによって条件を指定することができます。primary_keyが設定されている必要があります。
+  You can specify the condition by ID by using the id option. The primary_key must be set.
 </p>
 <pre>
 id =&gt; 4
 id =&gt; [4, 5]
 </pre>
 <p>
-  以下のようなdeleteを実行するとします。
+  Suppose you want to execute a delete like the one below.
 </p>
 <pre>
 
 $dbi-&gt;delete(
-  primary_key =&gt; ['id1', 'id2'],
+  primary_key =&gt; ['id1','id2'],
   id =&gt; [4, 5],
-  table =&gt; 'book',
+  table =&gt;'book',
 );
 </pre>
 <p>
-  これは以下のdeleteと同じになります。
+  This is the same as delete below.
 </p>
 <pre>
-$dbi-&gt;delete(where =&gt; {id1 =&gt; 4, id2 =&gt; 5}, table =&gt; 'book');
+$dbi-&gt;delete(where =&gt; {id1 =&gt; 4, id2 =&gt; 5}, table =&gt;'book');
 </pre>
-<h4>プレフィックス prefix</h4>
+<h4> prefix prefix </h4>
 <p>
-  deleteとfrom tableの間に文字列を設定するにはprefixオプションを使用します。
+  Use the prefix option to set a string between delete and from table.
 </p>
 <pre>
-prefix =&gt; 'some'
+prefix =&gt;'some'
 </pre>
 <p>
-  たとえば以下のようなSQLが実行されます。
+  For example, the following SQL is executed.
 </p>
 <pre>
 delete some from book
 </pre>
-<h4>テーブル名 table</h4>
+<h4> table name table </h4>
 <p>
-  tableオプションでテーブル名を指定します。
+  Specify the table name with the table option.
 </p>
 <pre>
-table =&gt; 'book'
+table =&gt;'book'
 </pre>
-<h4>Where句 where</h4>
+<h4> Where clause where </h4>
 <p>
-  Where句を記述するにはwhereオプションを使用します。
+  Use the where option to write a Where clause.
 </p>
 <pre>
-where =&gt; {author =&gt; 'Ken', 'title' =&gt; 'Perl'}
+where =&gt; {author =&gt;'Ken','title' =&gt;'Perl'}
 where =&gt; [
-  ['and', ':author{=}', ':title{like}'],
-  {author =&gt; 'Ken', title =&gt; '%Perl%'}
+  ['and',': author {=}',': title {like}'],
+  {author =&gt;'Ken', title =&gt;'%Perl%'}
 ]
 </pre>
 <p>
-  whereオプションの指定方法については「<a href="/blog/20110210130016.html">selectメソッド</a>」の「whereオプション」を見てください。Where句の生成の詳細については<a href="/blog/20110924132031.html">動的なWhere句の生成</a>を見てください。
+  See "where option" in "<a href="/blog/20110210130016.html"> select method</a>" for how to specify the where option. See <a href="/blog/20110924132031.html"> Dynamic Where Clause Generation</a> for more information on Where clause generation.
 </p>
-<h3>すべての行の削除 delete_all</h3>
+<h3> Delete all lines delete_all </h3>
 <p>
-  テーブルのすべての行を削除するには<strong>delete_all</strong>メソッドを使用します。deleteメソッドでは安全のためすべての行を削除することができないので、delete_allメソッドを使用します。
+  Use the <strong> delete_all </strong> method to delete all the rows in the table. The delete method cannot delete all rows for safety reasons, so use the delete_all method.
 </p>
 <pre>
-$dbi-&gt;delete_all(table =&gt; 'book');
+$dbi-&gt;delete_all(table =&gt;'book');
 </pre>
 <p>
-  対象のテーブルを<strong>table</strong>で指定します。
+  Specify the target table with <strong> table </strong>.
 </p>
 <p>
-  次のようなSQLが発行されます。
+  The following SQL is issued:
 </p>
 <pre>
 delete from book;
@@ -211,8 +208,7 @@ delete from book;
           <div style="margin-bottom:30px">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
      crossorigin="anonymous"></script>
-<!-- ディスプレイ縦長 -->
-<ins class="adsbygoogle"
+<!-- ディスプレイ縦長 --><ins class="adsbygoogle"
      style="display:block"
      data-ad-client="ca-pub-4525414114581084"
      data-ad-slot="4544919209"

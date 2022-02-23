@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- meta -->
-<meta charset="UTF-8">
+    <!-- meta --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
 <link rel="icon" type="image/x-icon" href="/images/logo.png">
 <link rel="stylesheet" type="text/css" href="/css/common.css">
@@ -25,8 +24,7 @@
   });
 </script>
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-M3N0832N8E"></script>
+<!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-M3N0832N8E"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -34,8 +32,8 @@
 
   gtag('config', 'G-M3N0832N8E');
 </script>
-<title>insertメソッドで行を挿入 - DBIx::Custom - PerlのO/R Mapper that execute SQL easily</title>
-<meta name="description" content="テーブルに行を挿入するにはinsertメソッドを使用します。">
+<title> Insert a row with the insert method  - DBIx::Custom - PerlのO/R Mapper that execute SQL easily</title>
+<meta name="description" content="Use the  insert  method to insert a row into the table.">
   </head>
   <body>
     <div class="container">
@@ -52,25 +50,24 @@
           <div class="entry">
   <div class="top">
     <!-- top -->
-
   </div>
   <div class="middle">
-    <div class="bread">
-  <ul itemscope itemtype="http://schema.org/BreadcrumbList">
-    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+    <div class = "bread">
+  <ul itemscope itemtype = "http://schema.org/BreadcrumbList">
+    <li itemprop = "itemListElement" itemscope itemtype = "http://schema.org/ListItem">
       <a itemprop="item" href="/">
-        <span itemprop="name">DBIx::Custom</span>
-      </a>
-      <meta itemprop="position" content="1" />
+        <span itemprop = "name"> DBIx::Custom </span>
+     </a>
+      <meta itemprop = "position" content = "1" />
     </li>
     <li>
       here
     </li>
   </ul>
 </div>
-<h2><a href="/blog/20110129130016.html">insertメソッドで行を挿入</a></h2>
+<h2><a href="/blog/20110129130016.html"> Insert a row with the insert method </a></h2>
 <p>
-  テーブルに行を挿入するには<strong>insert</strong>メソッドを使用します。
+  Use the <strong> insert </strong> method to insert a row into the table.
 </p>
 <div style="width:calc(100% - 30px);margin:10px auto;">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
@@ -89,284 +86,284 @@
 
 
 <pre>
-$dbi-&gt;insert({id =&gt; 1, title =&gt; 'Perl'}, table =&gt; 'book');
+$dbi-&gt;insert({id =&gt; 1, title =&gt;'Perl'}, table =&gt;'book');
 </pre>
 <p>
-  第一引数には挿入したいデータをハッシュリファレンスで指定します。対象のテーブルを<strong>table</strong>で指定します。次のようなSQLが発行されます。
+  In the first argument, specify the data you want to insert with a hash reference. Specify the target table with <strong> table </strong>. The following SQL is issued:
 </p>
 <pre>
-insert into book (id, title) values (?, ?);
+insert into book (id, title) values ​​(?,?);
 </pre>
 <p>
-  対応する値がプレースホルダに埋め込まれます。
+  The corresponding value is embedded in the placeholder.
 </p>
-<h3>定数の挿入</h3>
+<h3> Insert constant </h3>
 <p>
-  パラメータの中にプレースホルダではなくて定数を埋め込みたい場合は、スカラのリファレンスを指定することができます。
+  If you want to embed constants in parameters instead of placeholders, you can specify a scalar reference.
 </p>
 <pre>
-$dbi-&gt;insert({id =&gt; 1, ctime =&gt; \"now()"}, table =&gt; 'book');
+$dbi-&gt;insert({id =&gt; 1, ctime =&gt; \ "now ()"}, table =&gt;'book');
 </pre>
 <p>
-  次のようなSQLが実行されます。
+  The following SQL is executed:
 </p>
 <pre>
-insert into book (id, ctime) values (?, now());
+insert into book (id, ctime) values ​​(?, now ());
 </pre>
-<h3>insertメソッドのオプション</h3>
+<h3> insert method options </h3>
 <p>
-  insertメソッドではexecuteメソッドのすべてのオプションを利用することができます。オプションについては「<a href="/blog/20110708131364.html">executeメソッド</a>」のオプションの項目を参考にしてください。
+  The insert method has all the options of the execute method. For the options, refer to the option item of "<a href="/blog/20110708131364.html"> execute method</a>".
 </p>
 <p>
-  それに加えて以下のオプションを使用することができます。
+  In addition, you can use the following options:
 </p>
-<h4>挿入時の現在時刻の設定(生成時刻) ctime</h4>
+<h4> Setting the current time at the time of insertion (generation time) ctime </h4>
 <p>
-  insertを実行したときに、指定した列に現在時刻を設定するにはctimeオプションを使用します。
+  Use the ctime option to set the current time for the specified column when you perform an insert.
 </p>
 <pre>
-ctime =&gt; 'created_time'
+ctime =&gt;'created_time'
 </pre>
 <p>
-  デフォルトのフォーマットは「YYYY-mm-dd HH:MM:SS」という形式です。now属性を設定すれば、これを変更することができます。
+  The default format is "YYYY-mm-dd HH: MM: SS". You can change this by setting the now attribute.
 </p>
-<h4>IDの指定 id</h4>
+<h4> ID specification id </h4>
 <p>
-  executeメソッドと同じようにidを指定することができます。primary_keyが設定されている必要があります。
+  You can specify the id in the same way as the execute method. The primary_key must be set.
 </p>
 <pre>
 id =&gt; 4
 id =&gt; [4, 5]
 </pre>
 <p>
-  primary_keyで設定されている列名を利用して、挿入するデータが作成されます。
+  The data to be inserted is created using the column name set in primary_key.
 </p>
 <pre>
 $dbi-&gt;insert(
-  {title =&gt; 'Perl', author =&gt; 'Ken'}
-  primary_key =&gt; ['id1', 'id2'],
+  {title =&gt;'Perl', author =&gt;'Ken'}
+  primary_key =&gt; ['id1','id2'],
   id =&gt; [4, 5],
-  table =&gt; 'book'
+  table =&gt;'book'
 );
 </pre>
 <p>
-  以下のinsert文と同じ意味になります。
+  It has the same meaning as the following insert statement.
 </p>
 <pre>
 $dbi-&gt;insert(
-  {id1 =&gt; 4, id2 =&gt; 5, title =&gt; 'Perl', author =&gt; 'Ken'},
-  table =&gt; 'book'
+  {id1 =&gt; 4, id2 =&gt; 5, title =&gt;'Perl', author =&gt;'Ken'},
+  table =&gt;'book'
 );
 </pre>
-<h4>プレフィックス prefix</h4>
+<h4> prefix prefix </h4>
 <p>
-  prefixオプションを使用すると、insert文の中の「insert」と「into テーブル名」の間に好きな文字列を追加できます。
+  You can use the prefix option to add any string between "insert" and "into table name" in the insert statement.
 </p>
 <pre>
-prefix =&gt; 'or replace'
+prefix =&gt;'or replace'
 </pre>
 <p>
-  以下のようなSQLが作成されます。
+  The following SQL will be created.
 </p>
 <pre>
 insert or replace into book
 </pre>
-<h4>テーブル名 table</h4>
+<h4> table name table </h4>
 <p>
-  tableオプションでテーブル名を指定します。テーブル名は必須です。
+  Specify the table name with the table option. The table name is required.
 </p>
 <pre>
-table =&gt; 'book'
+table =&gt;'book'
 </pre>
-<h4>挿入時の現在時刻の設定(更新時刻) mtime</h4>
+<h4> Setting the current time at the time of insertion (update time) mtime </h4>
 <p>
-  このオプションはupdateメソッドのmtimeオプションと同じです。指定した行に現在時刻を設定することができます。この時刻はnow属性で変更することができます。
+  This option is the same as the mtime option of the update method. You can set the current time for the specified line. This time can be changed with the now attribute.
 </p>
 <pre>
-mtime =&gt; 'modified_time'
+mtime =&gt;'modified_time'
 </pre>
 <p>
-  insertする場合した場合というのは、それが最初の更新時刻でもあるので、ctimeで設定した列とmtimeに設定した両方の列に同じ現在時刻が挿入されるようになっています。
+  If you insert it, it is also the first modification time, so the same current time is inserted in both the column set in ctime and the column set in mtime.
 </p>
-<h4>プレースホルダーのラッピング wrap</h4>
+<h4> Placeholder wrapping wrap </h4>
 <p>
-  insertのvaluesの部分でデータベースの関数を利用した場合はwrapオプションを利用すると解決することができます。プレースホルダの部分を指定したコードリファレンスで変換してくれます。
+  If you use a database function in the values ​​part of insert, you can solve it by using the wrap option. The placeholder part will be converted with the specified code reference.
 </p>
 <pre>
-wrap =&gt; {price =&gt; sub { "$_[0] + 5" }}
+wrap =&gt; {price =&gt; sub {"$_ [0] + 5"}}
 </pre>
 <p>
-  以下のようなinsert文を実行するとします。
+  Suppose you execute an insert statement like the one below.
 </p>
 <pre>
 $dbi-&gt;insert(
   {id =&gt; 1, price =&gt; 100},
-  table =&gt; 'book',
-  wrap =&gt; {price =&gt; sub { "$_[0] + 5" }}
+  table =&gt;'book',
+  wrap =&gt; {price =&gt; sub {"$_ [0] + 5"}}
 );
 </pre>
 <p>
-  するとpriceのプレースホルダの部分がwrapで指定したコードリファレンスを使って置き換えられます。
+  Then the placeholder part of price will be replaced using the code reference specified by wrap.
 </p>
 <pre>
-insert into book (id, price) values (?, ? + 5 );
+insert into book (id, price) values ​​(?,? + 5);
 </pre>
-<h3>「大量のインサート」を「高速化」する方法</h3>
+<h3> How to "speed up" "massive inserts" </h3>
 <p>
-  DBIx::Customは便利なDBIのラッパーですが、大量のinsertなどを連続して行う場合の性能に関しては、生のDBIに比べて性能がかなり劣化します。
+  DBIx::Custom is a convenient wrapper for DBI, but its performance is significantly worse than raw DBI when it comes to performance when doing a lot of inserts etc. in succession.
 </p>
 <p>
-  そのような場合は複数のデータを一度に挿入しましょう。DBIx::Customのinsertメソッドには、複数のデータを一度に渡すことができます。
+  In such a case, insert multiple data at once. You can pass multiple data to the insert method of DBIx::Custom at once.
 </p>
 <pre>
-my @params = [{id =&gt; 1, title =&gt; 'Perl'}, {id =&gt; 2, title =&gt; 'Ruby'}];
-$dbi-&gt;insert(\@params, table =&gt; 'book');
+my @params = [{id =&gt; 1, title =&gt;'Perl'}, {id =&gt; 2, title =&gt;'Ruby'}];
+$dbi-&gt;insert(\ @params, table =&gt;'book');
 </pre>
 <p>
-  大量のinsertを行うときのパフォーマンスの劣化は、DBIと比較して小さな劣化に収まります。
+  The performance degradation when doing a large number of inserts is small compared to DBI.
 </p>
 <p>
-  idオプションが使用できないといことが、複数insertにおける制限です。またフィルタ、タイプルール、バインドタイプのオプションのすべてがない場合には、insertはさらに高速化されます。タイプルールがすでに設定されている場合は、type_rule_offに1に設定することで、タイプルールを無効にすることができます。
+  The limitation of multiple inserts is that the id option cannot be used. Also, if you don't have all of the filters, type rules, and bind type options, inserts will be even faster. If the type rule is already set, you can disable the type rule by setting type_rule_off to 1.
 </p>
 <p>
-  パラメーターの最初のハッシュの値によって、生成されるSQLが決定するということに注意してください。つまり、残りのパラメータには、最初のパラメータと同じ列が含まれている必要があるということに、注意してください。
+  Note that the value of the first hash of the parameter determines the SQL generated. Note that the remaining parameters must contain the same columns as the first parameter.
 </p>
 <p>
-  ベンチマークスクリプトとベンチマークの結果です。データベースにはSQLiteを使用しました。
+  Benchmark script and benchmark results. I used SQLite for the database.
 </p>
 <pre>
 use strict;
 use warnings;
-use Benchmark qw/timethese cmpthese/;
+use Benchmark qw / timethese cmpthese /;
 
 use DBIx::Custom;
 my $dbi = DBIx::Custom-&gt;connect(
-  dsn =&gt; 'dbi:SQLite:dbname=:memory:',
+  dsn =&gt;'dbi: SQLite: dbname =: memory:',
 );
 
 $dbi-&gt;execute("create table book (id, title)");
 
-# 性能の比較
-my $result = timethese(100, {
-  # 通常
+# Performance comparison
+my $result = timethese (100, {
+  # Normal
   normal =&gt; sub {
     for my $i (1 .. 100) {
-      my $param = {id =&gt; $i, title =&gt; 'Perl'};
-      $dbi-&gt;insert($param, table =&gt; 'book');
+      my $param = {id =&gt; $i, title =&gt;'Perl'};
+      $dbi-&gt;insert($param, table =&gt;'book');
     }
   },
-  # 複数まとめてインサート
+  #Multiple inserts at once
   multiple =&gt; sub {
     my @params;
     for my $i (1 .. 100) {
-      push @params, {id =&gt; $i, title =&gt; 'Perl'};
+      push @params, {id =&gt; $i, title =&gt;'Perl'};
     }
-    $dbi-&gt;insert(\@params, table =&gt; 'book');
+    $dbi-&gt;insert(\ @params, table =&gt;'book');
   },
-    # 生のDBIでステートメントハンドルを再利用
+    #Reuse statement handles in raw DBI
     raw =&gt; sub {
       my $sth;
       for my $i (1 .. 100) {
-        $sth ||= $dbi-&gt;dbh-&gt;prepare('insert into book (id, title) values (?, ?)');
+        $sth || = $dbi-&gt;dbh-&gt;prepare('insert into book (id, title) values ​​(?,?)');
         my $id = $i;
-        my $title = 'Perl';
+        my $title ='Perl';
         $sth-&gt;execute($i, $title);
       }
     }
 });
-cmpthese($result);
+cmpthese ($result);
 </pre>
 <p>
-  ベンチマークの結果は、生のDBIを利用するものよりも、若干パフォーマンスが落ちる程度で収まっています。通常のinsertを使う場合に比較して、10倍近い差があるので、大量のインサートを同時に行う場合に、利用するとよいと思います。
+  Benchmark results are slightly lower than those using raw DBI. Compared to using a normal insert, there is a difference of nearly 10 times, so I think it is better to use it when performing a large number of inserts at the same time.
 </p>
 <pre>
-           Rate   normal multiple      raw
-normal   22.3/s       --     -90%     -92%
-multiple  213/s     855%       --     -23%
-raw       278/s    1147%      31%       --
+           Rate normal multiple raw
+normal 22.3 / s --- 90%-92%
+multiple 213 / s 855%---23%
+raw 278 / s 1147%31%-
 </pre>
-<h4>バルクインサートで高速化</h4>
+<h4> Speed ​​up with bulk insert </h4>
 <p>
-  データベースがバルクインサートをサポートしている場合は、バルクインサートを行うことができます。現在のところMySQLとPostgreSQLで利用することができます。データベースの機能を使って、複数のデータを一度に挿入できるので、さらなる高速化が期待できます。
+  If your database supports bulk inserts, you can do bulk inserts. Currently available for MySQL and PostgreSQL. You can use the database function to insert multiple data at once, so you can expect even higher speeds.
 </p>
 <pre>
-$dbi-&gt;insert($params, table =&gt; 'book', bulk_insert =&gt; 1);
+$dbi-&gt;insert($params, table =&gt;'book', bulk_insert =&gt; 1);
 </pre>
 <p>
-  <b>MySQLでのbulk_insertでのベンチマーク</b>
+  <b> Benchmark with bulk_insert in MySQL </b>
 </p>
 <p>
-  以下はベンチマークスクリプトです。
+  Below is the benchmark script.
 </p>
 <pre>
 use strict;
 use warnings;
-use Benchmark qw/timethese cmpthese/;
+use Benchmark qw / timethese cmpthese /;
 
 use DBIx::Custom;
 
-my $dbi = DBIx::Custom-&gt;connect(dsn =&gt; 'dbi:mysql:database=usertest',
-user =&gt; 'root', connector =&gt; 1);
+my $dbi = DBIx::Custom-&gt;connect(dsn =&gt;'dbi: mysql: database = usertest',
+user =&gt;'root',connector =&gt; 1);
 
-# 性能の比較
-my $result = timethese(100, {
+# Performance comparison
+my $result = timethese (100, {
   normal =&gt; sub {
     $dbi-&gt;connector-&gt;txn(sub {
-      $dbi-&gt;delete_all(table =&gt; 'book');
+      $dbi-&gt;delete_all(table =&gt;'book');
       for my $i (1 .. 100) {
-        my $param = {id =&gt; $i, title =&gt; 'Perl'};
-        $dbi-&gt;insert($param, table =&gt; 'book');
+        my $param = {id =&gt; $i, title =&gt;'Perl'};
+        $dbi-&gt;insert($param, table =&gt;'book');
       }
     });
   },
   multiple =&gt; sub {
     $dbi-&gt;connector-&gt;txn(sub {
-      $dbi-&gt;delete_all(table =&gt; 'book');
+      $dbi-&gt;delete_all(table =&gt;'book');
       my @params;
       for my $i (1 .. 100) {
-        push @params, {id =&gt; $i, title =&gt; 'Perl'};
+        push @params, {id =&gt; $i, title =&gt;'Perl'};
       }
-      $dbi-&gt;insert(\@params, table =&gt; 'book');
+      $dbi-&gt;insert(\ @params, table =&gt;'book');
     });
   },
   bulk_insert =&gt; sub {
     $dbi-&gt;connector-&gt;txn(sub {
-      $dbi-&gt;delete_all(table =&gt; 'book');
+      $dbi-&gt;delete_all(table =&gt;'book');
       my @params;
       for my $i (1 .. 100) {
-        push @params, {id =&gt; $i, title =&gt; 'Perl'};
+        push @params, {id =&gt; $i, title =&gt;'Perl'};
       }
-      $dbi-&gt;insert(\@params, table =&gt; 'book', bulk_insert =&gt; 1);
+      $dbi-&gt;insert(\ @params, table =&gt;'book', bulk_insert =&gt; 1);
     });
   },
   raw =&gt; sub {
     $dbi-&gt;connector-&gt;txn(sub {
-      $dbi-&gt;delete_all(table =&gt; 'book');
+      $dbi-&gt;delete_all(table =&gt;'book');
       my $sth;
       for my $i (1 .. 100) {
-        $sth ||= $dbi-&gt;dbh-&gt;prepare('insert into book (id, title) values (?, ?)');
+        $sth || = $dbi-&gt;dbh-&gt;prepare('insert into book (id, title) values ​​(?,?)');
         my $id = $i;
-        my $title = 'Perl';
+        my $title ='Perl';
         $sth-&gt;execute($i, $title);
       }
     });
   }
 });
 
-cmpthese($result);
+cmpthese ($result);
 </pre>
 <p>
-  ベンチマークの結果で、bulk_insertを使うと、通常のinsertの通常の5倍くらいのパフォーマンスがでるようです。
+  Benchmark results show that using bulk_insert gives about 5 times the normal performance of a normal insert.
 </p>
 <pre>
-              Rate      normal    multiple         raw bulk_insert
-normal      24.0/s          --        -72%        -76%        -83%
-multiple    86.2/s        259%          --        -16%        -40%
-raw          102/s        326%         18%          --        -29%
-bulk_insert  143/s        496%         66%         40%          --
+              Rate normal multiple raw bulk_insert
+normal 24.0 / s --- 72%-76%-83%
+multiple 86.2 / s 259%---16%-40%
+raw 102 / s 326%18%--- 29%
+bulk_insert 143 / s 496%66%40%-
 </pre>
 <p>
-  もしバルクインサートでパフォーマンスがでないときは、データベースのinsertのためのメモリ領域に不足がないかを一度確認してください。このメモリ領域が足りない場合は、スワップイン・スワップアウトが発生して、とても遅くなります。
+  If bulk inserts do not perform well, check once to see if there is enough memory space for database inserts. If this memory area is not enough, swap-in / swap-out will occur and it will be very slow.
 </p>
 
   </div>
@@ -394,8 +391,7 @@ bulk_insert  143/s        496%         66%         40%          --
           <div style="margin-bottom:30px">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
      crossorigin="anonymous"></script>
-<!-- ディスプレイ縦長 -->
-<ins class="adsbygoogle"
+<!-- ディスプレイ縦長 --><ins class="adsbygoogle"
      style="display:block"
      data-ad-client="ca-pub-4525414114581084"
      data-ad-slot="4544919209"

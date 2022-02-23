@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- meta -->
-<meta charset="UTF-8">
+    <!-- meta --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
 <link rel="icon" type="image/x-icon" href="/images/logo.png">
 <link rel="stylesheet" type="text/css" href="/css/common.css">
@@ -25,8 +24,7 @@
   });
 </script>
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-M3N0832N8E"></script>
+<!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-M3N0832N8E"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -34,8 +32,8 @@
 
   gtag('config', 'G-M3N0832N8E');
 </script>
-<title>selectメソッドで行を選択 - DBIx::Custom - PerlのO/R Mapper that execute SQL easily</title>
-<meta name="description" content="DBIx::Customで、行を選択するにはselectメソッドを使用します。">
+<title> Select a row with the select method  - DBIx::Custom - PerlのO/R Mapper that execute SQL easily</title>
+<meta name="description" content="In DBIx::Custom, use the  select  method to select a row.">
   </head>
   <body>
     <div class="container">
@@ -52,25 +50,24 @@
           <div class="entry">
   <div class="top">
     <!-- top -->
-
   </div>
   <div class="middle">
-    <div class="bread">
-  <ul itemscope itemtype="http://schema.org/BreadcrumbList">
-    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+    <div class = "bread">
+  <ul itemscope itemtype = "http://schema.org/BreadcrumbList">
+    <li itemprop = "itemListElement" itemscope itemtype = "http://schema.org/ListItem">
       <a itemprop="item" href="/">
-        <span itemprop="name">DBIx::Custom</span>
-      </a>
-      <meta itemprop="position" content="1" />
+        <span itemprop = "name"> DBIx::Custom </span>
+     </a>
+      <meta itemprop = "position" content = "1" />
     </li>
     <li>
       here
     </li>
   </ul>
 </div>
-<h2><a href="/blog/20110210130016.html">selectメソッドで行を選択</a></h2>
+<h2><a href="/blog/20110210130016.html"> Select a row with the select method </a></h2>
 <p>
-  DBIx::Customで、行を選択するには<strong>select</strong>メソッドを使用します。
+  In DBIx::Custom, use the <strong> select </strong> method to select a row.
 </p>
 <div style="width:calc(100% - 30px);margin:10px auto;">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
@@ -89,37 +86,37 @@
 
 
 <pre>
-my $result = $dbi-&gt;select(table =&gt; 'book');
+my $result = $dbi-&gt;select(table =&gt;'book');
 </pre>
 <p>
-  tableにテーブル名を指定します。以下のSQLが発行されます。
+  Specify the table name in table. The following SQL will be issued.
 </p>
 <pre>
 select * from book;
 </pre>
 <p>
-  戻り値はDBIx::Custom::Resultオブジェクトで、このオブジェクトを使って行をフェッチすることができます。
+  The return value is a DBIx::Custom::Result object, which can be used to fetch rows.
 </p>
 <pre>
 while (my $row = $result-&gt;fetch_hash) {
-  print $row-&gt;{author} . "\n";
-  print $row-&gt;{title} . "\n";
+  print $row-&gt;{author}. "\ n";
+  print $row-&gt;{title}. "\ n";
 }
 </pre>
 <p>
-  <a href="/blog/20100123126425.html">while文</a>を使って、すべての行を1行づつ取り出しています。
+  I'm using the <a href="/blog/20100123126425.html"> while statement</a> to retrieve all the lines line by line.
 </p>
-<h3>selectメソッドのオプション</h3>
+<h3> Select method options </h3>
 <p>
-  selectメソッドでは<a href="/blog/20110916131923.html">executeメソッドのすべてのオプション</a>を使用することができます。加えて以下のオプションを実装しています。
+  You can use all the options of the <a href="/blog/20110916131923.html"> execute method</a> in the select method. In addition, the following options are implemented.
 </p>
-<h3>列名 column</h3>
+<h3> Column name column </h3>
 <p>
-  列名を指定するにはcolumnオプションを使用します。
+  Use the column option to specify the column name.
 </p>
 <pre>
 my $result = $dbi-&gt;select(
-  table =&gt; 'book',
+  table =&gt;'book',
   column =&gt; [
     'author',
     'title'
@@ -127,78 +124,78 @@ my $result = $dbi-&gt;select(
 );
 </pre>
 <p>
-  あるいは、selectメソッドの第一引数として列名を指定することもできます。
+  Alternatively, you can specify the column name as the first argument of the select method.
 </p>
 <pre>
-my $result = $dbi-&gt;select(['author', 'title'], table =&gt; 'book');
+my $result = $dbi-&gt;select(['author','title'], table =&gt;'book');
 </pre>
 <p>
-  次のようなSQLが発行されます。
+  The following SQL is issued:
 </p>
 <pre>
 select author, title from book;
 </pre>
-<h4>列名の指定 column</h4>
+<h4> Specify column name column </h4>
 <p>
-  columnオプションを使用するとさまざまな方法で列名を指定することができます。columnオプションを省略した場合はすべての列を表す「*」が列名として設定されます。
+  You can specify the column name in various ways using the column option. If the column option is omitted, "*" representing all columns is set as the column name.
 </p>
 <p>
-  <b>(1)文字列</b>
+  <b> (1) String </b>
 </p>
 <p>
-  文字列による指定です。
-</p>
-<pre>
-column =&gt; 'author'
-</pre>
-<p>
-  <b>(2)配列のリファレンス</b>
-</p>
-<p>
-  配列のリファレンスで複数の列を指定できます。
+  It is specified by a character string.
 </p>
 <pre>
-column =&gt; ['author', 'title']
+column =&gt;'author'
 </pre>
 <p>
-  次のような列名が生成されます。
+  <b> (2) Array reference </b>
+</p>
+<p>
+  You can specify multiple columns in the array reference.
+</p>
+<pre>
+column =&gt; ['author','title']
+</pre>
+<p>
+  A column name similar to the following is generated.
 </p>
 <pre>
 author, title
 </pre>
 <p>
-  <b>(3) ハッシュリファレンス</b>
+  <b> (3) Hash reference </b>
 </p>
 <p>
-  ハッシュのリファレンスを使ってテーブル名と列名のセットを記述できます。
+  You can write a set of table and column names using the hash reference.
 </p>
 <pre>
-column =&gt; {book =&gt; [qw/title author]}
+column =&gt; {book =&gt; [qw / title author]}
 </pre>
 <p>
-  次のような列名が生成されます。
+  A column name similar to the following is generated.
 </p>
 <pre>
 book.author as "book.author",
 book.title as "book.title"
 </pre>
 <p>
-  エイリアスの部分はデータベースに応じて正しくエスケープされます。内部的にはcolumnメソッドを実行しています。
+  The alias part is properly escaped depending on the database. Internally, the column method is executed.
 </p>
 <p>
-  <b>(4)配列のリファレンスとハッシュのリファレンスの組み合わせ</b>
+  <b> (4) Combination of array reference and hash reference </b>
 </p>
 <p>
-  複数のハッシュリファレンスを配列のリファレンスの中に指定することもできます。
+  You can also specify multiple hash references in the array reference.
 </p>
 <pre>
 column =&gt; [
-  {book =&gt; [qw/title author]},
-  {company =&gt; [qw/id name/]}
+  {book =&gt; [qw / title author]},
+  {company =&gt; [qw / id name /]}
 ]
 </pre>
 <p>
-  次のような列名が生成されます。
+  A column name similar to the following is generated.
 </p>
 <pre>
 book.author as "book.author",
@@ -207,67 +204,67 @@ company.id as "company.id",
 company.name as "company.name"
 </pre>
 <p>
-  次のように文字列とハッシュのリファレンスを配列のリファレンスの要素として混在させることもできます。
+  You can also mix string and hash references as elements of an array reference as follows:
 </p>
 <pre>
 column =&gt; [
   'title',
   'author',
-  {company =&gt; [qw/id name/]}
+  {company =&gt; [qw / id name /]}
 ]
 </pre>
-<h4>IDによる条件の指定 id</h4>
+<h4> Specifying conditions by ID id </h4>
 <p>
-  IDを使って条件を指定するにはidオプションを使用します。primary_keyが設定されている必要があります。
+  Use the id option to specify the condition by ID. The primary_key must be set.
 </p>
 <pre>
 id =&gt; 4
 id =&gt; [4, 5]
 </pre>
 <p>
-  たとえば次のようなselectが実行されたとします。
+  For example, suppose the following select is executed.
 </p>
-<pre>|
+<pre> |
 $dbi-&gt;select(
-  primary_key =&gt; ['id1', 'id2'],
+  primary_key =&gt; ['id1','id2'],
   id =&gt; [4, 5],
-  table =&gt; 'book'
+  table =&gt;'book'
 );
 </pre>
 <p>
-  これは次のselectと同じです。
+  This is the same as the next select.
 </p>
 <pre>
 $dbi-&gt;select(
   where =&gt; {id1 =&gt; 4, id2 =&gt; 5},
-  table =&gt; 'book'
+  table =&gt;'book'
 );
 </pre>
-<h4>Join句 join</h4>
+<h4> Join clause join </h4>
 <p>
-  join句を指定するにはjoinオプションを指定します。
+  Specify the join option to specify the join clause.
 </p>
 <pre>
-join =&gt; 'left outer join company on book.company_id = company_id'
+join =&gt;'left outer join company on book.company_id = company_id'
 join =&gt; [
   'left outer join company on book.company_id = company_id',
   'left outer join location on company.location_id = location.id'
 ]
 </pre>
 <p>
-  DBIx::Customのjoin句は少し特別な実装がされていて注意が必要です。selectメソッドはcolumn句とwhere句に指定されているテーブル名を検索して必要なjoinを探索します。必要でないjoin句については、SQLの中には含まれません。
+  Note that the DBIx::Custom join clause has a slightly special implementation. The select method searches for the table name specified in the column and where clauses to find the required join. Unnecessary join clauses are not included in the SQL.
 </p>
 <p>
-  つまりcolumnオプションあるいはwhereオプションでテーブル名が見つからなかった場合はjoin句が連結されないので注意してください。
+  In other words, if the table name is not found in the column option or where option, the join clause will not be concatenated.
 </p>
 <p>
-  たとえば次のようなselectを実行したとします。
+  For example, suppose you execute the following select.
 </p>
 <pre>
 $dbi-&gt;select(
-  table =&gt; 'book',
+  table =&gt;'book',
   column =&gt; ['company.location_id as location_id'],
-  where =&gt; {'company.name' =&gt; 'Orange'},
+  where =&gt; {'company.name' =&gt;'Orange'},
   join =&gt; [
     'left outer join company on book.company_id = company.id',
     'left outer join location on company.location_id = location.id'
@@ -275,193 +272,195 @@ $dbi-&gt;select(
 );
 </pre>
 <p>
-  上記ではcolumnオプションでcompanyというテーブル名が登場しています。一方locationというテーブル名はcolumnオプションにもwhereオプションにも登場していません。
+  In the above, the table name company appears in the column option. On the other hand, the table name location does not appear in the column or where options.
 </p>
 <p>
-  ですのでjoin句の中でcompanyテーブルだけを連結する必要があり、locationテーブルは必要がありません。
+  So you only need to concatenate the company table in the join clause, not the location table.
 </p>
 <p>
-  それで次のようなSQLが生成されます。
+  That will generate the following SQL:
 </p>
 <pre>
 select company.location_id as location_id
 from book
   left outer join company on book.company_id = company.id
-where company.name = ?;
+where company.name =?;
 </pre>
 <p>
-  selectメソッドはできるだけ自動的にテーブル名を探そうとしますが、複雑なjoin句の場合はできないこともあります。そのような場合は次のように文字列の代わりにハッシュのリファレンスを指定して、必要なテーブル名を明示します。
+  The select method tries to find the table name as automatically as possible, but it may not be possible with complex join clauses. In such cases, specify a hash reference instead of a string to specify the required table name, as follows:
 </p>
 <pre>
 $dbi-&gt;select(
-  table =&gt; 'book',
+  table =&gt;'book',
   column =&gt; ['company.location_id as location_id'],
-  where =&gt; {'company.name' =&gt; 'Orange'},
+  where =&gt; {'company.name' =&gt;'Orange'},
   join =&gt; {
-    clause =&gt; 'left outer join location on company.location_id = location.id',
-    table =&gt; ['company', 'location']
+    clause =&gt;'left outer join location on company.location_id = location.id',
+    table =&gt; ['company','location']
   }
 );
 </pre>
 <p>
-  一般的に言えば、join句の中には二つのテーブル名「テーブル名.列名」という形で含まれている必要があります。ですからusing句などを利用する場合はテーブル名が「テーブル名.列名」という形になっていませんので、明示的に指定する必要があります。
+  Generally speaking, the join clause should contain two table names in the form "table name.column name". Therefore, when using the using clause etc., the table name is not in the form of "table name.column name", so it is necessary to specify it explicitly.
 </p>
 <p>
-  またテーブル名の順番は重要です。連結元のテーブルは左側に、連結先のテーブルは右側にある必要があります。
+  Also, the order of the table names is important. The source table must be on the left and the destination table must be on the right.
 </p>
 <pre>
-# 正しい例 連結元のbook(book.company_id)は左側に、連結先のcompany(company.id)は右側にある
+# Correct example The source book (book.company_id) is on the left and the destination company (company.id) is on the right.
 left outer join company on book.company_id = company.id
 
-# 間違った例 連結元のbook(book.company_id)は右側に、連結先のcompany(company.id)は左側にある
+# Wrong example The source book (book.company_id) is on the right and the destination company (company.id) is on the left.
 left outer join company on company.id = book.company_id
 </pre>
 <p>
-  通常のSQL文にとってはどちらも意味が同じですが、DBIx::Customにとっては解析結果が異なります。
+  Both have the same meaning for a normal SQL statement, but the parsing results are different for DBIx::Custom.
 </p>
 <p>
-  少し難しい解説でしたが、joinがそのまま記述できることと、必要なjoinだけを選んでくれるという利点はとても大きなものです。またjoin句を自然に記述すれば、解析が失敗するということはまずないと思います。
+  It was a little difficult explanation, but the advantage that join can be described as it is and that only necessary joins are selected is very big. Also, if you write the join clause naturally, it is unlikely that the analysis will fail.
 </p>
-<h4>パラメーターの指定 param</h4>
+<h4> Parameter specification param </h4>
 <p>
-  where句よりも前に出てくる名前付きプレースホルダーのために値を指定するにはparamオプションを使用します。
+  Use the param option to specify a value for a named placeholder that appears before the where clause.
 </p>
 <pre>
 param =&gt; {'table2.key3' =&gt; 5}
 </pre>
 <p>
-  たとえばjoin句の中で名前付きプレースホルダーを利用したい場合に利用できるでしょう。
+  For example, you can use it if you want to use named placeholders in join clauses.
 </p>
 <pre>
-join  =&gt; ['inner join (select * from table2 where table2.key3 = :table2.key3)' . 
-          ' as table2 on table1.key1 = table2.key1']
+join =&gt; ['inner join(select * from table2 where table2.key3 =: table2.key3)'.
+          'as table2 on table1.key1 = table2.key1']
 </pre>
-<h4>プレフィックス prefix</h4>
+<h4> prefix prefix </h4>
 <p>
-  selectの直後に文字列を追加したい場合はprefixを使用します。
+  If you want to add a string immediately after select, use prefix.
 </p>
 <pre>
-prefix =&gt; 'SQL_CALC_FOUND_ROWS'
+prefix =&gt;'SQL_CALC_FOUND_ROWS'
 </pre>
 <p>
-  たとえば以下のようなSQLを発行することができます。
+  For example, you can issue the following SQL.
 </p>
 <pre>
 select SQL_CALC_FOUND_ROWS * from book;
 </pre>
-<h4>テーブル名 table</h4>
+<h4> table name table </h4>
 <p>
-  テーブル名を指定するにはtableオプションを使用します。
+  Use the table option to specify the table name.
 </p>
 <pre>
-table =&gt; 'book'
+table =&gt;'book'
 </pre>
-<h4>Where句 where</h4>
+<h4> Where clause where </h4>
 <p>
-  Where句を記述するにはwhereオプションを使用します。
+  Use the where option to write a Where clause.
 </p>
 <pre>
-where =&gt; {author =&gt; 'Ken', 'title' =&gt; 'Perl'}
+where =&gt; {author =&gt;'Ken','title' =&gt;'Perl'}
 where =&gt; [
-  ['and', ':author{=}', ':title{like}'],
-  {author =&gt; 'Ken', title =&gt; '%Perl%'}
+  ['and',': author {=}',': title {like}'],
+  {author =&gt;'Ken', title =&gt;'%Perl%'}
 ]
 </pre>
-<h3>whereオプション</h3>
+<h3> where option </h3>
 <p>
-  whereオプションですが、次のようにさまざまな形式で指定することが可能です。
+  The where option can be specified in various formats as follows.
 </p>
-<h4>ハッシュリファレンスによる指定</h4>
+<h4> Specify by hash reference </h4>
 <p>
-  ハッシュリファレンスでWhere句を指定した場合は、等価(=)による比較をandで結んだ条件になります。
-</p>
-<pre>
-where =&gt; {author =&gt; 'Ken', 'title' =&gt; 'Perl'}
-</pre>
-<p>
-  上記の指定は次のようなWhere句になります。
+  When the Where clause is specified in the hash reference, it is a condition that the comparison by equivalent (=) is connected by and.
 </p>
 <pre>
-where author = :author and title = :title
+where =&gt; {author =&gt;'Ken','title' =&gt;'Perl'}
 </pre>
 <p>
-  「Ken」と「Perl」は名前付きプレースホルダー(:author, :title)に埋め込まれます。
-</p>
-<p>
-  値として配列のリファレンスを指定すると<b>in</b>を使った記述が可能です。
+  The above specification would be a Where clause like this:
 </p>
 <pre>
-where =&gt; {author =&gt; ['Ken', 'Taro'], 'title' =&gt; 'Perl'}
+where author =: author and title =: title
 </pre>
 <p>
-  上記は次のようなWhere区になります。
+  "Ken" and "Perl" are embedded in named placeholders (: author,: title).
+</p>
+<p>
+  If you specify an array reference as the value, you can write using <b> in </b>.
 </p>
 <pre>
-where author in (:author, :author) and title = :title
+where =&gt; {author =&gt; ['Ken','Taro'],'title' =&gt;'Perl'}
 </pre>
 <p>
-  対応する値は名前付きプレースホルダーに埋め込まれます。
+  The above is the following Where ward.
 </p>
-<h4>DBIx::Custom::Whereオブジェクトによる指定</h4>
+<pre>
+where author in (: author,: author) and title =: title
+</pre>
 <p>
-  DBIx::Custom::Whereオブジェクトを指定することができます。
+  The corresponding value is embedded in the named placeholder.
+</p>
+<h4> Specify by DBIx::Custom::Where object </h4>
+<p>
+  You can specify a DBIx::Custom::Where object.
 </p>
 <pre>
 where =&gt; $where_obj
 </pre>
 <p>
-  DBIx::Custom::Whereオブジェクトについては<a href="/blog/20110924132031.html">動的なWhere句の生成</a>を見てください。
+  See <a href="/blog/20110924132031.html"> Dynamic Where Clause Generation</a> for the DBIx::Custom::Where object.
 </p>
-<h4>配列のリファレンスによる指定</h4>
+<h4> Specify by array reference </h4>
 <p>
-  配列のリファレンスによる指定を行うと、DBIx::Custom::Whereオブジェクトを生成することなしに、同様の指定を行うことができます。
+  Specifying by array reference allows you to do the same without creating a DBIx::Custom::Where object.
 </p>
 <pre>
 where =&gt; [
-  ['and', ':author{=}', ':title{like}'],
-  {author =&gt; 'Ken', title =&gt; '%Perl%'}
-];
+  ['and',': author {=}',': title {like}'],
+  {author =&gt;'Ken', title =&gt;'%Perl%'}
+];;
 </pre>
 <p>
-  上記は次の記述と同じ意味を持ちます。
+  The above has the same meaning as the following description.
 </p>
 <pre>
 where =&gt; $dbi-&gt;where(
-  clause =&gt; ['and', ':author{=}', ':title{like}'],
-  param =&gt; {author =&gt; 'Ken', title =&gt; '%Perl%'}
+  clause =&gt; ['and',': author {=}',': title {like}'],
+  param =&gt; {author =&gt;'Ken', title =&gt;'%Perl%'}
 );
 </pre>
-<h4>文字列による指定</h4>
+<h4> Specify by character string </h4>
 <p>
-  文字列で指定した場合は、単純なWhere句が生成されます。
+  If specified as a string, a simple Where clause will be generated.
 </p>
 <pre>
-where =&gt; 'title is null'
+where =&gt;'title is null'
 </pre>
 <p>
-  上記の指定は次のようなWhere句になります。
+  The above specification would be a Where clause like this:
 </p>
 <pre>
 where title is null
 </pre>
-<h3>行の件数を取得する - count</h3>
 <p>
-  行の件数を取得するには<strong>count</strong>メソッドを使用します。
+  Get the number of <h3> rows --count </h3>
+</p>
+<p>
+  Use the <strong> count </strong> method to get the number of rows.
 </p>
 <pre>
-my $count = $dbi-&gt;count(table =&gt; 'book', where =&gt; {title =&gt; 'Perl'});
+my $count = $dbi-&gt;count(table =&gt;'book', where =&gt; {title =&gt;'Perl'});
 </pre>
 <p>
-  指定できるオプションはselectメソッドと同じものです。columnには自動的に「count(*)」が設定されます。
+  The options you can specify are the same as for the select method. "Count (*)" is automatically set in the column.
 </p>
 <p>
-  現在はcountメソッドよりもselectメソッドを使う方法がおすすめです。
+  Currently, it is recommended to use the select method rather than the count method.
 </p>
 <pre>
 my $count = $dbi-&gt;select(
-  'count(*)',
-  table =&gt; 'book',
-  where =&gt; {title =&gt; 'Perl'}
+  'count (*)',
+  table =&gt;'book',
+  where =&gt; {title =&gt;'Perl'}
 )-&gt;value;
 </pre>
 
@@ -490,8 +489,7 @@ my $count = $dbi-&gt;select(
           <div style="margin-bottom:30px">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
      crossorigin="anonymous"></script>
-<!-- ディスプレイ縦長 -->
-<ins class="adsbygoogle"
+<!-- ディスプレイ縦長 --><ins class="adsbygoogle"
      style="display:block"
      data-ad-client="ca-pub-4525414114581084"
      data-ad-slot="4544919209"

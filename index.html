@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- meta -->
-<meta charset="UTF-8">
+    <!-- meta --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
 <link rel="icon" type="image/x-icon" href="/images/logo.png">
 <link rel="stylesheet" type="text/css" href="/css/common.css">
@@ -25,8 +24,7 @@
   });
 </script>
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-M3N0832N8E"></script>
+<!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-M3N0832N8E"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -35,7 +33,7 @@
   gtag('config', 'G-M3N0832N8E');
 </script>
 <title>DBIx::Custom - PerlのO/R Mapper that execute SQL easily</title>
-<meta name="description" content="DBIx :: Custom is Perl's O / R mapper. An O / R mapper is a module that makes it easy to access the database.">
+<meta name="description" content="DBIx::Custom is Perl's O / R mapper. An O / R mapper is a module that makes it easy to access the database.">
   </head>
   <body>
     <div class="container">
@@ -52,12 +50,11 @@
           <div class="entry">
   <div class="top">
     <!-- top -->
-
   </div>
   <div class="middle">
-    <h2><a href="/"> DBIx :: Custom documentation </a></h2>
+    <h2><a href="/"> DBIx::Custom documentation </a></h2>
 <p>
-  DBIx :: Custom is Perl's O / R mapper. An O / R mapper is a module that makes it easy to access the database.
+  DBIx::Custom is Perl's O / R mapper. An O / R mapper is a module that makes it easy to access the database.
 </p>
 <div style="width:calc(100% - 30px);margin:10px auto;">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
@@ -76,11 +73,11 @@
 
 
 <p>
-  DBIx :: Custom is one of the options you can consider if you find it difficult to work with raw DBI or prefer a simple O / R mapper to a more abstract O / R mapper.
+  DBIx::Custom is one of the options you can consider if you find it difficult to work with raw DBI or prefer a simple O / R mapper to a more abstract O / R mapper.
 </p>
-<h3> Features of DBIx :: Custom </h3>
+<h3> Features of DBIx::Custom </h3>
 <p>
-  It is a feature of DBIx :: Custom.
+  It is a feature of DBIx::Custom.
 </p>
 <ul>
   <li>
@@ -113,17 +110,17 @@
   Connect to the database.
 </p>
 <pre>
-use DBIx :: Custom;
+use DBIx::Custom;
 
 #Connect to SQLite
-my $ dbi = DBIx :: Custom-&gt; connect ('dbi: SQLite: dbname = bookshop');
+my $dbi = DBIx::Custom-&gt;connect('dbi: SQLite: dbname = bookshop');
 
 #Connect to MySQL, MariaDB (supports utf8mb4)
 #Connection management is done by default and works fine on prefolk servers
-my $ dbi = DBIx :: Custom-&gt; connect (
+my $dbi = DBIx::Custom-&gt;connect(
   'dbi: mysql: database = bookshop',
   'ken',
-  '! LFKD% $ &amp;',
+  '! LFKD%$&amp;',
   {mysql_enable_utf8mb4 =&gt; 1}
 );
 </pre>
@@ -136,10 +133,10 @@ my $ dbi = DBIx :: Custom-&gt; connect (
 </p>
 <pre>
 #Create a model
-$ dbi-&gt; model ('book');
+$dbi-&gt;model('book');
 
 #Create a model When defining a join clause
-$ dbi-&gt; model (
+$dbi-&gt;model(
   table =&gt;'book',
   join =&gt; [
     'left join author on book.author_id = author.id',
@@ -153,17 +150,17 @@ $ dbi-&gt; model (
 <h3> insert </h3>
 <pre>
 Insert with #insert
-$ dbi-&gt; model ('book')-&gt; insert ({id =&gt; 1, title =&gt;'Perl'});
+$dbi-&gt;model('book')-&gt;insert({id =&gt; 1, title =&gt;'Perl'});
 
 Insert multiple data with #insert
-$ dbi-&gt; model ('book')-&gt; insert (
+$dbi-&gt;model('book')-&gt;insert(
   [
     {id =&gt; 1, title =&gt;'Perl'}
     {id =&gt; 2, title =&gt;'Mojolicious'}
   ]
 );
 Insert multiple data with #insert (bulk insert)
-$ dbi-&gt; model ('book')-&gt; insert (
+$dbi-&gt;model('book')-&gt;insert(
   [
     {id =&gt; 1, title =&gt;'Perl'}
     {id =&gt; 2, title =&gt;'Mojolicious'}
@@ -174,88 +171,88 @@ $ dbi-&gt; model ('book')-&gt; insert (
 <h3> update </h3>
 <pre>
 Updated with #uppdate
-$ dbi-&gt; model ('book')-&gt; update ({title =&gt;'Perl'}, where =&gt; {id =&gt; 1});
+$dbi-&gt;model('book')-&gt;update({title =&gt;'Perl'}, where =&gt; {id =&gt; 1});
 </pre>
 <pre>
 Delete with #delete
-$ dbi-&gt; model ('book')-&gt; delete (where =&gt; {id =&gt; 1});
+$dbi-&gt;model('book')-&gt;delete(where =&gt; {id =&gt; 1});
 </pre>
 <h3> select </h3>
 <pre>
 Select with #select (all fields)
-my $ result = $ dbi-&gt; model ('book')-&gt; select (where =&gt; {id =&gt; 1});
+my $result = $dbi-&gt;model('book')-&gt;select(where =&gt; {id =&gt; 1});
 
 Select with #select (specify field)
-my $ result = $ dbi-&gt; model ('book')-&gt; select (['id','title'], where =&gt; {id =&gt; 1});
+my $result = $dbi-&gt;model('book')-&gt;select(['id','title'], where =&gt; {id =&gt; 1});
 
 Select with #select (ID is 1 or 2 or 3)
-my $ result = $ dbi-&gt; model ('book')-&gt; select (where =&gt; {id =&gt; [1, 2, 3]});
+my $result = $dbi-&gt;model('book')-&gt;select(where =&gt; {id =&gt; [1, 2, 3]});
 
 Select with #select (Peller is included in the title and the price is 2000 yen or less)
-my $ result = $ dbi-&gt; model ('book')-&gt; select (
-  where =&gt; "title like'% Perl%' and price &lt;= 2000"
+my $result = $dbi-&gt;model('book')-&gt;select(
+  where =&gt; "title like'%Perl%' and price &lt;= 2000"
 );
 
 Select with #select (Perl is included in the title and the price is 2000 yen or less) When using variables
 # Use named placeholder
-my $ title ='Perl';
-my $ price = 2000;
-my $ result = $ dbi-&gt; model ('book')-&gt; select (
+my $title ='Perl';
+my $price = 2000;
+my $result = $dbi-&gt;model('book')-&gt;select(
   where =&gt; [
     "title like: title and price &lt;=: price",
-    {title =&gt; $ title, price =&gt; $ price}
+    {title =&gt; $title, price =&gt; $price}
   ]
 );
 
 Select with #select (Peller is included in the title and the price is 2000 yen or less)
 #where clause dynamically generated
-my $ title ='Perl';
-my $ price = 2000;
-my $ result = $ dbi-&gt; model ('book')-&gt; select (
+my $title ='Perl';
+my $price = 2000;
+my $result = $dbi-&gt;model('book')-&gt;select(
   where =&gt; [
     ['and', "title like: title", "price &lt;=: price"],
-    {title =&gt; $ title, price =&gt; $ price}
+    {title =&gt; $title, price =&gt; $price}
   ]
 );
 
 Select with #select (Peller is included in the title and the price is 2000 yen or less or 5000 yen or more)
 #Where clause is dynamically generated and multiple conditions are specified with or
-my $ title ='Perl';
-my $ price1 = 2000;
-my $ price2 = 5000;
-my $ result = $ dbi-&gt; model ('book')-&gt; select (
+my $title ='Perl';
+my $price1 = 2000;
+my $price2 = 5000;
+my $result = $dbi-&gt;model('book')-&gt;select(
   where =&gt; [
     ['and', "title like: title", ['or', "price &lt;=: price", "price&gt; =: price"],
-    {title =&gt; $ title, price =&gt; [$ price1, $ price2]}
+    {title =&gt; $title, price =&gt; [$price1, $price2]}
   ]
 );
 Select with #select (Peller is included in the title and the price is 2000 yen or less or 5000 yen or more)
 #Where clause is dynamically generated and multiple conditions are specified with or
 # One price was not specified
-my $ title ='Perl';
-my $ price2 = 5000;
-my $ result = $ dbi-&gt; model ('book')-&gt; select (
+my $title ='Perl';
+my $price2 = 5000;
+my $result = $dbi-&gt;model('book')-&gt;select(
   where =&gt; [
     ['and', "title like: title", ['or', "price &lt;=: price", "price&gt; =: price"],
-    {title =&gt; $ title, price =&gt; [$ dbi-&gt; not_exists, $ price2]}
+    {title =&gt; $title, price =&gt; [$dbi-&gt;not_exists, $price2]}
   ]
 );
 
 Select with #select (Perl is included in the title and the price is 2000 yen or less) When using variables
 # Named Placeholder Syntack Sugar
-my $ title ='Perl';
-my $ price = 2000;
-my $ result = $ dbi-&gt; model ('book')-&gt; select (
+my $title ='Perl';
+my $price = 2000;
+my $result = $dbi-&gt;model('book')-&gt;select(
   where =&gt; [
     ": title {like} and: price {&lt;=}",
-    {title =&gt; $ title, price =&gt; $ price}
+    {title =&gt; $title, price =&gt; $price}
   ]
 );
 
 </pre>
-<h2> Explanation of DBIx :: Custom </h2>
+<h2> Explanation of DBIx::Custom </h2>
 <p>
-  This is a commentary article on DBIx :: Custom.
+  This is a commentary article on DBIx::Custom.
 </p>
 <ul>
   <li> <a href="/blog/20110508130736.html"> Installation</a> </li>
@@ -270,7 +267,7 @@ my $ result = $ dbi-&gt; model ('book')-&gt; select (
   <li> <a href="/blog/20110709131364.html"> Get row data</a> </li>
   <li> <a href="/blog/20200127081842.html"> Other features</a> </li>
 </ul>
-<h3> All DBIx :: Custom articles </h3>
+<h3> All DBIx::Custom articles </h3>
 <ul>
   <li> <a href="/list.html"> All articles</a> </li>
 </ul>
@@ -300,8 +297,7 @@ my $ result = $ dbi-&gt; model ('book')-&gt; select (
           <div style="margin-bottom:30px">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
      crossorigin="anonymous"></script>
-<!-- ディスプレイ縦長 -->
-<ins class="adsbygoogle"
+<!-- ディスプレイ縦長 --><ins class="adsbygoogle"
      style="display:block"
      data-ad-client="ca-pub-4525414114581084"
      data-ad-slot="4544919209"
